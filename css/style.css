@@ -1396,3 +1396,370 @@ footer {
 .bg-primary {
     background-color: var(--primary) !important;
 }
+
+/* ===== Business Model Section ===== */
+.business-section {
+    background:
+        radial-gradient(circle at top left, rgba(25, 135, 84, 0.10), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(255, 183, 3, 0.14), transparent 35%),
+        var(--white);
+}
+
+.section-badge {
+    display: inline-block;
+    padding: 0.45rem 1rem;
+    border-radius: 999px;
+    background: var(--soft-green);
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.business-subtitle {
+    max-width: 820px;
+}
+
+.business-role-card {
+    background: var(--white);
+    border: 1px solid rgba(25, 135, 84, 0.12);
+    border-radius: 24px;
+    padding: 2rem;
+    box-shadow: 0 12px 35px rgba(15, 81, 50, 0.08);
+    transition: all 0.3s ease;
+}
+
+.business-role-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 45px rgba(15, 81, 50, 0.13);
+}
+
+.business-role-card.seller {
+    background: linear-gradient(135deg, #ffffff 0%, #f0fff6 100%);
+    border-color: rgba(25, 135, 84, 0.2);
+}
+
+.role-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 18px;
+    background: var(--soft-green);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    margin-bottom: 1.25rem;
+}
+
+.business-role-card h4 {
+    font-weight: 800;
+    margin-bottom: 1rem;
+}
+
+.business-role-card p {
+    color: var(--muted);
+    margin-bottom: 1.25rem;
+}
+
+.business-role-card ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.business-role-card li {
+    margin-bottom: 0.75rem;
+    color: var(--text-dark);
+}
+
+.business-role-card li i {
+    color: var(--primary);
+    margin-right: 0.5rem;
+}
+
+/* Pricing Cards */
+.pricing-card {
+    position: relative;
+    background: var(--white);
+    border: 1px solid rgba(31, 41, 55, 0.08);
+    border-radius: 26px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(31, 41, 55, 0.08);
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.pricing-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(31, 41, 55, 0.13);
+}
+
+.pricing-card.featured {
+    border: 2px solid var(--primary);
+    box-shadow: 0 18px 55px rgba(25, 135, 84, 0.18);
+}
+
+.pricing-card.featured::before {
+    content: "";
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    background: rgba(25, 135, 84, 0.10);
+    border-radius: 50%;
+    top: -70px;
+    right: -70px;
+}
+
+.popular-badge {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    background: var(--accent);
+    color: #3b2a00;
+    padding: 0.35rem 0.8rem;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 800;
+}
+
+.pricing-header {
+    position: relative;
+    z-index: 1;
+    margin-bottom: 1.5rem;
+}
+
+.plan-tag {
+    display: inline-block;
+    color: var(--primary);
+    background: var(--soft-green);
+    border-radius: 999px;
+    padding: 0.35rem 0.8rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.pricing-header h4 {
+    font-weight: 800;
+    margin-bottom: 0.75rem;
+}
+
+.price {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--primary-dark);
+    margin-bottom: 0.75rem;
+}
+
+.price span {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--muted);
+}
+
+.pricing-header p {
+    color: var(--muted);
+    margin-bottom: 0;
+}
+
+.pricing-features {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 1.75rem;
+}
+
+.pricing-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.55rem;
+    margin-bottom: 0.85rem;
+    color: var(--text-dark);
+}
+
+.pricing-features li i {
+    color: var(--primary);
+    margin-top: 0.15rem;
+}
+
+.pricing-features li.muted {
+    color: var(--muted);
+}
+
+.pricing-features li.muted i {
+    color: var(--muted);
+}
+
+/* Revenue Box */
+.revenue-box {
+    background: var(--section-bg);
+    border-radius: 28px;
+    padding: 2rem;
+    border: 1px solid rgba(31, 41, 55, 0.06);
+}
+
+.revenue-item {
+    background: var(--white);
+    border-radius: 18px;
+    padding: 1.25rem;
+    height: 100%;
+    border: 1px solid rgba(25, 135, 84, 0.08);
+    transition: all 0.3s ease;
+}
+
+.revenue-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(31, 41, 55, 0.10);
+}
+
+.revenue-item i {
+    font-size: 1.5rem;
+    color: var(--primary);
+    margin-bottom: 0.75rem;
+    display: inline-block;
+}
+
+.revenue-item h6 {
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+}
+
+.revenue-item p {
+    color: var(--muted);
+    font-size: 0.92rem;
+    margin-bottom: 0;
+}
+
+.business-highlight {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: var(--white);
+    border-radius: 20px;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    font-weight: 700;
+    box-shadow: 0 14px 35px rgba(25, 135, 84, 0.25);
+}
+
+.business-highlight i {
+    color: var(--accent);
+    font-size: 1.4rem;
+}
+
+@media (max-width: 767px) {
+    .business-role-card,
+    .pricing-card,
+    .revenue-box {
+        padding: 1.5rem;
+    }
+
+    .popular-badge {
+        position: static;
+        display: inline-block;
+        margin-bottom: 1rem;
+    }
+
+    .price {
+        font-size: 1.65rem;
+    }
+
+    .business-highlight {
+        align-items: flex-start;
+    }
+}
+
+.team-avatar-new {
+    width: 110px;
+    height: 110px;
+    margin: 0 auto 1rem;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid rgba(25, 135, 84, 0.18);
+    box-shadow: 0 12px 30px rgba(15, 81, 50, 0.18);
+    background: var(--soft-green);
+}
+
+.team-avatar-new img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* ===== Team Group Photo ===== */
+.team-photo-card {
+    position: relative;
+    border-radius: 28px;
+    overflow: hidden;
+    min-height: 420px;
+    box-shadow: 0 20px 55px rgba(15, 81, 50, 0.18);
+    border: 1px solid rgba(25, 135, 84, 0.12);
+    background: var(--soft-green);
+}
+
+.team-photo-card img {
+    width: 100%;
+    height: 100%;
+    min-height: 420px;
+    object-fit: cover;
+    display: block;
+}
+
+
+.team-photo-caption {
+    position: absolute;
+    left: 40px;
+    bottom: 36px;
+    max-width: 520px;
+    color: #fff;
+    z-index: 2;
+}
+
+.team-photo-caption span {
+    display: inline-block;
+    background: rgba(255, 183, 3, 0.95);
+    color: #3b2a00;
+    padding: 0.4rem 0.9rem;
+    border-radius: 999px;
+    font-weight: 800;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+}
+
+.team-photo-caption h4 {
+    font-size: 2rem;
+    font-weight: 900;
+    margin-bottom: 0.75rem;
+}
+
+.team-photo-caption p {
+    margin-bottom: 0;
+    font-size: 1.05rem;
+    opacity: 0.95;
+}
+
+@media (max-width: 767px) {
+    .team-photo-card {
+        min-height: 360px;
+        border-radius: 22px;
+    }
+
+    .team-photo-card img {
+        min-height: 360px;
+    }
+
+    .team-photo-caption {
+        left: 22px;
+        right: 22px;
+        bottom: 24px;
+    }
+
+    .team-photo-caption h4 {
+        font-size: 1.5rem;
+    }
+
+    .team-photo-caption p {
+        font-size: 0.95rem;
+    }
+}
