@@ -361,12 +361,54 @@ document.addEventListener("DOMContentLoaded", function () {
             unit: "kg",
             pricePerUnit: 25000,
           },
+          {
+            name: "Gạo tẻ thơm",
+            qtyPerPerson: 0.15,
+            unit: "kg",
+            pricePerUnit: 18000,
+          },
+        ],
+      },
+      {
+        name: "Cơm thịt ba chỉ luộc & canh rau muống",
+        suggestion:
+          "Thịt ba chỉ luộc chín mềm ăn kèm cà pháo muối giòn và canh rau muống luộc vắt chanh.",
+        seller: "Gian hàng Thực Phẩm Cô Lan",
+        reason:
+          "Món ăn dân dã mát ruột cho ngày hè, thịt heo ba chỉ beo béo ăn cùng cà pháo chua giòn.",
+        items: [
+          {
+            name: "Thịt ba chỉ ngon",
+            qtyPerPerson: 0.15,
+            unit: "kg",
+            pricePerUnit: 130000,
+          },
+          {
+            name: "Rau muống non",
+            qtyPerPerson: 1,
+            unit: "bó",
+            pricePerUnit: 12000,
+            fixed: true,
+          },
+          {
+            name: "Gạo tẻ thơm",
+            qtyPerPerson: 0.15,
+            unit: "kg",
+            pricePerUnit: 18000,
+          },
+          {
+            name: "Cà pháo muối",
+            qtyPerPerson: 1,
+            unit: "bát",
+            pricePerUnit: 5000,
+            fixed: true,
+          },
         ],
       },
     ],
     "Bữa tối": [
       {
-        name: "Thịt bằm sốt cà & Đậu hũ",
+        name: "Thịt bằm sốt cà & Đậu hũ chiên",
         suggestion:
           "Thịt heo xay sốt cà chua đậm đà, đậu hũ chiên giòn và canh rau muống tỏi.",
         seller: "Gian hàng Thực Phẩm Cô Lan",
@@ -375,9 +417,9 @@ document.addEventListener("DOMContentLoaded", function () {
         items: [
           {
             name: "Thịt heo xay",
-            qtyPerPerson: 0.2,
+            qtyPerPerson: 0.18,
             unit: "kg",
-            pricePerUnit: 80000,
+            pricePerUnit: 90000,
           },
           {
             name: "Cà chua chín",
@@ -387,18 +429,25 @@ document.addEventListener("DOMContentLoaded", function () {
           },
           {
             name: "Rau muống non",
-            qtyPerPerson: 0.3,
+            qtyPerPerson: 1,
             unit: "bó",
             pricePerUnit: 12000,
+            fixed: true,
           },
           {
             name: "Đậu hũ trắng",
-            qtyPerPerson: 1.3,
+            qtyPerPerson: 1.5,
             unit: "miếng",
             pricePerUnit: 5000,
           },
           {
-            name: "Hành tỏi gia vị",
+            name: "Gạo thơm dẻo",
+            qtyPerPerson: 0.15,
+            unit: "kg",
+            pricePerUnit: 18000,
+          },
+          {
+            name: "Gia vị hành tỏi",
             qtyPerPerson: 1,
             unit: "phần",
             pricePerUnit: 5000,
@@ -407,79 +456,88 @@ document.addEventListener("DOMContentLoaded", function () {
         ],
       },
       {
-        name: "Cá chép om dưa",
+        name: "Cá diêu hồng chiên xù & canh chua",
         suggestion:
-          "Cá chép thịt ngọt dai om dưa cải chua giòn sần sật, ăn kèm bún tươi và rau thì là hành hoa.",
-        seller: "Hải Sản Tươi Sống Sông Trà",
+          "Cá diêu hồng tươi chiên giòn cuốn rau sống chấm nước mắm tỏi ớt kèm bát canh chua dọc mùng thanh nhiệt.",
+        seller: "Gian hàng Thực Phẩm Cô Lan",
         reason:
-          "Cá chép tươi om dưa chua thanh thanh, giữ ấm cơ thể rất tốt trong bữa cơm gia đình.",
+          "Món cá diêu hồng giàu dinh dưỡng, ăn kèm canh chua bạc hà mát lành cho bữa cơm tối gia đình.",
         items: [
           {
-            name: "Cá chép tươi",
-            qtyPerPerson: 0.35,
+            name: "Cá diêu hồng tươi",
+            qtyPerPerson: 0.3,
             unit: "kg",
-            pricePerUnit: 70000,
+            pricePerUnit: 75000,
           },
           {
-            name: "Dưa cải muối chua",
+            name: "Đồ nấu canh chua",
+            qtyPerPerson: 1,
+            unit: "phần",
+            pricePerUnit: 20000,
+            fixed: true,
+          },
+          {
+            name: "Rau sống ăn kèm",
+            qtyPerPerson: 1,
+            unit: "phần",
+            pricePerUnit: 10000,
+            fixed: true,
+          },
+          {
+            name: "Gạo thơm dẻo",
             qtyPerPerson: 0.15,
             unit: "kg",
-            pricePerUnit: 20000,
-          },
-          {
-            name: "Thịt ba rọi heo",
-            qtyPerPerson: 0.05,
-            unit: "kg",
-            pricePerUnit: 130000,
-          },
-          {
-            name: "Bún tươi",
-            qtyPerPerson: 0.2,
-            unit: "kg",
-            pricePerUnit: 15000,
+            pricePerUnit: 18000,
           },
         ],
       },
       {
-        name: "Bò xào thiên lý",
+        name: "Thịt gà kho sả ớt & canh bí đỏ",
         suggestion:
-          "Thịt bò thăn mềm mỏng xào hoa thiên lý xanh mướt thơm thoang thoảng, canh nấm đông cô.",
-        seller: "Cửa hàng Thịt Bò Sạch Organic",
+          "Thịt gà góc đùi ta xào sả ớt cay thơm đậm đà dọn kèm bát canh bí đỏ nấu thịt bằm.",
+        seller: "Sạp Gà Ta Cô Tám",
         reason:
-          "Thịt bò thăn giàu sắt xào nhanh cùng hoa thiên lý thanh nhiệt, an thần giúp giấc ngủ ngon hơn.",
+          "Thịt gà xào đậm đà đưa cơm kết hợp canh bí đỏ bổ dưỡng, giúp cả nhà bồi bổ sức khỏe tối nay.",
         items: [
           {
-            name: "Thịt thăn bò",
-            qtyPerPerson: 0.12,
+            name: "Đùi gà công nghiệp",
+            qtyPerPerson: 0.2,
             unit: "kg",
-            pricePerUnit: 260000,
+            pricePerUnit: 65000,
           },
           {
-            name: "Hoa thiên lý sạch",
-            qtyPerPerson: 0.1,
-            unit: "kg",
-            pricePerUnit: 80000,
-          },
-          {
-            name: "Nấm đùi gà baby",
-            qtyPerPerson: 0.08,
-            unit: "kg",
-            pricePerUnit: 60000,
-          },
-          {
-            name: "Cải bó xôi (canh)",
+            name: "Bí đỏ tươi",
             qtyPerPerson: 0.15,
             unit: "kg",
-            pricePerUnit: 30000,
+            pricePerUnit: 25000,
+          },
+          {
+            name: "Thịt heo xay (canh)",
+            qtyPerPerson: 0.05,
+            unit: "kg",
+            pricePerUnit: 90000,
+          },
+          {
+            name: "Gạo thơm dẻo",
+            qtyPerPerson: 0.15,
+            unit: "kg",
+            pricePerUnit: 18000,
+          },
+          {
+            name: "Sả & ớt bằm",
+            qtyPerPerson: 1,
+            unit: "phần",
+            pricePerUnit: 5000,
+            fixed: true,
           },
         ],
       },
     ],
-    "Tiết kiệm/Sinh viên": [
+    "Bữa sinh viên/tiết kiệm": [
       {
         name: "Đậu hũ sốt cà & Canh trứng",
         suggestion:
-          "Đậu hũ non chiên sốt cà chua hành lá, canh trứng cà chua thơm lừng cùng cơm trắng dẻo.",
+          "Đậu hũ chiên sốt cà chua hành lá thơm ngậy cùng bát canh trứng cà chua thơm lừng.",
         seller: "Cửa Hàng Rau Sạch Cô Năm",
         reason:
           "Chi phí cực thấp nhưng cung cấp đầy đủ dinh dưỡng cơ bản. Phù hợp tuyệt vời cho ví tiền sinh viên.",
@@ -488,104 +546,104 @@ document.addEventListener("DOMContentLoaded", function () {
             name: "Đậu hũ trắng",
             qtyPerPerson: 2,
             unit: "miếng",
+            pricePerUnit: 5000,
+          },
+          {
+            name: "Trứng gà ta",
+            qtyPerPerson: 1,
+            unit: "quả",
             pricePerUnit: 3500,
           },
           {
-            name: "Trứng gà công nghiệp",
-            qtyPerPerson: 1,
-            unit: "quả",
-            pricePerUnit: 3000,
-          },
-          {
             name: "Cà chua chín",
-            qtyPerPerson: 0.2,
-            unit: "kg",
-            pricePerUnit: 20000,
-          },
-        ],
-      },
-      {
-        name: "Cơm gà xào sả ớt",
-        suggestion:
-          "Thịt gà góc đùi dai ngọt chặt nhỏ xào sả ớt cay cay đậm đà, ăn kèm canh mướp mồng tơi.",
-        seller: "Sạp Gà Ta & Gà Công Nghiệp Cô Tám",
-        reason:
-          "Gà công nghiệp cắt đùi giá rẻ nhưng giàu protein, xào sả ớt cực trôi cơm và canh mướp thanh mát.",
-        items: [
-          {
-            name: "Đùi gà công nghiệp",
-            qtyPerPerson: 0.25,
-            unit: "kg",
-            pricePerUnit: 65000,
-          },
-          {
-            name: "Sả & ớt bằm",
-            qtyPerPerson: 1,
-            unit: "phần",
-            pricePerUnit: 3000,
-            fixed: true,
-          },
-          {
-            name: "Mướp hương & mồng tơi",
-            qtyPerPerson: 0.15,
-            unit: "kg",
-            pricePerUnit: 22000,
-          },
-        ],
-      },
-      {
-        name: "Mì xào lòng gà cải ngọt",
-        suggestion:
-          "Mì tôm xào lòng mề gà giòn dai kết hợp rau cải ngọt bánh tẻ, ăn kèm chén nước tương ớt cay.",
-        seller: "Quầy Thực Phẩm Khô & Gia Vị Kim Anh",
-        reason:
-          "Hương vị hấp dẫn, lòng mề gà giòn sần sật, cải ngọt tươi sạch giàu chất xơ cho bữa ăn nhanh gọn.",
-        items: [
-          {
-            name: "Mì ăn liền Hảo Hảo",
-            qtyPerPerson: 1.5,
-            unit: "gói",
-            pricePerUnit: 4000,
-          },
-          {
-            name: "Lòng mề gà tươi sạch",
-            qtyPerPerson: 0.12,
-            unit: "kg",
-            pricePerUnit: 80000,
-          },
-          {
-            name: "Rau cải ngọt",
-            qtyPerPerson: 0.15,
+            qtyPerPerson: 0.1,
             unit: "kg",
             pricePerUnit: 20000,
           },
           {
-            name: "Tỏi củ & gia vị",
+            name: "Gạo tẻ thường",
+            qtyPerPerson: 0.15,
+            unit: "kg",
+            pricePerUnit: 15000,
+          },
+        ],
+      },
+      {
+        name: "Trứng rán hành & Canh rau muống",
+        suggestion:
+          "Trứng chiên hành lá thơm lừng ăn kèm canh rau muống luộc mát ruột đưa cơm.",
+        seller: "Cửa Hàng Rau Sạch Cô Năm",
+        reason:
+          "Món ăn quốc dân dễ nấu, rẻ mà ngon, cung cấp đủ đạm trứng và chất xơ từ rau muống.",
+        items: [
+          {
+            name: "Trứng gà ta",
+            qtyPerPerson: 2,
+            unit: "quả",
+            pricePerUnit: 3500,
+          },
+          {
+            name: "Rau muống non",
+            qtyPerPerson: 1,
+            unit: "bó",
+            pricePerUnit: 10000,
+            fixed: true,
+          },
+          {
+            name: "Gạo tẻ thường",
+            qtyPerPerson: 0.15,
+            unit: "kg",
+            pricePerUnit: 15000,
+          },
+        ],
+      },
+      {
+        name: "Cơm thịt heo xào hành tây",
+        suggestion:
+          "Thịt heo xào hành tây giòn ngọt thơm lừng tiêu sọ dùng nóng cùng cơm tẻ.",
+        seller: "Gian hàng Thực Phẩm Cô Lan",
+        reason:
+          "Thịt nạc heo giàu dinh dưỡng xào hành tây giòn ngọt thơm ngon kích thích vị giác với giá sinh viên.",
+        items: [
+          {
+            name: "Thịt nạc vai heo",
+            qtyPerPerson: 0.1,
+            unit: "kg",
+            pricePerUnit: 100000,
+          },
+          {
+            name: "Hành tây & hành lá",
             qtyPerPerson: 1,
             unit: "phần",
-            pricePerUnit: 2000,
+            pricePerUnit: 5000,
             fixed: true,
+          },
+          {
+            name: "Gạo tẻ thường",
+            qtyPerPerson: 0.15,
+            unit: "kg",
+            pricePerUnit: 15000,
           },
         ],
       },
     ],
-    Healthy: [
+    "Bữa healthy": [
       {
         name: "Salad ức gà áp chảo sốt mè",
         suggestion:
-          "Ức gà áp chảo xé sợi trộn rau xà lách Romaine, cà chua bi, dưa leo và nước sốt mè rang béo nhẹ.",
+          "Ức gà áp chảo xé sợi trộn rau xà lách Romaine, dưa leo, cà chua bi kết hợp nước sốt mè rang béo nhẹ.",
         seller: "Nông Sản Sạch Đà Lạt Gia Nghĩa",
         reason:
-          "Chuẩn thực đơn Eat Clean, cực kỳ ít mỡ xấu, lượng protein cao giúp giữ cơ và hỗ trợ lối sống năng động.",
+          "Thực đơn chuẩn Eat Clean giàu protein ít calo giúp giữ dáng, săn cơ khỏe khoắn.",
         items: [
           {
-            name: "Ức gà phi lê không da",
+            name: "Ức gà phi lê sạch",
             qtyPerPerson: 0.2,
             unit: "kg",
-            pricePerUnit: 70000,
+            pricePerUnit: 75000,
           },
           {
-            name: "Xà lách Romaine sạch",
+            name: "Xà lách Romaine",
             qtyPerPerson: 0.1,
             unit: "kg",
             pricePerUnit: 45000,
@@ -594,10 +652,10 @@ document.addEventListener("DOMContentLoaded", function () {
             name: "Cà chua bi ngọt",
             qtyPerPerson: 0.08,
             unit: "kg",
-            pricePerUnit: 40000,
+            pricePerUnit: 45000,
           },
           {
-            name: "Nước sốt mè rang Kewpie",
+            name: "Sốt mè rang Kewpie",
             qtyPerPerson: 1,
             unit: "gói",
             pricePerUnit: 7000,
@@ -605,44 +663,16 @@ document.addEventListener("DOMContentLoaded", function () {
         ],
       },
       {
-        name: "Cá hồi áp chảo sốt cam gạo lứt",
+        name: "Bún lứt tôm sú xào bông cải",
         suggestion:
-          "Cá hồi phi lê áp chảo chín tới thơm mềm, sốt cam tươi chua ngọt tự nhiên, ăn cùng cơm gạo lứt dẻo.",
-        seller: "Cửa Hàng Thực Phẩm Nhập Khẩu GreenFoods",
-        reason:
-          "Cung cấp hàm lượng lớn Omega-3 tốt cho tim mạch và tinh bột hấp thu chậm từ gạo lứt đỏ Điện Biên.",
-        items: [
-          {
-            name: "Phi lê cá hồi tươi",
-            qtyPerPerson: 0.12,
-            unit: "kg",
-            pricePerUnit: 380000,
-          },
-          {
-            name: "Cam sành vắt nước",
-            qtyPerPerson: 0.5,
-            unit: "quả",
-            pricePerUnit: 4000,
-          },
-          {
-            name: "Măng tây sạch",
-            qtyPerPerson: 0.08,
-            unit: "kg",
-            pricePerUnit: 90000,
-          },
-        ],
-      },
-      {
-        name: "Bún lứt tôm sú xào rau củ",
-        suggestion:
-          "Bún gạo lứt luộc trộn tôm sú bóc vỏ xào ớt chuông ba màu, hành tây và bông cải xanh.",
+          "Bún gạo lứt luộc trộn tôm sú bóc vỏ xào bông cải xanh giòn ngọt đầy đủ vitamin.",
         seller: "Thủy Hải Sản Cao Cấp Tươi Sạch",
         reason:
-          "Bữa ăn giàu chất xơ, vitamin C và đạm tôm ngọt tự nhiên, không sợ tích mỡ, duy trì vóc dáng.",
+          "Bữa ăn lành mạnh giàu xơ, tinh bột tốt từ gạo lứt và protein ngọt tự nhiên từ tôm sú tươi.",
         items: [
           {
-            name: "Tôm sú tươi bóc vỏ",
-            qtyPerPerson: 0.1,
+            name: "Tôm sú tươi ngon",
+            qtyPerPerson: 0.12,
             unit: "kg",
             pricePerUnit: 220000,
           },
@@ -667,209 +697,31 @@ document.addEventListener("DOMContentLoaded", function () {
           },
         ],
       },
-    ],
-    "Lẩu cuối tuần": [
       {
-        name: "Lẩu gà lá giang đặc sản",
+        name: "Cá hồi áp chảo sốt cam",
         suggestion:
-          "Nồi lẩu gà ta nguyên con thịt săn chắc, nước lẩu chua chua cay cay thơm nức lá giang và bún.",
-        seller: "Gian hàng Gà Ta Quê Ngoại",
+          "Cá hồi phi lê áp chảo chín tới thơm mềm sốt cam vắt nguyên chất dọn kèm măng tây xào tỏi.",
+        seller: "Cửa Hàng Thực Phẩm Nhập Khẩu GreenFoods",
         reason:
-          "Thích hợp sum họp cuối tuần gia đình, lá giang chua mát giải ngấy, thịt gà ta thả vườn giòn ngọt tự nhiên. Thực đơn này được bộ lọc dữ liệu tinh chỉnh sử dụng ~91% ngân sách, chừa lại 10% biên độ an toàn cho sai số cân nặng thực tế tại sạp.",
+          "Cung cấp chất béo tốt Omega-3 cho tim mạch từ cá hồi tươi sạch và măng tây giàu xơ, kali.",
         items: [
           {
-            name: "Gà ta nguyên con",
-            qtyPerPerson: 0.3, // Hệ thống nhân với 4 người sẽ ra khít 1.2 kg như trên giao diện web
-            unit: "kg",
-            pricePerUnit: 120000,
-          },
-          {
-            name: "Lá giang tươi sạch",
-            qtyPerPerson: 1, // Đánh dấu fixed hoặc xử lý chia nhỏ theo bó
-            unit: "bó",
-            pricePerUnit: 8000,
-            fixed: true, // Không nhân theo số người, luôn là 1 bó cho 1 nồi lẩu
-          },
-          {
-            name: "Rau muống chẻ & Bắp chuối",
-            qtyPerPerson: 0.15, // Nhân 4 người ra 0.6 kg như web
-            unit: "kg",
-            pricePerUnit: 25000,
-          },
-          {
-            name: "Bún tươi sợi nhỏ",
-            qtyPerPerson: 0.25, // Nhân 4 người ra đúng 1 kg bún
-            unit: "kg",
-            pricePerUnit: 15000,
-          },
-        ],
-      },
-      {
-        name: "Lẩu riêu cua sườn sụn",
-        suggestion:
-          "Lẩu riêu cua đồng xịn đặc gạch, sườn non heo sần sật, đậu hũ chiên vàng và bún tươi.",
-        seller: "Sạp Đồ Đồng & Thủy Sản Quê Hương",
-        reason:
-          "Hương vị nồng nàn thanh cua của riêu đồng xịn, ăn kèm sườn sụn non heo giòn dai sần sật hấp dẫn.",
-        items: [
-          {
-            name: "Cua đồng xay lọc gạch",
-            qtyPerPerson: 0.15,
-            unit: "kg",
-            pricePerUnit: 120000,
-          },
-          {
-            name: "Sườn heo sụn ngon",
-            qtyPerPerson: 0.15,
-            unit: "kg",
-            pricePerUnit: 160000,
-          },
-          {
-            name: "Đậu hũ chiên sẵn",
-            qtyPerPerson: 1.5,
-            unit: "miếng",
-            pricePerUnit: 4000,
-          },
-          {
-            name: "Rau sống lẩu riêu cua",
-            qtyPerPerson: 1.5,
-            unit: "phần",
-            pricePerUnit: 8000,
-            fixed: true,
-          },
-        ],
-      },
-      {
-        name: "Lẩu thái hải sản chua cay",
-        suggestion:
-          "Lẩu chua cay vị Thái với tôm sú tươi, mực ống, cá viên nhúng cùng nấm kim châm và rau muống.",
-        seller: "Hải Sản Tươi Sống Đại Dương",
-        reason:
-          "Hương vị lẩu Thái đậm đà chua cay bùng nổ vị giác, hải sản nhúng tươi ngon tự nhiên cho dịp liên hoan.",
-        items: [
-          {
-            name: "Tôm sú tươi ngon",
+            name: "Phi lê cá hồi tươi",
             qtyPerPerson: 0.12,
             unit: "kg",
-            pricePerUnit: 240000,
+            pricePerUnit: 380000,
           },
           {
-            name: "Mực ống tươi lát",
-            qtyPerPerson: 0.1,
-            unit: "kg",
-            pricePerUnit: 250000,
-          },
-          {
-            name: "Nấm kim châm & Nấm đùi gà",
-            qtyPerPerson: 1,
-            unit: "túi",
-            pricePerUnit: 12000,
-            fixed: true,
-          },
-          {
-            name: "Rau nhúng lẩu Thái",
-            qtyPerPerson: 0.15,
-            unit: "kg",
-            pricePerUnit: 20000,
-          },
-        ],
-      },
-    ],
-    "Ăn chay": [
-      {
-        name: "Đậu hũ kho nấm rơm chay",
-        suggestion:
-          "Đậu hũ chiên vàng kho sền sệt với nấm rơm tiêu đen đậm đà dọn kèm canh cải ngọt chay.",
-        seller: "Cửa hàng Đồ Chay An Lạc",
-        reason:
-          "Bữa cơm chay tịnh đầy đủ protein thực vật từ đậu hũ chiên và vitamin, khoáng chất từ nấm rơm tươi ngọt.",
-        items: [
-          {
-            name: "Đậu hũ trắng chiên vàng",
-            qtyPerPerson: 2,
-            unit: "miếng",
+            name: "Cam sành vắt nước",
+            qtyPerPerson: 0.5,
+            unit: "quả",
             pricePerUnit: 4000,
           },
           {
-            name: "Nấm rơm tươi sạch",
-            qtyPerPerson: 0.1,
+            name: "Măng tây sạch",
+            qtyPerPerson: 0.08,
             unit: "kg",
             pricePerUnit: 90000,
-          },
-          {
-            name: "Rau cải ngọt (canh)",
-            qtyPerPerson: 0.15,
-            unit: "bó",
-            pricePerUnit: 15000,
-          },
-        ],
-      },
-      {
-        name: "Hủ tiếu chay Nam Bộ",
-        suggestion:
-          "Tô hủ tiếu chay nước dùng hầm ngọt củ quả tự nhiên, kèm tàu hũ ky giòn rụm và nấm đông cô.",
-        seller: "Quầy Rau Củ Quả Chay Tịnh - Cô Bảy",
-        reason:
-          "Hủ tiếu chay sưởi ấm dạ dày, nước dùng thanh khiết nấu từ lê và củ cải trắng ngọt mát tự nhiên.",
-        items: [
-          {
-            name: "Hủ tiếu khô Sa Đéc",
-            qtyPerPerson: 0.1,
-            unit: "kg",
-            pricePerUnit: 25000,
-          },
-          {
-            name: "Tàu hũ ky chiên giòn",
-            qtyPerPerson: 0.05,
-            unit: "kg",
-            pricePerUnit: 120000,
-          },
-          {
-            name: "Nấm đông cô khô",
-            qtyPerPerson: 0.03,
-            unit: "kg",
-            pricePerUnit: 200000,
-          },
-          {
-            name: "Rau củ hầm ngọt nước",
-            qtyPerPerson: 0.2,
-            unit: "kg",
-            pricePerUnit: 15000,
-          },
-        ],
-      },
-      {
-        name: "Bún chả giò chay giòn rụm",
-        suggestion:
-          "Chả giò chay nhân khoai môn sắn sợi chiên vàng giòn rụm ăn kèm bún tươi và nước chấm chay chua ngọt.",
-        seller: "Đồ Chay & Nông Sản Việt Chay",
-        reason:
-          "Chả giò bùi thơm ngậy vị khoai môn ăn cùng bún sợi và các loại rau thơm kinh giới, xà lách sạch sẽ.",
-        items: [
-          {
-            name: "Chả giò chay cuốn sẵn",
-            qtyPerPerson: 4,
-            unit: "cuộn",
-            pricePerUnit: 3500,
-          },
-          {
-            name: "Bún tươi sạch",
-            qtyPerPerson: 0.2,
-            unit: "kg",
-            pricePerUnit: 15000,
-          },
-          {
-            name: "Rau sống & dưa leo",
-            qtyPerPerson: 1,
-            unit: "phần",
-            pricePerUnit: 5000,
-          },
-          {
-            name: "Nước mắm chay chua ngọt",
-            qtyPerPerson: 1,
-            unit: "chén",
-            pricePerUnit: 3000,
-            fixed: true,
           },
         ],
       },
@@ -1241,19 +1093,19 @@ document.addEventListener("DOMContentLoaded", function () {
   startMenuSimulation("Bữa tối", 3, 130000);
 
   // ===== Real-time Order Simulator Feed & SellerAIInsights =====
-  
+
   // Order templates matching the Vietnamese context and specific store sections
   const ORDER_TEMPLATES = [
     { customer: "Nguyễn Thị H.", shop: "Thịt Sạch Cô Vy", items: "Cá lóc canh chua thơm", price: 45000 },
     { customer: "Vũ Thị L.", shop: "Thịt Sạch Cô Vy", items: "Combo ba chỉ lợn nướng, 1 bó xà lách", price: 87000 },
-    { customer: "Hoàng Anh T.", shop: "Tiệm Rau Bà Tám", items: "1 set rau củ canh chua, me ngào sả", price: 45000 },
-    { customer: "Lê Văn T.", shop: "Quầy Cá Chú Sáu", items: "1 khúc cá lóc, gói tỏi ớt kho", price: 108000 },
-    { customer: "Phạm Minh C.", shop: "Sạp Thực Phẩm Cô Lan", items: "0.5kg thịt heo xay, 1 túi cà chua chín", price: 57000 },
-    { customer: "Trần Thanh N.", shop: "Cửa Hàng Rau Sạch Cô Năm", items: "Combo 4 miếng đậu hũ trắng, 2 quả trứng gà", price: 27000 },
-    { customer: "Đặng Hồng P.", shop: "Nông Sản Sạch Đà Lạt", items: "1 set salad ức gà áp chảo sốt mè", price: 42000 },
-    { customer: "Bùi Quang D.", shop: "Thủy Hải Sản Cao Cấp", items: "0.3kg tôm sú tươi bóc vỏ, bún lứt xào", price: 78000 },
-    { customer: "Ngô Quốc T.", shop: "Quầy Gạo & Đồ Khô Cô Xuân", items: "1 túi cháo sườn sụn hành hoa đặc biệt", price: 35000 },
-    { customer: "Lý Mỹ D.", shop: "Gian hàng Gà Ta Cô Tám", items: "0.5kg đùi gà ta xào sả ớt, bí đỏ", price: 62000 }
+    { customer: "Hoàng Anh T.", shop: "Thịt Sạch Cô Vy", items: "1.2kg sườn heo non sạch", price: 168000 },
+    { customer: "Lê Văn T.", shop: "Thịt Sạch Cô Vy", items: "1 khúc cá lóc, gói tỏi ớt kho", price: 108000 },
+    { customer: "Phạm Minh C.", shop: "Thịt Sạch Cô Vy", items: "0.5kg thịt heo xay tươi ngon", price: 57000 },
+    { customer: "Trần Thanh N.", shop: "Thịt Sạch Cô Vy", items: "1kg xương ống heo ngọt nước", price: 65000 },
+    { customer: "Đặng Hồng P.", shop: "Thịt Sạch Cô Vy", items: "0.8kg thịt nạc vai heo sạch", price: 96000 },
+    { customer: "Bùi Quang D.", shop: "Thịt Sạch Cô Vy", items: "0.5kg ba chỉ heo giòn ngon", price: 75000 },
+    { customer: "Ngô Quốc T.", shop: "Thịt Sạch Cô Vy", items: "0.6kg sườn sụn heo giòn sần sật", price: 90000 },
+    { customer: "Lý Mỹ D.", shop: "Thịt Sạch Cô Vy", items: "1kg thịt đùi heo tươi", price: 120000 }
   ];
 
   let currentRevenue = 682000;
@@ -1287,7 +1139,7 @@ document.addEventListener("DOMContentLoaded", function () {
     orderEl.innerHTML = `
       <div class="order-details-left min-w-0">
         <div class="fw-bold text-truncate text-dark" style="font-size: 0.9rem;">${template.customer}</div>
-        <div class="text-muted text-truncate" style="font-size: 0.8rem;">${template.shop} • ${template.items}</div>
+        <div class="text-muted text-truncate" style="font-size: 0.8rem;">${template.items}</div>
       </div>
       <div class="order-details-right text-end flex-shrink-0 ps-2">
         <div class="fw-bold text-success" style="font-size: 0.9rem;">${template.price.toLocaleString("vi-VN")}đ</div>
@@ -1302,7 +1154,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const items = container.querySelectorAll(".order-item-simulation");
     items.forEach((item, index) => {
       if (index === 0) return; // Keep "Vừa xong" for the newest order
-      
+
       const timeEl = item.querySelector(".order-details-right .text-muted");
       if (timeEl) {
         timeEl.textContent = `${index * 2} phút trước`;
@@ -1330,7 +1182,7 @@ document.addEventListener("DOMContentLoaded", function () {
     updateDashboardMetrics(template.price);
   }
 
-  // Start the order simulation loop (every 8 seconds)
-  setInterval(simulateNewOrder, 8000);
+  // Start the order simulation loop (every 15 seconds)
+  setInterval(simulateNewOrder, 15000);
   console.log("Chợ AI Local - Landing Page Loaded Successfully!");
 });
