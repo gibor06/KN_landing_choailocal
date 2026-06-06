@@ -1060,16 +1060,66 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Order templates matching the Vietnamese context and specific store sections
   const ORDER_TEMPLATES = [
-    { customer: "Nguyễn Thị Hòa", shop: "Thịt Sạch Cô Vy", items: "0.5kg đùi gà tỏi tươi", price: 45000 },
-    { customer: "Vũ Thị Linh", shop: "Thịt Sạch Cô Vy", items: "Combo ba chỉ lợn nướng, 1 bó xà lách", price: 87000 },
-    { customer: "Hoàng Anh Tuấn", shop: "Thịt Sạch Cô Vy", items: "1.2kg sườn heo non sạch", price: 168000 },
-    { customer: "Lê Văn Bình", shop: "Thịt Sạch Cô Vy", items: "Combo ba chỉ heo và sườn sụn nướng", price: 108000 },
-    { customer: "Phạm Minh Cường", shop: "Thịt Sạch Cô Vy", items: "0.5kg thịt heo xay tươi ngon", price: 57000 },
-    { customer: "Trần Thanh Ngọc", shop: "Thịt Sạch Cô Vy", items: "1kg xương ống heo ngọt nước", price: 65000 },
-    { customer: "Đặng Hồng Phương", shop: "Thịt Sạch Cô Vy", items: "0.8kg thịt nạc vai heo sạch", price: 96000 },
-    { customer: "Bùi Quang Dũng", shop: "Thịt Sạch Cô Vy", items: "0.5kg ba chỉ heo giòn ngon", price: 75000 },
-    { customer: "Ngô Quốc Tùng", shop: "Thịt Sạch Cô Vy", items: "0.6kg sườn sụn heo giòn sần sật", price: 90000 },
-    { customer: "Lý Mỹ Duyên", shop: "Thịt Sạch Cô Vy", items: "1kg thịt đùi heo tươi", price: 120000 }
+    {
+      customer: "Nguyễn Thị Hòa",
+      shop: "Thịt Sạch Cô Vy",
+      items: "0.5kg đùi gà tỏi tươi",
+      price: 45000,
+    },
+    {
+      customer: "Vũ Thị Linh",
+      shop: "Thịt Sạch Cô Vy",
+      items: "Combo ba chỉ lợn nướng, 1 bó xà lách",
+      price: 87000,
+    },
+    {
+      customer: "Hoàng Anh Tuấn",
+      shop: "Thịt Sạch Cô Vy",
+      items: "1.2kg sườn heo non sạch",
+      price: 168000,
+    },
+    {
+      customer: "Lê Văn Bình",
+      shop: "Thịt Sạch Cô Vy",
+      items: "Combo ba chỉ heo và sườn sụn nướng",
+      price: 108000,
+    },
+    {
+      customer: "Phạm Minh Cường",
+      shop: "Thịt Sạch Cô Vy",
+      items: "0.5kg thịt heo xay tươi ngon",
+      price: 57000,
+    },
+    {
+      customer: "Trần Thanh Ngọc",
+      shop: "Thịt Sạch Cô Vy",
+      items: "1kg xương ống heo ngọt nước",
+      price: 65000,
+    },
+    {
+      customer: "Đặng Hồng Phương",
+      shop: "Thịt Sạch Cô Vy",
+      items: "0.8kg thịt nạc vai heo sạch",
+      price: 96000,
+    },
+    {
+      customer: "Bùi Quang Dũng",
+      shop: "Thịt Sạch Cô Vy",
+      items: "0.5kg ba chỉ heo giòn ngon",
+      price: 75000,
+    },
+    {
+      customer: "Ngô Quốc Tùng",
+      shop: "Thịt Sạch Cô Vy",
+      items: "0.6kg sườn sụn heo giòn sần sật",
+      price: 90000,
+    },
+    {
+      customer: "Lý Mỹ Duyên",
+      shop: "Thịt Sạch Cô Vy",
+      items: "1kg thịt đùi heo tươi",
+      price: 120000,
+    },
   ];
 
   let currentRevenue = 682000;
@@ -1095,11 +1145,13 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!container) return;
 
     // Pick random template
-    const template = ORDER_TEMPLATES[Math.floor(Math.random() * ORDER_TEMPLATES.length)];
+    const template =
+      ORDER_TEMPLATES[Math.floor(Math.random() * ORDER_TEMPLATES.length)];
 
     // Create element with order-item-simulation class
     const orderEl = document.createElement("div");
-    orderEl.className = "order-item-simulation py-2 border-bottom d-flex align-items-center justify-content-between";
+    orderEl.className =
+      "order-item-simulation py-2 border-bottom d-flex align-items-center justify-content-between";
     orderEl.innerHTML = `
       <div class="order-details-left min-w-0">
         <div class="fw-bold text-truncate text-dark" style="font-size: 0.9rem;">${template.customer}</div>
