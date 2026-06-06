@@ -208,19 +208,19 @@ document.addEventListener("DOMContentLoaded", function () {
         items: [
           {
             name: "Sườn non heo",
-            qtyPerPerson: 0.15,
+            qtyPerPerson: 0.1,
             unit: "kg",
             pricePerUnit: 140000,
           },
           {
             name: "Mọc (giò sống)",
-            qtyPerPerson: 0.08,
+            qtyPerPerson: 0.05,
             unit: "kg",
             pricePerUnit: 120000,
           },
           {
             name: "Bún tươi",
-            qtyPerPerson: 0.25,
+            qtyPerPerson: 0.2,
             unit: "kg",
             pricePerUnit: 15000,
           },
@@ -234,21 +234,15 @@ document.addEventListener("DOMContentLoaded", function () {
         ],
       },
       {
-        name: "Cháo sườn sụn ngũ cốc",
+        name: "Cháo sườn sụn hành hoa",
         suggestion:
-          "Cháo gạo thơm dẻo ninh nhừ với sườn sụn heo giòn sần sật, ăn kèm quẩy giòn và ruốc thịt.",
+          "Cháo gạo thơm dẻo ninh nhừ với sườn sụn heo giòn sần sật, ăn kèm quẩy giòn và hành lá.",
         seller: "Quầy Gạo & Đồ Khô Cô Xuân",
         reason:
           "Dễ tiêu hóa, phù hợp cho cả gia đình, sườn sụn giòn ngon ngọt tự nhiên từ xương heo.",
         items: [
           {
             name: "Sườn sụn heo",
-            qtyPerPerson: 0.12,
-            unit: "kg",
-            pricePerUnit: 150000,
-          },
-          {
-            name: "Ruốc heo sạch",
             qtyPerPerson: 0.1,
             unit: "kg",
             pricePerUnit: 150000,
@@ -260,94 +254,109 @@ document.addEventListener("DOMContentLoaded", function () {
             pricePerUnit: 5000,
             fixed: true,
           },
+          {
+            name: "Hành lá & gia vị",
+            qtyPerPerson: 1,
+            unit: "bó",
+            pricePerUnit: 3000,
+            fixed: true,
+          },
+        ],
+      },
+      {
+        name: "Bún cá rô đồng",
+        suggestion:
+          "Bún cá rô đồng phi lê rán vàng giòn riêu thanh mát ngọt bùi ăn kèm thì là hành ngò.",
+        seller: "Sạp Cá Đồng Chú Sáu",
+        reason:
+          "Cá rô đồng tươi ngon giàu đạm lành tính xào thơm nấu canh thì là mát ruột đưa bún.",
+        items: [
+          {
+            name: "Cá rô đồng phi lê",
+            qtyPerPerson: 0.12,
+            unit: "kg",
+            pricePerUnit: 120000,
+          },
+          {
+            name: "Bún tươi sạch",
+            qtyPerPerson: 0.2,
+            unit: "kg",
+            pricePerUnit: 15000,
+          },
+          {
+            name: "Rau cải & thì là",
+            qtyPerPerson: 1,
+            unit: "bó",
+            pricePerUnit: 5000,
+            fixed: true,
+          },
         ],
       },
     ],
     "Bữa trưa": [
       {
-        name: "Cơm sườn bì chả",
+        name: "Cơm sườn rim chua ngọt",
         suggestion:
-          "Cơm tấm nóng hổi kết hợp sườn cốt lết nướng mật ong, bì heo dai giòn và chả chưng trứng.",
-        seller: "Quán Cơm Tấm Đất Phương Nam",
+          "Cơm tấm nóng hổi kết hợp sườn rim chua ngọt đưa cơm xào hành tỏi dưa leo.",
+        seller: "Sạp Thực Phẩm Tươi Sống Cô Vy",
         reason:
-          "Món ăn truyền thống thơm ngon, sườn được tẩm ướp đậm đà nướng chín vàng ươm hấp dẫn.",
+          "Sườn non heo ngon rim sốt chua ngọt đậm vị truyền thống giàu đạm hấp dẫn trôi cơm.",
         items: [
           {
-            name: "Sườn cốt lết",
-            qtyPerPerson: 0.2,
-            unit: "kg",
-            pricePerUnit: 110000,
-          },
-          {
-            name: "Bì heo trộn thính",
-            qtyPerPerson: 0.05,
-            unit: "kg",
-            pricePerUnit: 80000,
-          },
-          {
-            name: "Trứng vịt (làm chả)",
-            qtyPerPerson: 0.5,
-            unit: "quả",
-            pricePerUnit: 3500,
-          },
-        ],
-      },
-      {
-        name: "Bún chả Hà Nội",
-        suggestion:
-          "Chả viên và thịt ba chỉ nướng than hoa thơm lừng trong nước mắm chua ngọt, kèm bún và rau sống.",
-        seller: "Ẩm Thực Hà Thành - Cô Liên",
-        reason:
-          "Hương vị chuẩn Bắc vị thanh mát nhẹ nhàng, thịt nướng cháy cạnh thơm phức cuốn cùng rau sống tươi sạch.",
-        items: [
-          {
-            name: "Thịt ba chỉ heo",
+            name: "Sườn cốt lết heo",
             qtyPerPerson: 0.15,
             unit: "kg",
-            pricePerUnit: 135000,
-          },
-          {
-            name: "Thịt nạc vai xay",
-            qtyPerPerson: 0.1,
-            unit: "kg",
             pricePerUnit: 110000,
           },
           {
-            name: "Bún tươi",
-            qtyPerPerson: 0.25,
+            name: "Cà chua chín",
+            qtyPerPerson: 0.1,
             unit: "kg",
-            pricePerUnit: 15000,
+            pricePerUnit: 25000,
           },
           {
-            name: "Rau sống tổng hợp",
+            name: "Dưa leo sạch",
+            qtyPerPerson: 0.1,
+            unit: "kg",
+            pricePerUnit: 20000,
+          },
+          {
+            name: "Gạo tẻ thơm",
+            qtyPerPerson: 0.15,
+            unit: "kg",
+            pricePerUnit: 18000,
+          },
+          {
+            name: "Hành tỏi gia vị",
             qtyPerPerson: 1,
             unit: "phần",
-            pricePerUnit: 6000,
+            pricePerUnit: 5000,
+            fixed: true,
           },
         ],
       },
       {
-        name: "Cơm cá hú kho tộ",
+        name: "Cơm cá hú kho tộ & canh cải",
         suggestion:
-          "Cá hú kho tộ sền sệt béo ngậy kèm nước kho đậm đà, ăn với rau luộc thập cẩm.",
+          "Cá hú kho tộ sền sệt béo ngậy ăn với canh rau cải ngọt nấu thịt bằm thanh mát.",
         seller: "Vựa Cá Sông Mekong - Anh Ba",
         reason:
-          "Cá hú béo ngậy nhiều dinh dưỡng kho tộ chuẩn vị miền Tây đưa cơm, ăn kèm rau củ luộc thanh mát.",
+          "Cá hú béo ngậy kho tộ đậm đà đưa cơm ăn kèm canh cải ngọt nóng hổi bổ sung chất xơ.",
         items: [
           {
             name: "Cá hú tươi cắt lát",
-            qtyPerPerson: 0.2,
+            qtyPerPerson: 0.15,
             unit: "kg",
             pricePerUnit: 85000,
           },
           {
-            name: "Thịt mỡ gáy heo",
-            qtyPerPerson: 0.03,
+            name: "Thịt ba chỉ heo",
+            qtyPerPerson: 0.05,
             unit: "kg",
-            pricePerUnit: 90000,
+            pricePerUnit: 130000,
           },
           {
-            name: "Rau củ luộc thập cẩm",
+            name: "Rau cải ngọt",
             qtyPerPerson: 0.15,
             unit: "kg",
             pricePerUnit: 25000,
@@ -644,7 +653,7 @@ document.addEventListener("DOMContentLoaded", function () {
             pricePerUnit: 40000,
           },
           {
-            name: "Ớt chuông & Bông cải",
+            name: "Bông cải & ớt chuông",
             qtyPerPerson: 0.15,
             unit: "kg",
             pricePerUnit: 50000,
@@ -1197,26 +1206,30 @@ document.addEventListener("DOMContentLoaded", function () {
       this.classList.add("active");
 
       const presetKey = this.getAttribute("data-preset");
-      let budget = 100000;
+      let budget = 130000;
       let people = 3;
       let meal = "Bữa tối";
 
-      if (presetKey === "50k") {
-        budget = 50000;
-        people = 1;
-        meal = "Tiết kiệm/Sinh viên";
-      } else if (presetKey === "80k") {
-        budget = 80000;
+      if (presetKey === "55k") {
+        budget = 55000;
         people = 2;
-        meal = "Healthy";
-      } else if (presetKey === "150k") {
-        budget = 150000;
-        people = 4;
+        meal = "Bữa sáng";
+      } else if (presetKey === "90k") {
+        budget = 90000;
+        people = 3;
+        meal = "Bữa trưa";
+      } else if (presetKey === "130k") {
+        budget = 130000;
+        people = 3;
         meal = "Bữa tối";
-      } else if (presetKey === "200k") {
-        budget = 200000;
-        people = 4;
-        meal = "Lẩu cuối tuần";
+      } else if (presetKey === "45k") {
+        budget = 45000;
+        people = 2;
+        meal = "Bữa sinh viên/tiết kiệm";
+      } else if (presetKey === "120k") {
+        budget = 120000;
+        people = 2;
+        meal = "Bữa healthy";
       }
 
       // Trigger simulation
@@ -1224,8 +1237,100 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Run initial simulation on load matching default values (100k, 3 people, Bữa tối)
-  startMenuSimulation("Bữa tối", 3, 100000);
+  // Run initial simulation on load matching default values (130k, 3 people, Bữa tối)
+  startMenuSimulation("Bữa tối", 3, 130000);
 
+  // ===== Real-time Order Simulator Feed & SellerAIInsights =====
+  
+  // Order templates matching the Vietnamese context and specific store sections
+  const ORDER_TEMPLATES = [
+    { customer: "Nguyễn Thị H.", shop: "Thịt Sạch Cô Vy", items: "Cá lóc canh chua thơm", price: 45000 },
+    { customer: "Vũ Thị L.", shop: "Thịt Sạch Cô Vy", items: "Combo ba chỉ lợn nướng, 1 bó xà lách", price: 87000 },
+    { customer: "Hoàng Anh T.", shop: "Tiệm Rau Bà Tám", items: "1 set rau củ canh chua, me ngào sả", price: 45000 },
+    { customer: "Lê Văn T.", shop: "Quầy Cá Chú Sáu", items: "1 khúc cá lóc, gói tỏi ớt kho", price: 108000 },
+    { customer: "Phạm Minh C.", shop: "Sạp Thực Phẩm Cô Lan", items: "0.5kg thịt heo xay, 1 túi cà chua chín", price: 57000 },
+    { customer: "Trần Thanh N.", shop: "Cửa Hàng Rau Sạch Cô Năm", items: "Combo 4 miếng đậu hũ trắng, 2 quả trứng gà", price: 27000 },
+    { customer: "Đặng Hồng P.", shop: "Nông Sản Sạch Đà Lạt", items: "1 set salad ức gà áp chảo sốt mè", price: 42000 },
+    { customer: "Bùi Quang D.", shop: "Thủy Hải Sản Cao Cấp", items: "0.3kg tôm sú tươi bóc vỏ, bún lứt xào", price: 78000 },
+    { customer: "Ngô Quốc T.", shop: "Quầy Gạo & Đồ Khô Cô Xuân", items: "1 túi cháo sườn sụn hành hoa đặc biệt", price: 35000 },
+    { customer: "Lý Mỹ D.", shop: "Gian hàng Gà Ta Cô Tám", items: "0.5kg đùi gà ta xào sả ớt, bí đỏ", price: 62000 }
+  ];
+
+  let currentRevenue = 682000;
+  let currentOrdersCount = 7;
+
+  function updateDashboardMetrics(price) {
+    currentRevenue += price;
+    currentOrdersCount += 1;
+
+    const revenueEl = document.getElementById("todayRevenue");
+    const ordersEl = document.getElementById("todayOrders");
+
+    if (revenueEl) {
+      revenueEl.textContent = currentRevenue.toLocaleString("vi-VN") + "đ";
+    }
+    if (ordersEl) {
+      ordersEl.textContent = currentOrdersCount.toString();
+    }
+  }
+
+  function simulateNewOrder() {
+    const container = document.getElementById("recent-orders-container");
+    if (!container) return;
+
+    // Pick random template
+    const template = ORDER_TEMPLATES[Math.floor(Math.random() * ORDER_TEMPLATES.length)];
+
+    // Create element with order-item-simulation class
+    const orderEl = document.createElement("div");
+    orderEl.className = "order-item-simulation py-2 border-bottom d-flex align-items-center justify-content-between";
+    orderEl.innerHTML = `
+      <div class="order-details-left min-w-0">
+        <div class="fw-bold text-truncate text-dark" style="font-size: 0.9rem;">${template.customer}</div>
+        <div class="text-muted text-truncate" style="font-size: 0.8rem;">${template.shop} • ${template.items}</div>
+      </div>
+      <div class="order-details-right text-end flex-shrink-0 ps-2">
+        <div class="fw-bold text-success" style="font-size: 0.9rem;">${template.price.toLocaleString("vi-VN")}đ</div>
+        <div class="text-muted small" style="font-size: 0.75rem;">Vừa xong</div>
+      </div>
+    `;
+
+    // Insert at top
+    container.insertBefore(orderEl, container.firstChild);
+
+    // Update relative times of other orders
+    const items = container.querySelectorAll(".order-item-simulation");
+    items.forEach((item, index) => {
+      if (index === 0) return; // Keep "Vừa xong" for the newest order
+      
+      const timeEl = item.querySelector(".order-details-right .text-muted");
+      if (timeEl) {
+        timeEl.textContent = `${index * 2} phút trước`;
+      }
+    });
+
+    // Remove old orders if feed is too long
+    if (items.length > 4) {
+      container.removeChild(items[items.length - 1]);
+    }
+
+    // Apply border bottom styling dynamically
+    const updatedItems = container.querySelectorAll(".order-item-simulation");
+    updatedItems.forEach((item, index) => {
+      if (index === updatedItems.length - 1) {
+        item.classList.remove("border-bottom");
+      } else {
+        if (!item.classList.contains("border-bottom")) {
+          item.classList.add("border-bottom");
+        }
+      }
+    });
+
+    // Update metrics
+    updateDashboardMetrics(template.price);
+  }
+
+  // Start the order simulation loop (every 8 seconds)
+  setInterval(simulateNewOrder, 8000);
   console.log("Chợ AI Local - Landing Page Loaded Successfully!");
 });
