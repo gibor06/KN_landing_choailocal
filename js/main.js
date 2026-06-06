@@ -1096,10 +1096,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Order templates matching the Vietnamese context and specific store sections
   const ORDER_TEMPLATES = [
-    { customer: "Nguyễn Thị H.", shop: "Thịt Sạch Cô Vy", items: "Cá lóc canh chua thơm", price: 45000 },
+    { customer: "Nguyễn Thị H.", shop: "Thịt Sạch Cô Vy", items: "0.5kg đùi gà tỏi tươi", price: 45000 },
     { customer: "Vũ Thị L.", shop: "Thịt Sạch Cô Vy", items: "Combo ba chỉ lợn nướng, 1 bó xà lách", price: 87000 },
     { customer: "Hoàng Anh T.", shop: "Thịt Sạch Cô Vy", items: "1.2kg sườn heo non sạch", price: 168000 },
-    { customer: "Lê Văn T.", shop: "Thịt Sạch Cô Vy", items: "1 khúc cá lóc, gói tỏi ớt kho", price: 108000 },
+    { customer: "Lê Văn T.", shop: "Thịt Sạch Cô Vy", items: "Combo ba chỉ heo và sườn sụn nướng", price: 108000 },
     { customer: "Phạm Minh C.", shop: "Thịt Sạch Cô Vy", items: "0.5kg thịt heo xay tươi ngon", price: 57000 },
     { customer: "Trần Thanh N.", shop: "Thịt Sạch Cô Vy", items: "1kg xương ống heo ngọt nước", price: 65000 },
     { customer: "Đặng Hồng P.", shop: "Thịt Sạch Cô Vy", items: "0.8kg thịt nạc vai heo sạch", price: 96000 },
