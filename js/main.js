@@ -1206,30 +1206,26 @@ document.addEventListener("DOMContentLoaded", function () {
       this.classList.add("active");
 
       const presetKey = this.getAttribute("data-preset");
-      let budget = 130000;
+      let budget = 100000;
       let people = 3;
       let meal = "Bữa tối";
 
-      if (presetKey === "55k") {
-        budget = 55000;
-        people = 2;
-        meal = "Bữa sáng";
-      } else if (presetKey === "90k") {
-        budget = 90000;
-        people = 3;
-        meal = "Bữa trưa";
-      } else if (presetKey === "130k") {
-        budget = 130000;
-        people = 3;
-        meal = "Bữa tối";
-      } else if (presetKey === "45k") {
-        budget = 45000;
-        people = 2;
+      if (presetKey === "50k") {
+        budget = 50000;
+        people = 1;
         meal = "Bữa sinh viên/tiết kiệm";
-      } else if (presetKey === "120k") {
-        budget = 120000;
+      } else if (presetKey === "80k") {
+        budget = 80000;
         people = 2;
         meal = "Bữa healthy";
+      } else if (presetKey === "150k") {
+        budget = 150000;
+        people = 4;
+        meal = "Bữa tối";
+      } else if (presetKey === "200k") {
+        budget = 200000;
+        people = 4;
+        meal = "Lẩu cuối tuần";
       }
 
       // Trigger simulation
@@ -1237,8 +1233,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Run initial simulation on load matching default values (130k, 3 people, Bữa tối)
-  startMenuSimulation("Bữa tối", 3, 130000);
+  // Run initial simulation on load matching default values (100k, 3 people, Bữa tối)
+  startMenuSimulation("Bữa tối", 3, 100000);
 
   // ===== Real-time Order Simulator Feed & SellerAIInsights =====
   
