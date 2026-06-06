@@ -1244,16 +1244,16 @@ document.addEventListener("DOMContentLoaded", function () {
   
   // Order templates matching the Vietnamese context and specific store sections
   const ORDER_TEMPLATES = [
-    { customer: "Nguyễn Thị H.", shop: "Thịt Sạch Cô Vy", items: "Cá lóc canh chua thơm", price: 45000 },
-    { customer: "Vũ Thị L.", shop: "Thịt Sạch Cô Vy", items: "Combo ba chỉ lợn nướng, 1 bó xà lách", price: 87000 },
-    { customer: "Hoàng Anh T.", shop: "Tiệm Rau Bà Tám", items: "1 set rau củ canh chua, me ngào sả", price: 45000 },
-    { customer: "Lê Văn T.", shop: "Quầy Cá Chú Sáu", items: "1 khúc cá lóc, gói tỏi ớt kho", price: 108000 },
+    { customer: "Nguyễn Thị H.", shop: "Sạp Thực Phẩm Cô Lan", items: "Cá lóc canh chua thơm", price: 45000 },
+    { customer: "Vũ Thị L.", shop: "Sạp Thực Phẩm Cô Lan", items: "Combo ba chỉ lợn nướng, 1 bó xà lách", price: 87000 },
+    { customer: "Hoàng Anh T.", shop: "Sạp Thực Phẩm Cô Lan", items: "1 set rau củ canh chua, me ngào sả", price: 45000 },
+    { customer: "Lê Văn T.", shop: "Sạp Thực Phẩm Cô Lan", items: "1 khúc cá lóc, gói tỏi ớt kho", price: 108000 },
     { customer: "Phạm Minh C.", shop: "Sạp Thực Phẩm Cô Lan", items: "0.5kg thịt heo xay, 1 túi cà chua chín", price: 57000 },
-    { customer: "Trần Thanh N.", shop: "Cửa Hàng Rau Sạch Cô Năm", items: "Combo 4 miếng đậu hũ trắng, 2 quả trứng gà", price: 27000 },
-    { customer: "Đặng Hồng P.", shop: "Nông Sản Sạch Đà Lạt", items: "1 set salad ức gà áp chảo sốt mè", price: 42000 },
-    { customer: "Bùi Quang D.", shop: "Thủy Hải Sản Cao Cấp", items: "0.3kg tôm sú tươi bóc vỏ, bún lứt xào", price: 78000 },
-    { customer: "Ngô Quốc T.", shop: "Quầy Gạo & Đồ Khô Cô Xuân", items: "1 túi cháo sườn sụn hành hoa đặc biệt", price: 35000 },
-    { customer: "Lý Mỹ D.", shop: "Gian hàng Gà Ta Cô Tám", items: "0.5kg đùi gà ta xào sả ớt, bí đỏ", price: 62000 }
+    { customer: "Trần Thanh N.", shop: "Sạp Thực Phẩm Cô Lan", items: "Combo 4 miếng đậu hũ trắng, 2 quả trứng gà", price: 27000 },
+    { customer: "Đặng Hồng P.", shop: "Sạp Thực Phẩm Cô Lan", items: "1 set salad ức gà áp chảo sốt mè", price: 42000 },
+    { customer: "Bùi Quang D.", shop: "Sạp Thực Phẩm Cô Lan", items: "0.3kg tôm sú tươi bóc vỏ, bún lứt xào", price: 78000 },
+    { customer: "Ngô Quốc T.", shop: "Sạp Thực Phẩm Cô Lan", items: "1 túi cháo sườn sụn hành hoa đặc biệt", price: 35000 },
+    { customer: "Lý Mỹ D.", shop: "Sạp Thực Phẩm Cô Lan", items: "0.5kg đùi gà ta xào sả ớt, bí đỏ", price: 62000 }
   ];
 
   let currentRevenue = 682000;
@@ -1330,7 +1330,7 @@ document.addEventListener("DOMContentLoaded", function () {
     updateDashboardMetrics(template.price);
   }
 
-  // Start the order simulation loop (every 8 seconds)
-  setInterval(simulateNewOrder, 8000);
+  // Start the order simulation loop (every 15 seconds)
+  setInterval(simulateNewOrder, 15000);
   console.log("Chợ AI Local - Landing Page Loaded Successfully!");
 });
