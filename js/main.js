@@ -273,7 +273,7 @@ document.addEventListener("DOMContentLoaded", function () {
         items: [
           {
             name: "Cá rô đồng phi lê",
-            qtyPerPerson: 0.12,
+            qtyPerPerson: 0.2,
             unit: "kg",
             pricePerUnit: 120000,
           },
@@ -321,12 +321,6 @@ document.addEventListener("DOMContentLoaded", function () {
             pricePerUnit: 20000,
           },
           {
-            name: "Gạo tẻ thơm",
-            qtyPerPerson: 0.15,
-            unit: "kg",
-            pricePerUnit: 18000,
-          },
-          {
             name: "Hành tỏi gia vị",
             qtyPerPerson: 1,
             unit: "phần",
@@ -361,12 +355,6 @@ document.addEventListener("DOMContentLoaded", function () {
             unit: "kg",
             pricePerUnit: 25000,
           },
-          {
-            name: "Gạo tẻ thơm",
-            qtyPerPerson: 0.15,
-            unit: "kg",
-            pricePerUnit: 18000,
-          },
         ],
       },
       {
@@ -389,12 +377,6 @@ document.addEventListener("DOMContentLoaded", function () {
             unit: "bó",
             pricePerUnit: 12000,
             fixed: true,
-          },
-          {
-            name: "Gạo tẻ thơm",
-            qtyPerPerson: 0.15,
-            unit: "kg",
-            pricePerUnit: 18000,
           },
           {
             name: "Cà pháo muối",
@@ -560,12 +542,6 @@ document.addEventListener("DOMContentLoaded", function () {
             unit: "kg",
             pricePerUnit: 20000,
           },
-          {
-            name: "Gạo tẻ thường",
-            qtyPerPerson: 0.15,
-            unit: "kg",
-            pricePerUnit: 15000,
-          },
         ],
       },
       {
@@ -589,12 +565,6 @@ document.addEventListener("DOMContentLoaded", function () {
             pricePerUnit: 10000,
             fixed: true,
           },
-          {
-            name: "Gạo tẻ thường",
-            qtyPerPerson: 0.15,
-            unit: "kg",
-            pricePerUnit: 15000,
-          },
         ],
       },
       {
@@ -609,7 +579,7 @@ document.addEventListener("DOMContentLoaded", function () {
             name: "Thịt nạc vai heo",
             qtyPerPerson: 0.1,
             unit: "kg",
-            pricePerUnit: 100000,
+            pricePerUnit: 80000,
           },
           {
             name: "Hành tây & hành lá",
@@ -617,12 +587,6 @@ document.addEventListener("DOMContentLoaded", function () {
             unit: "phần",
             pricePerUnit: 5000,
             fixed: true,
-          },
-          {
-            name: "Gạo tẻ thường",
-            qtyPerPerson: 0.15,
-            unit: "kg",
-            pricePerUnit: 15000,
           },
         ],
       },
@@ -1096,16 +1060,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Order templates matching the Vietnamese context and specific store sections
   const ORDER_TEMPLATES = [
-    { customer: "Nguyễn Thị H.", shop: "Thịt Sạch Cô Vy", items: "0.5kg đùi gà tỏi tươi", price: 45000 },
-    { customer: "Vũ Thị L.", shop: "Thịt Sạch Cô Vy", items: "Combo ba chỉ lợn nướng, 1 bó xà lách", price: 87000 },
-    { customer: "Hoàng Anh T.", shop: "Thịt Sạch Cô Vy", items: "1.2kg sườn heo non sạch", price: 168000 },
-    { customer: "Lê Văn T.", shop: "Thịt Sạch Cô Vy", items: "Combo ba chỉ heo và sườn sụn nướng", price: 108000 },
-    { customer: "Phạm Minh C.", shop: "Thịt Sạch Cô Vy", items: "0.5kg thịt heo xay tươi ngon", price: 57000 },
-    { customer: "Trần Thanh N.", shop: "Thịt Sạch Cô Vy", items: "1kg xương ống heo ngọt nước", price: 65000 },
-    { customer: "Đặng Hồng P.", shop: "Thịt Sạch Cô Vy", items: "0.8kg thịt nạc vai heo sạch", price: 96000 },
-    { customer: "Bùi Quang D.", shop: "Thịt Sạch Cô Vy", items: "0.5kg ba chỉ heo giòn ngon", price: 75000 },
-    { customer: "Ngô Quốc T.", shop: "Thịt Sạch Cô Vy", items: "0.6kg sườn sụn heo giòn sần sật", price: 90000 },
-    { customer: "Lý Mỹ D.", shop: "Thịt Sạch Cô Vy", items: "1kg thịt đùi heo tươi", price: 120000 }
+    { customer: "Nguyễn Thị Hòa", shop: "Thịt Sạch Cô Vy", items: "0.5kg đùi gà tỏi tươi", price: 45000 },
+    { customer: "Vũ Thị Linh", shop: "Thịt Sạch Cô Vy", items: "Combo ba chỉ lợn nướng, 1 bó xà lách", price: 87000 },
+    { customer: "Hoàng Anh Tuấn", shop: "Thịt Sạch Cô Vy", items: "1.2kg sườn heo non sạch", price: 168000 },
+    { customer: "Lê Văn Bình", shop: "Thịt Sạch Cô Vy", items: "Combo ba chỉ heo và sườn sụn nướng", price: 108000 },
+    { customer: "Phạm Minh Cường", shop: "Thịt Sạch Cô Vy", items: "0.5kg thịt heo xay tươi ngon", price: 57000 },
+    { customer: "Trần Thanh Ngọc", shop: "Thịt Sạch Cô Vy", items: "1kg xương ống heo ngọt nước", price: 65000 },
+    { customer: "Đặng Hồng Phương", shop: "Thịt Sạch Cô Vy", items: "0.8kg thịt nạc vai heo sạch", price: 96000 },
+    { customer: "Bùi Quang Dũng", shop: "Thịt Sạch Cô Vy", items: "0.5kg ba chỉ heo giòn ngon", price: 75000 },
+    { customer: "Ngô Quốc Tùng", shop: "Thịt Sạch Cô Vy", items: "0.6kg sườn sụn heo giòn sần sật", price: 90000 },
+    { customer: "Lý Mỹ Duyên", shop: "Thịt Sạch Cô Vy", items: "1kg thịt đùi heo tươi", price: 120000 }
   ];
 
   let currentRevenue = 682000;
