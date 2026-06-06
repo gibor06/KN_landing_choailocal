@@ -42,8 +42,8 @@ h1, h2, h3, h4, h5, h6 {
 /* ===== Reveal Animation ===== */
 .reveal {
     opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.6s ease;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .reveal.visible {
@@ -401,49 +401,94 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .timeline-line {
-    position: absolute;
-    top: 30px;
-    left: 12.5%;
-    right: 12.5%;
-    height: 2px;
-    background: linear-gradient(90deg, var(--primary) 0%, var(--primary) 100%);
-    z-index: 0;
+    display: none; /* Hidden, using relative connectors instead */
 }
 
 .solution-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
     position: relative;
     z-index: 1;
+    padding: 0 10px;
+    transition: all 0.3s ease;
+}
+
+@media (min-width: 992px) {
+    .solution-step::after {
+        content: '';
+        position: absolute;
+        top: 30px; /* Exact vertical center of the 60px circle */
+        left: calc(50% + 30px); /* Start exactly from the right edge of the 60px circle */
+        width: calc(100% - 60px + var(--bs-gutter-x, 1.5rem)); /* Reach exactly the left edge of the next circle */
+        height: 2px;
+        background: var(--primary);
+        z-index: 0;
+    }
+
+    .col-lg-3:last-child .solution-step::after {
+        display: none;
+    }
+}
+
+.step-circle-wrapper {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    margin-bottom: 1.5rem;
+    z-index: 2;
 }
 
 .step-number {
     width: 60px;
     height: 60px;
-    background: var(--green-gradient);
+    background: var(--primary);
     color: var(--white);
     border-radius: 50%;
-    display: inline-flex;
+    display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.5rem;
     font-weight: 700;
-    margin-bottom: 1rem;
     box-shadow: 0 4px 15px rgba(25, 135, 84, 0.3);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.step-icon {
-    width: 40px;
-    height: 40px;
+.step-badge-icon {
+    position: absolute;
+    top: -4px;
+    right: -12px;
+    width: 30px;
+    height: 30px;
     background: var(--soft-green);
+    border: 2px solid var(--white);
     border-radius: 50%;
-    display: inline-flex;
+    display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 0.75rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.step-icon i {
+.step-badge-icon i {
     color: var(--primary);
+    font-size: 0.85rem;
+}
+
+/* Hover effects */
+.solution-step:hover .step-number {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(25, 135, 84, 0.4);
+}
+
+.solution-step:hover .step-badge-icon {
+    transform: scale(1.15) rotate(15deg);
+    background: var(--primary);
+}
+
+.solution-step:hover .step-badge-icon i {
+    color: var(--white);
 }
 
 /* ===== Tech Stack ===== */
@@ -1762,4 +1807,279 @@ footer {
     .team-photo-caption p {
         font-size: 0.95rem;
     }
+}
+
+/* ===== Interactive Simulator ===== */
+.preset-btn {
+    border-radius: 50px;
+    padding: 0.4rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    border: 1px solid rgba(25, 135, 84, 0.2);
+}
+
+.preset-btn:hover {
+    background-color: var(--soft-green);
+    color: var(--primary);
+    transform: translateY(-1px);
+}
+
+.preset-btn.active {
+    background-color: var(--primary) !important;
+    border-color: var(--primary) !important;
+    color: var(--white) !important;
+    box-shadow: 0 4px 10px rgba(25, 135, 84, 0.2);
+}
+
+.sim-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.sim-step {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.sim-step.active {
+    background-color: var(--soft-green);
+    border-color: var(--primary) !important;
+}
+
+.sim-step.active .sim-step-icon {
+    color: var(--primary);
+    animation: rotate-spinner 1s linear infinite;
+}
+
+.sim-step.done .sim-step-icon {
+    color: var(--primary) !important;
+}
+
+@keyframes rotate-spinner {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.sim-loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 81, 50, 0.85);
+    backdrop-filter: blur(6px);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    animation: fade-in 0.2s ease forwards;
+}
+
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Custom styles for range slider */
+#budget-range::-webkit-slider-runnable-track {
+    background: #e2e8f0;
+    height: 8px;
+    border-radius: 4px;
+}
+
+#budget-range::-webkit-slider-thumb {
+    background: var(--primary);
+    border: 2px solid var(--white);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    margin-top: -4px;
+}
+
+/* ===== Micro-interactions & Animations ===== */
+.flow-arrow {
+    color: var(--primary);
+    font-size: 1.25rem;
+    animation: pulse-arrow 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse-arrow {
+    0%, 100% { transform: scale(1); opacity: 0.6; }
+    50% { transform: scale(1.25); opacity: 1; }
+}
+
+@media (max-width: 991px) {
+    .flow-arrow {
+        transform: rotate(90deg);
+        animation: pulse-arrow-vertical 1.5s infinite ease-in-out;
+    }
+}
+
+@keyframes pulse-arrow-vertical {
+    0%, 100% { transform: rotate(90deg) scale(1); opacity: 0.6; }
+    50% { transform: rotate(90deg) scale(1.25); opacity: 1; }
+}
+
+.flow-step {
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.flow-step:hover {
+    transform: translateY(-6px);
+}
+
+.flow-step:hover .flow-icon {
+    background: var(--primary);
+    color: var(--white) !important;
+    box-shadow: 0 6px 15px rgba(25, 135, 84, 0.3);
+}
+
+.flow-step:hover .flow-icon i {
+    color: var(--white) !important;
+}
+
+#btn-simulate-trigger i {
+    display: inline-block;
+    animation: pulse-robot 2s infinite ease-in-out;
+}
+
+@keyframes pulse-robot {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+/* Custom styles for Option Tabs and Simulator warnings */
+.option-tab {
+    border-radius: 50px;
+    padding: 0.4rem 1.1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    border: 1px solid rgba(25, 135, 84, 0.2);
+}
+
+.option-tab:hover {
+    background-color: var(--soft-green);
+    color: var(--primary);
+    transform: translateY(-1px);
+}
+
+.option-tab.active {
+    background-color: var(--primary) !important;
+    border-color: var(--primary) !important;
+    color: var(--white) !important;
+    box-shadow: 0 4px 10px rgba(25, 135, 84, 0.2);
+}
+
+.progress-fill.exceeded {
+    background: linear-gradient(135deg, #dc3545 0%, #f87171 100%) !important;
+}
+
+.progress-label.exceeded {
+    color: #dc3545 !important;
+}
+
+.verify-badge.exceeded {
+    background: #fff5f5 !important;
+    color: #dc3545 !important;
+    border: 1px solid #fecaca !important;
+}
+
+/* Make checkmark in simulator header stand out */
+#result-title {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+}
+
+#result-title i {
+    color: var(--primary) !important;
+    background: #ffffff;
+    border-radius: 50%;
+    width: 26px;
+    height: 26px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    flex-shrink: 0;
+}
+
+/* Professional Team Card Styling */
+.team-card-new {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 2.25rem 1.75rem;
+    box-shadow: var(--card-shadow);
+    text-align: center;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    border: 1px solid rgba(25, 135, 84, 0.08);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.team-card-new:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(25, 135, 84, 0.12);
+    border-color: rgba(25, 135, 84, 0.2);
+}
+
+.team-badge-role {
+    display: inline-block;
+    background: var(--soft-green);
+    color: var(--primary);
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.25rem 0.75rem;
+    border-radius: 50px;
+    margin-top: 0.35rem;
+    margin-bottom: 0.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.team-role-sub {
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-weight: 500;
+}
+
+.team-description {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--muted);
+    margin-top: 0.5rem;
+    flex-grow: 1;
+}
+
+.team-socials {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.25rem;
+}
+
+.social-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--section-bg);
+    color: var(--muted);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    text-decoration: none !important;
+}
+
+.social-icon:hover {
+    background: var(--primary);
+    color: var(--white);
+    transform: scale(1.1);
 }
