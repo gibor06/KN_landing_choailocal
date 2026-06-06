@@ -65,9 +65,6 @@
             </li>
             <li class="nav-item"><a class="nav-link" href="#demo">Demo</a></li>
             <li class="nav-item">
-              <a class="nav-link" href="#seller">Người bán</a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link" href="#business">Kinh doanh</a>
             </li>
             <li class="nav-item">
@@ -93,9 +90,7 @@
               Biến một câu hỏi "hôm nay ăn gì?" thành thực đơn đúng ngân sách.
             </h2>
             <p class="lead text-muted mb-4">
-              Người mua chỉ cần nhập nhu cầu bằng tiếng Việt. Hệ thống phân tích
-              ngân sách, số người ăn, loại bữa và tạo thực đơn từ dữ liệu sản
-              phẩm thật không bịa giá, không vượt ngân sách.
+              Chỉ cần nhập nhu cầu bằng tiếng Việt, hệ thống sẽ phân tích ngân sách, số người và loại bữa ăn để đề xuất thực đơn phù hợp từ giá bán và sản phẩm có thật tại các gian hàng địa phương.
             </p>
             <div class="d-flex flex-wrap gap-3 mb-4">
               <a href="#demo" class="btn btn-primary btn-lg btn-rounded">
@@ -180,7 +175,7 @@
             Một nhu cầu nhỏ, lặp lại mỗi ngày
           </h2>
           <p class="lead text-muted">
-            Người mua cần quyết định nhanh hơn, còn tiểu thương cần bán hàng
+            Người mua quyết định nhanh hơn, tiểu thương bán hàng
             thông minh hơn.
           </p>
         </div>
@@ -215,8 +210,7 @@
               </div>
               <h5 class="fw-bold mb-3">Tiểu thương thiếu công cụ số</h5>
               <p class="text-muted">
-                Nhiều người bán hàng địa phương chưa có công cụ quản lý cửa hàng
-                đơn giản.
+                Nhiều người bán hàng địa phương chưa có công cụ quản lý cửa hàng.
               </p>
             </div>
           </div>
@@ -229,8 +223,7 @@
               <p class="text-muted">
                 Các app hiện nay chủ yếu phục vụ món ăn chế biến sẵn. Trong khi
                 đó, người muốn tự nấu vẫn cần một giải pháp giúp chọn nguyên
-                liệu đúng ngân sách, đủ khẩu phần và còn hàng tại cửa hàng gần
-                mình.
+                liệu đúng ngân sách, đủ khẩu phần.
               </p>
             </div>
           </div>
@@ -238,7 +231,7 @@
 
         <!-- Market Gap -->
         <div class="market-gap-section reveal">
-          <h5 class="text-center fw-bold mb-4">Khoảng trống thị trường</h5>
+          <h4 class="text-center fw-bold mb-4">Khoảng trống thị trường</h4>
           <div class="row g-4">
             <div class="col-md-4">
               <div class="gap-card">
@@ -303,7 +296,7 @@
               <div class="why-number">01</div>
               <h5 class="fw-bold mb-3">Người mua quen đặt trước</h5>
               <p class="text-muted">
-                Người dùng đã quen thao tác online, nhưng vẫn cần giải pháp sát
+                Người dùng đã quen thao tác online, nhưng vẫn cần giải pháp tối ưu
                 hơn với bữa ăn hằng ngày và ngân sách thực tế.
               </p>
             </div>
@@ -492,7 +485,7 @@
           <div class="flow-steps">
             <div class="flow-step">
               <div class="flow-icon"><i class="bi bi-person"></i></div>
-              <span>Nhu cần người dùng</span>
+              <span>Nhu cầu người dùng</span>
             </div>
             <div class="flow-arrow"><i class="bi bi-arrow-right"></i></div>
             <div class="flow-step">
@@ -537,9 +530,6 @@
     <section id="demo" class="section-padding bg-section">
       <div class="container">
         <div class="text-center mb-5 reveal">
-          <div class="badge badge-demo mb-3">
-            <i class="bi bi-cpu-fill"></i> Trình giả lập đề xuất
-          </div>
           <h2 class="display-5 fw-bold mb-3">
             Trình giả lập đề xuất thực đơn AI
           </h2>
@@ -1571,6 +1561,232 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Business Model Section -->
+    <section id="business" class="section-padding">
+      <div class="container">
+        <div class="text-center mb-5 reveal">
+          <h2 class="display-5 fw-bold mb-3">
+            Biến nhu cầu bữa ăn thành đơn hàng cho tiểu thương
+          </h2>
+        </div>
+
+        <!-- User vs Customer -->
+        <div class="row g-4 mb-5">
+          <div class="col-lg-6 reveal">
+            <div class="user-segment-card">
+              <h5 class="fw-bold mb-4">
+                <i class="bi bi-people"></i> Người dùng sử dụng
+              </h5>
+              <div class="segment-list">
+                <div class="segment-item">
+                  <i class="bi bi-mortarboard"></i>
+                  <span>Sinh viên</span>
+                </div>
+                <div class="segment-item">
+                  <i class="bi bi-briefcase"></i>
+                  <span>Người đi làm</span>
+                </div>
+                <div class="segment-item">
+                  <i class="bi bi-house-heart"></i>
+                  <span>Hộ gia đình trẻ</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 reveal">
+            <div class="user-segment-card user-segment-primary">
+              <h5 class="fw-bold mb-4">
+                <i class="bi bi-cash-coin"></i> Khách hàng trả tiền
+              </h5>
+              <div class="segment-list">
+                <div class="segment-item">
+                  <i class="bi bi-shop"></i>
+                  <span>Tiểu thương</span>
+                </div>
+                <div class="segment-item">
+                  <i class="bi bi-building"></i>
+                  <span>Hộ kinh doanh nhỏ</span>
+                </div>
+                <div class="segment-item">
+                  <i class="bi bi-basket"></i>
+                  <span>Cửa hàng thực phẩm địa phương</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mb-4">
+          <h3 class="fw-bold">Các gói dành cho người bán</h3>
+          <p class="text-muted mb-0">
+            Giai đoạn đầu ưu tiên để tiểu thương dùng thử dễ dàng, sau đó thu
+            phí khi giá trị đã rõ ràng.
+          </p>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+          <!-- Free Plan -->
+          <div class="col-lg-4 col-md-6">
+            <div class="pricing-card h-100">
+              <div class="pricing-header">
+                <span class="plan-tag">Khởi đầu</span>
+                <h4>FREE</h4>
+                <div class="price">Miễn phí</div>
+                <p>Dành cho người bán mới bắt đầu số hóa gian hàng.</p>
+              </div>
+
+              <ul class="pricing-features">
+                <li>
+                  <i class="bi bi-check-circle-fill"></i> Đăng sản phẩm cơ bản
+                </li>
+                <li>
+                  <i class="bi bi-check-circle-fill"></i> Nhận đơn đặt trước
+                </li>
+                <li>
+                  <i class="bi bi-check-circle-fill"></i> Cảnh báo hết hàng
+                </li>
+                <li>
+                  <i class="bi bi-check-circle-fill"></i> Dashboard tổng quan
+                </li>
+              </ul>
+
+              <button class="btn btn-outline-primary btn-rounded w-100" disabled>
+                Bản hiện tại
+              </button>
+            </div>
+          </div>
+
+          <!-- Pro Plan -->
+          <div class="col-lg-4 col-md-6">
+            <div class="pricing-card featured h-100">
+              <div class="popular-badge">Khuyên dùng</div>
+
+              <div class="pricing-header">
+                <span class="plan-tag">Tăng trưởng</span>
+                <h4>PRO</h4>
+                <div class="price">99.000đ<span>/tháng</span></div>
+                <p>
+                  Dành cho gian hàng muốn tăng đơn và hiểu dữ liệu bán hàng.
+                </p>
+              </div>
+
+              <ul class="pricing-features">
+                <li>
+                  <i class="bi bi-check-circle-fill"></i> Toàn bộ tính năng gói
+                  FREE
+                </li>
+                <li>
+                  <i class="bi bi-check-circle-fill"></i> Xem sản phẩm bán chạy
+                </li>
+                <li>
+                  <i class="bi bi-check-circle-fill"></i> Gợi ý nhóm sản phẩm
+                  bán kèm
+                </li>
+                <li>
+                  <i class="bi bi-check-circle-fill"></i> Insight AI nâng cao
+                </li>
+                <li>
+                  <i class="bi bi-check-circle-fill"></i> Báo cáo doanh thu theo
+                  ngày/tuần
+                </li>
+              </ul>
+
+              <button class="btn btn-primary btn-rounded w-100">
+                Nâng cấp gói PRO
+              </button>
+            </div>
+          </div>
+
+          <!-- Premium Plan -->
+          <div class="col-lg-4 col-md-6">
+            <div class="pricing-card h-100">
+              <div class="pricing-header">
+                <span class="plan-tag">Mở rộng</span>
+                <h4>PREMIUM</h4>
+                <div class="price">199.000đ<span>/tháng</span></div>
+                <p>
+                  Dành cho gian hàng muốn được ưu tiên hiển thị và mở rộng khách
+                  hàng.
+                </p>
+              </div>
+
+              <ul class="pricing-features">
+                <li>
+                  <i class="bi bi-check-circle-fill"></i> Toàn bộ tính năng gói
+                  PRO
+                </li>
+                <li>
+                  <i class="bi bi-check-circle-fill"></i> Ưu tiên hiển thị gian
+                  hàng
+                </li>
+                <li>
+                  <i class="bi bi-check-circle-fill"></i> Gợi ý khuyến mãi theo
+                  tồn kho
+                </li>
+                <li>
+                  <i class="bi bi-check-circle-fill"></i> Báo cáo nhóm khách
+                  hàng tiềm năng
+                </li>
+              </ul>
+
+              <button class="btn btn-primary btn-rounded w-100">
+                Nâng cấp gói PREMIUM
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Revenue streams -->
+        <div class="revenue-box mt-5">
+          <div class="row align-items-center g-4">
+            <div class="col-lg-4">
+              <h4 class="fw-bold mb-2">Dòng tiền bổ sung</h4>
+              <p class="text-muted mb-0">
+                Ngoài gói tháng, nền tảng có thể tạo doanh thu từ giao dịch và
+                dịch vụ mở rộng.
+              </p>
+            </div>
+
+            <div class="col-lg-8">
+              <div class="row g-3">
+                <div class="col-md-4">
+                  <div class="revenue-item">
+                    <i class="bi bi-receipt"></i>
+                    <h6>Phí giao dịch</h6>
+                    <p>Thu khoản nhỏ trên đơn đặt trước thành công.</p>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="revenue-item">
+                    <i class="bi bi-megaphone"></i>
+                    <h6>Quảng bá gian hàng</h6>
+                    <p>Ưu tiên hiển thị sản phẩm hoặc gian hàng nổi bật.</p>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="revenue-item">
+                    <i class="bi bi-truck"></i>
+                    <h6>Đối tác mở rộng</h6>
+                    <p>Hợp tác thanh toán và giao hàng.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="business-highlight mt-4">
+          <i class="bi bi-lightbulb-fill"></i>
+          <span>
+            Người mua tạo nhu cầu thật. Người bán nhận đơn hàng thật. Nền tảng
+            tạo doanh thu từ giá trị thật.
+          </span>
         </div>
       </div>
     </section>
