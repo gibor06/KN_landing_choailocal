@@ -353,7 +353,7 @@ h6 {
 /* ===== Market Gap Section ===== */
 .market-gap-section {
   background: var(--white);
-  border-radius: 16px;
+  border-radius: 20px;
   padding: 2rem;
   border: 2px dashed var(--primary);
 }

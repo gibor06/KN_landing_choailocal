@@ -1069,7 +1069,7 @@ document.addEventListener("DOMContentLoaded", function () {
     {
       customer: "Vũ Thị Linh",
       shop: "Thịt Sạch Cô Vy",
-      items: "Combo ba chỉ lợn nướng, 1 bó xà lách",
+      items: "Ba chỉ lợn nướng kèm 1 bó xà lách",
       price: 87000,
     },
     {
@@ -1081,7 +1081,7 @@ document.addEventListener("DOMContentLoaded", function () {
     {
       customer: "Lê Văn Bình",
       shop: "Thịt Sạch Cô Vy",
-      items: "Combo ba chỉ heo và sườn sụn nướng",
+      items: "Ba chỉ heo và sườn sụn nướng",
       price: 108000,
     },
     {
@@ -1119,6 +1119,67 @@ document.addEventListener("DOMContentLoaded", function () {
       shop: "Thịt Sạch Cô Vy",
       items: "1kg thịt đùi heo tươi",
       price: 120000,
+    },
+
+    {
+      customer: "Đỗ Anh Đức",
+      shop: "Thịt Sạch Cô Vy",
+      items: "1.5kg cánh gà tươi loại 1",
+      price: 135000,
+    },
+    {
+      customer: "Nguyễn Mai Chi",
+      shop: "Thịt Sạch Cô Vy",
+      items: "0.7kg nạc dăm heo mềm ngon",
+      price: 98000,
+    },
+    {
+      customer: "Phan Văn Nam",
+      shop: "Thịt Sạch Cô Vy",
+      items: "2kg xương cổ heo hầm măng",
+      price: 110000,
+    },
+    {
+      customer: "Trịnh Kim Oanh",
+      shop: "Thịt Sạch Cô Vy",
+      items: "0.5kg thịt bò ba chỉ Mỹ cuộn nhúng lẩu",
+      price: 145000,
+    },
+    {
+      customer: "Vũ Hoàng Long",
+      shop: "Thịt Sạch Cô Vy",
+      items: "1.2kg tai heo làm giò thủ ngon",
+      price: 156000,
+    },
+    {
+      customer: "Lâm Thúy Hằng",
+      shop: "Thịt Sạch Cô Vy",
+      items: "0.8kg chân giò heo rút xương",
+      price: 115000,
+    },
+    {
+      customer: "Trần Đình Khôi",
+      shop: "Thịt Sạch Cô Vy",
+      items: "0.5kg tim heo tươi rói",
+      price: 85000,
+    },
+    {
+      customer: "Nguyễn Bích Thủy",
+      shop: "Thịt Sạch Cô Vy",
+      items: "1kg móng giò chặt sẵn",
+      price: 90000,
+    },
+    {
+      customer: "Phạm Hải Đăng",
+      shop: "Thịt Sạch Cô Vy",
+      items: "0.6kg thịt mông sấn làm ruốc",
+      price: 72000,
+    },
+    {
+      customer: "Đoàn Minh Tú",
+      shop: "Thịt Sạch Cô Vy",
+      items: "1kg lòng non và dạ dày heo làm sạch",
+      price: 140000,
     },
   ];
 
@@ -1199,6 +1260,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Start the order simulation loop (every 15 seconds)
-  setInterval(simulateNewOrder, 15000);
+  setInterval(simulateNewOrder, 3000);
   console.log("Chợ AI Local - Landing Page Loaded Successfully!");
 });
