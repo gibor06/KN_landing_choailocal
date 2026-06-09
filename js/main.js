@@ -214,7 +214,7 @@ document.addEventListener("DOMContentLoaded", function () {
           },
           {
             name: "Mọc (giò sống)",
-            qtyPerPerson: 0.05,
+            qtyPerPerson: 0.1,
             unit: "kg",
             pricePerUnit: 120000,
           },
@@ -234,7 +234,7 @@ document.addEventListener("DOMContentLoaded", function () {
         ],
       },
       {
-        name: "Cháo sườn sụn hành hoa",
+        name: "Cháo sườn sụn",
         suggestion:
           "Cháo gạo thơm dẻo ninh nhừ với sườn sụn heo giòn sần sật, ăn kèm quẩy giòn và hành lá.",
         seller: "Quầy Gạo & Đồ Khô Cô Xuân",
@@ -498,12 +498,6 @@ document.addEventListener("DOMContentLoaded", function () {
             qtyPerPerson: 0.05,
             unit: "kg",
             pricePerUnit: 90000,
-          },
-          {
-            name: "Xoài",
-            qtyPerPerson: 0.15,
-            unit: "kg",
-            pricePerUnit: 18000,
           },
           {
             name: "Sả & ớt bằm",
