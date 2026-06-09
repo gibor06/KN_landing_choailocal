@@ -606,6 +606,43 @@ h6 {
   height: 100%;
 }
 
+.custom-input-section {
+  background: var(--section-bg);
+  border-radius: 12px;
+  padding: 1.25rem;
+  border: 2px dashed rgba(25, 135, 84, 0.3);
+  transition: all 0.3s ease;
+}
+
+.custom-input-section:hover {
+  border-color: var(--primary);
+  background: var(--soft-green);
+}
+
+.custom-input-section .input-group {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.custom-input-section .form-control {
+  border: 2px solid rgba(25, 135, 84, 0.2);
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.custom-input-section .form-control:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 0.2rem rgba(25, 135, 84, 0.15);
+}
+
+.custom-input-section .btn-primary {
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
 .input-mockup {
   background: var(--section-bg);
   border-radius: 12px;
@@ -1372,6 +1409,19 @@ footer {
   }
 
   .btn-order {
+    width: 100%;
+  }
+  
+  .custom-input-section .input-group {
+    flex-wrap: wrap;
+  }
+  
+  .custom-input-section .form-control {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+  
+  .custom-input-section .btn-primary {
     width: 100%;
   }
 }
