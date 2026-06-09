@@ -243,7 +243,7 @@ document.addEventListener("DOMContentLoaded", function () {
         items: [
           {
             name: "Sườn sụn heo",
-            qtyPerPerson: 0.1,
+            qtyPerPerson: 0.15,
             unit: "kg",
             pricePerUnit: 150000,
           },
@@ -482,8 +482,8 @@ document.addEventListener("DOMContentLoaded", function () {
           "Thịt gà xào đậm đà đưa cơm kết hợp canh bí đỏ bổ dưỡng, giúp cả nhà bồi bổ sức khỏe tối nay.",
         items: [
           {
-            name: "Đùi gà công nghiệp",
-            qtyPerPerson: 0.2,
+            name: "Đùi gà",
+            qtyPerPerson: 0.3,
             unit: "kg",
             pricePerUnit: 65000,
           },
@@ -500,7 +500,7 @@ document.addEventListener("DOMContentLoaded", function () {
             pricePerUnit: 90000,
           },
           {
-            name: "Gạo thơm dẻo",
+            name: "Xoài",
             qtyPerPerson: 0.15,
             unit: "kg",
             pricePerUnit: 18000,
@@ -1055,6 +1055,83 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Run initial simulation on load matching default values (130k, 3 people, Bữa tối)
   startMenuSimulation("Bữa tối", 3, 130000);
+
+  // ===== Custom Input Handler =====
+  function parseCustomInput(inputText) {
+    // Parse user input to extract budget, people count, and meal type
+    const text = inputText.toLowerCase().trim();
+    
+    // Extract budget (look for numbers followed by k, đ, or standalone numbers)
+    let budget = 100000; // default
+    const budgetMatch = text.match(/(\d+)(k|đ)?/);
+    if (budgetMatch) {
+      let num = parseInt(budgetMatch[1]);
+      if (budgetMatch[2] === 'k' || num < 1000) {
+        // If 'k' is present or number is small, treat as thousands
+        budget = num * 1000;
+      } else {
+        budget = num;
+      }
+    }
+    
+    // Extract number of people
+    let people = 2; // default
+    const peopleMatch = text.match(/(\d+)\s*(người|người ăn|ng)/);
+    if (peopleMatch) {
+      people = parseInt(peopleMatch[1]);
+    }
+    
+    // Determine meal type
+    let mealType = "Bữa tối"; // default
+    if (text.includes("sáng")) {
+      mealType = "Bữa sáng";
+    } else if (text.includes("trưa")) {
+      mealType = "Bữa trưa";
+    } else if (text.includes("tối") || text.includes("chiều")) {
+      mealType = "Bữa tối";
+    } else if (text.includes("tiết kiệm") || text.includes("sinh viên")) {
+      mealType = "Bữa sinh viên/tiết kiệm";
+    } else if (text.includes("healthy") || text.includes("khỏe") || text.includes("lành mạnh")) {
+      mealType = "Bữa healthy";
+    }
+    
+    return { budget, people, mealType };
+  }
+
+  // Custom input submit button handler
+  const btnCustomSubmit = document.getElementById("btn-custom-submit");
+  const customInputText = document.getElementById("custom-input-text");
+  
+  if (btnCustomSubmit && customInputText) {
+    btnCustomSubmit.addEventListener("click", function () {
+      const inputValue = customInputText.value.trim();
+      
+      if (!inputValue) {
+        alert("Vui lòng nhập nhu cầu của bạn!");
+        return;
+      }
+      
+      // Parse the input
+      const { budget, people, mealType } = parseCustomInput(inputValue);
+      
+      // Remove active class from preset buttons
+      presetBtns.forEach((b) => b.classList.remove("active"));
+      
+      // Trigger simulation
+      startMenuSimulation(mealType, people, budget);
+      
+      // Show feedback to user
+      customInputText.value = "";
+      customInputText.placeholder = `Đã tìm: ${budget.toLocaleString('vi-VN')}đ cho ${people} người - ${mealType}`;
+    });
+    
+    // Allow Enter key to submit
+    customInputText.addEventListener("keypress", function (e) {
+      if (e.key === "Enter") {
+        btnCustomSubmit.click();
+      }
+    });
+  }
 
   // ===== Real-time Order Simulator Feed & SellerAIInsights =====
 

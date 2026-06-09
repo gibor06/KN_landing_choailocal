@@ -630,6 +630,7 @@ Phiên bản demo hiện tại tập trung vào các chức năng chính:
 
 - Landing page giới thiệu dự án.
 - Mô phỏng nhập nhu cầu bằng tiếng Việt.
+- **Cho phép người dùng tự nhập nhu cầu tùy chỉnh** (mới cập nhật).
 - Mô phỏng quá trình xử lý qua 3 lớp:
   - AI Parse.
   - CLHUN Suggest.
@@ -639,6 +640,21 @@ Phiên bản demo hiện tại tập trung vào các chức năng chính:
 - Mô phỏng đặt trước thực đơn.
 - Mô phỏng dashboard người bán.
 - Hiển thị gợi ý chiến lược kinh doanh cho người bán.
+
+### Tính năng nhập liệu tùy chỉnh
+
+Người dùng có thể tự do nhập nhu cầu của mình trong ô text, ví dụ:
+- "100k cho bữa tối 3 người"
+- "55k ăn sáng 2 người"
+- "200k ăn healthy 4 người"
+- "Còn 45k ăn tiết kiệm 2 người"
+
+Hệ thống sẽ tự động phân tích:
+- Số tiền (ngân sách)
+- Số người ăn
+- Loại bữa (sáng/trưa/tối/tiết kiệm/healthy)
+
+Và hiển thị thực đơn phù hợp tức thì.
 
 Website demo:
 
