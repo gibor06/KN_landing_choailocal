@@ -158,9 +158,173 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // ===== Order Button Loading State & Modal Details Populating =====
+  
+  // Initialize pickup date and time with default values
+  function initializePickupDateTime() {
+    const pickupDateInput = document.getElementById("pickup-date");
+    const pickupTimeSelect = document.getElementById("pickup-time");
+    
+    if (pickupDateInput) {
+      // Set default date to today
+      const today = new Date();
+      const year = today.getFullYear();
+      const month = String(today.getMonth() + 1).padStart(2, '0');
+      const day = String(today.getDate()).padStart(2, '0');
+      pickupDateInput.value = `${year}-${month}-${day}`;
+      
+      // Set minimum date to today
+      pickupDateInput.min = `${year}-${month}-${day}`;
+      
+      // Set maximum date to 7 days from now
+      const maxDate = new Date(today);
+      maxDate.setDate(maxDate.getDate() + 7);
+      const maxYear = maxDate.getFullYear();
+      const maxMonth = String(maxDate.getMonth() + 1).padStart(2, '0');
+      const maxDay = String(maxDate.getDate()).padStart(2, '0');
+      pickupDateInput.max = `${maxYear}-${maxMonth}-${maxDay}`;
+    }
+    
+    if (pickupTimeSelect) {
+      // Set default time to 2 hours from now
+      const now = new Date();
+      const futureTime = new Date(now.getTime() + 2 * 60 * 60 * 1000);
+      const hours = futureTime.getHours();
+      
+      // Find closest available time slot
+      const timeOptions = pickupTimeSelect.querySelectorAll('option');
+      let closestTime = '17:00'; // default
+      
+      timeOptions.forEach(option => {
+        if (option.value) {
+          const optionHour = parseInt(option.value.split(':')[0]);
+          if (optionHour >= hours && !closestTime) {
+            closestTime = option.value;
+          }
+        }
+      });
+      
+      pickupTimeSelect.value = closestTime;
+    }
+  }
+  
+  // Function to format pickup datetime for display
+  function formatPickupDateTime(dateStr, timeStr) {
+    const date = new Date(dateStr);
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    
+    // Format date
+    let dateDisplay = '';
+    if (date.toDateString() === today.toDateString()) {
+      dateDisplay = 'hôm nay';
+    } else if (date.toDateString() === tomorrow.toDateString()) {
+      dateDisplay = 'ngày mai';
+    } else {
+      const day = String(date.getDate()).padStart(2, '0');
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      dateDisplay = `${day}/${month}`;
+    }
+    
+    return `${timeStr} ${dateDisplay}`;
+  }
+  
+  // Function to validate pickup time (must be at least 2 hours from now)
+  function validatePickupTime(dateStr, timeStr) {
+    const pickupDateTime = new Date(`${dateStr}T${timeStr}`);
+    const now = new Date();
+    const minPickupTime = new Date(now.getTime() + 2 * 60 * 60 * 1000); // 2 hours from now
+    
+    return pickupDateTime >= minPickupTime;
+  }
+  
+  // Initialize pickup datetime on page load
+  initializePickupDateTime();
+  
+  // Add event listeners for pickup time selection to provide visual feedback
+  const pickupDateInput = document.getElementById("pickup-date");
+  const pickupTimeSelect = document.getElementById("pickup-time");
+  
+  if (pickupDateInput) {
+    pickupDateInput.addEventListener("change", function() {
+      // Add a subtle animation to show the selection was registered
+      this.style.transform = "scale(1.02)";
+      setTimeout(() => {
+        this.style.transform = "scale(1)";
+      }, 200);
+    });
+  }
+  
+  if (pickupTimeSelect) {
+    pickupTimeSelect.addEventListener("change", function() {
+      // Add a subtle animation to show the selection was registered
+      this.style.transform = "scale(1.02)";
+      setTimeout(() => {
+        this.style.transform = "scale(1)";
+      }, 200);
+    });
+  }
+  
   const btnPreorderTrigger = document.getElementById("btn-preorder-trigger");
   if (btnPreorderTrigger) {
-    btnPreorderTrigger.addEventListener("click", function () {
+    btnPreorderTrigger.addEventListener("click", function (e) {
+      // Validate pickup time before proceeding
+      const pickupDate = document.getElementById("pickup-date").value;
+      const pickupTime = document.getElementById("pickup-time").value;
+      
+      if (!pickupDate || !pickupTime) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        // Highlight the empty fields
+        const pickupDateInput = document.getElementById("pickup-date");
+        const pickupTimeInput = document.getElementById("pickup-time");
+        const pickupSection = document.querySelector(".pickup-time-section");
+        
+        if (!pickupDate && pickupDateInput) {
+          pickupDateInput.style.borderColor = "#dc3545";
+          pickupDateInput.style.boxShadow = "0 0 0 0.2rem rgba(220, 53, 69, 0.25)";
+          setTimeout(() => {
+            pickupDateInput.style.borderColor = "";
+            pickupDateInput.style.boxShadow = "";
+          }, 2000);
+        }
+        
+        if (!pickupTime && pickupTimeInput) {
+          pickupTimeInput.style.borderColor = "#dc3545";
+          pickupTimeInput.style.boxShadow = "0 0 0 0.2rem rgba(220, 53, 69, 0.25)";
+          setTimeout(() => {
+            pickupTimeInput.style.borderColor = "";
+            pickupTimeInput.style.boxShadow = "";
+          }, 2000);
+        }
+        
+        // Scroll to pickup section
+        if (pickupSection) {
+          pickupSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          pickupSection.style.animation = "shake 0.5s";
+          setTimeout(() => {
+            pickupSection.style.animation = "";
+          }, 500);
+        }
+        
+        alert("⏰ Vui lòng chọn ngày và giờ nhận hàng!");
+        return false;
+      }
+      
+      if (!validatePickupTime(pickupDate, pickupTime)) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        const pickupSection = document.querySelector(".pickup-time-section");
+        if (pickupSection) {
+          pickupSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        
+        alert("⚠️ Thời gian nhận hàng phải ít nhất 2 giờ kể từ bây giờ.\n\nVui lòng chọn thời gian khác!");
+        return false;
+      }
+      
       const originalText = this.innerHTML;
       this.innerHTML = '<i class="bi bi-hourglass-split"></i> Đang tạo đơn...';
       this.disabled = true;
@@ -184,13 +348,9 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("modal-order-price").innerText = currentPrice;
         document.getElementById("modal-order-seller").innerText = currentSeller;
 
-        // Calculate estimated pickup time (e.g. current hour + 2 hours)
-        const now = new Date();
-        now.setHours(now.getHours() + 2);
-        const minutesStr =
-          now.getMinutes() < 10 ? "0" + now.getMinutes() : now.getMinutes();
-        document.getElementById("modal-order-time").innerText =
-          now.getHours() + ":" + minutesStr + " hôm nay";
+        // Use selected pickup time instead of auto-calculated time
+        const formattedPickupTime = formatPickupDateTime(pickupDate, pickupTime);
+        document.getElementById("modal-order-time").innerText = formattedPickupTime;
       }, 600);
     });
   }

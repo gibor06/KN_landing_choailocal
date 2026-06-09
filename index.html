@@ -852,6 +852,48 @@
                   </p>
                 </div>
 
+                <!-- Pickup Time Selection -->
+                <div class="pickup-time-section mb-4">
+                  <h6 class="fw-bold mb-3">
+                    <i class="bi bi-clock-history text-primary"></i> Chọn thời gian nhận hàng:
+                  </h6>
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label for="pickup-date" class="form-label small fw-bold">Ngày nhận:</label>
+                      <input
+                        type="date"
+                        class="form-control"
+                        id="pickup-date"
+                        required
+                      />
+                    </div>
+                    <div class="col-md-6">
+                      <label for="pickup-time" class="form-label small fw-bold">Giờ nhận:</label>
+                      <select class="form-select" id="pickup-time" required>
+                        <option value="">Chọn giờ</option>
+                        <option value="06:00">06:00 - Sáng sớm</option>
+                        <option value="07:00">07:00 - Sáng</option>
+                        <option value="08:00">08:00 - Sáng</option>
+                        <option value="09:00">09:00 - Sáng</option>
+                        <option value="10:00">10:00 - Sáng</option>
+                        <option value="11:00">11:00 - Trưa</option>
+                        <option value="12:00">12:00 - Trưa</option>
+                        <option value="13:00">13:00 - Chiều</option>
+                        <option value="14:00">14:00 - Chiều</option>
+                        <option value="15:00">15:00 - Chiều</option>
+                        <option value="16:00">16:00 - Chiều</option>
+                        <option value="17:00" selected>17:00 - Chiều</option>
+                        <option value="18:00">18:00 - Tối</option>
+                        <option value="19:00">19:00 - Tối</option>
+                        <option value="20:00">20:00 - Tối</option>
+                      </select>
+                    </div>
+                  </div>
+                  <small class="text-muted d-block mt-2">
+                    <i class="bi bi-info-circle"></i> Vui lòng đặt trước ít nhất 2 giờ so với thời gian nhận hàng
+                  </small>
+                </div>
+
                 <div class="menu-footer">
                   <div class="seller-info">
                     <i class="bi bi-shop"></i>
@@ -2176,8 +2218,11 @@
               </div>
               <div class="detail-row">
                 <span class="detail-label">Nhận tại:</span>
-                <span class="detail-value" id="modal-order-seller"
+                <!-- <span class="detail-value" id="modal-order-seller"
                   >Gian hàng Thực Phẩm Cô Lan</span
+                > -->
+                <span class="detail-value"
+                  >Chợ Nguyễn Đỗ Cung</span
                 >
               </div>
               <div class="detail-row">

@@ -656,6 +656,21 @@ Hệ thống sẽ tự động phân tích:
 
 Và hiển thị thực đơn phù hợp tức thì.
 
+### Tính năng chọn thời gian nhận hàng
+
+Người dùng có thể:
+- **Chọn ngày nhận hàng** (từ hôm nay đến 7 ngày tới)
+- **Chọn giờ nhận hàng** (từ 6:00 sáng đến 20:00 tối)
+- Hệ thống tự động kiểm tra thời gian hợp lệ (phải đặt trước ít nhất 2 giờ)
+- Validation với thông báo rõ ràng nếu chưa chọn hoặc thời gian không hợp lệ
+- Hiển thị thời gian nhận hàng rõ ràng trong modal xác nhận đơn hàng
+
+Các tính năng UX:
+- Tự động đặt giá trị mặc định thông minh (2 giờ sau thời điểm hiện tại)
+- Hiệu ứng highlight khi chọn thời gian
+- Scroll tự động và shake animation nếu thiếu thông tin
+- Format hiển thị thân thiện: "17:00 hôm nay", "10:00 ngày mai", "15:00 25/06"
+
 Website demo:
 
 ```txt
