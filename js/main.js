@@ -1,5 +1,49 @@
 // ===== Smooth Scroll for Navigation Links =====
 document.addEventListener("DOMContentLoaded", function () {
+  // ===== Translation Helper =====
+  const TRANSLATIONS = {
+    "Tổng cộng": "Total",
+    "Gợi ý": "Option",
+    "Sử dụng": "Using",
+    "ngân sách": "of budget",
+    "Không vượt ngân sách": "Within budget",
+    "Đủ khẩu phần": "Adequate portions",
+    "Vượt hạn mức": "Over budget",
+    "Chờ...": "Waiting...",
+    "người": "people",
+    "Vừa xong": "Just now",
+    "phút trước": "mins ago",
+    "hôm nay": "today",
+    "ngày mai": "tomorrow",
+    "Đang tạo đơn...": "Creating order...",
+    "Vui lòng nhập nhu cầu của bạn!": "Please enter your request!",
+    "⏰ Vui lòng chọn ngày và giờ nhận hàng!": "⏰ Please select pickup date and time!",
+    "⚠️ Thời gian nhận hàng phải ở tương lai.": "⚠️ Pickup time must be in the future.",
+    "Vui lòng chọn thời gian khác!": "Please select a different time!",
+    "chiếm": "using",
+    "giúp bạn tiết kiệm được": "saving you",
+    "so với hạn mức đề ra.": "compared to your budget.",
+    "Cảnh báo: Chi phí nguyên liệu thực tế là": "Warning: Actual ingredient cost is",
+    "đã vượt quá hạn mức ngân sách của bạn là": "which exceeds your budget of",
+    "Thực đơn này sử dụng": "This menu uses",
+    "Đã tìm": "Searched",
+    "cho": "for",
+    "Bữa sáng": "Breakfast",
+    "Bữa trưa": "Lunch",
+    "Bữa tối": "Dinner",
+    "Bữa sinh viên/tiết kiệm": "Student/Budget Meal",
+    "Bữa healthy": "Healthy Meal",
+  };
+
+  function t(text) {
+    const lang = localStorage.getItem("lang") || "vi";
+    if (lang === "en" && TRANSLATIONS[text]) return TRANSLATIONS[text];
+    return text;
+  }
+
+  function getLang() {
+    return localStorage.getItem("lang") || "vi";
+  }
   // Smooth scroll for all anchor links
   const navLinks = document.querySelectorAll('a[href^="#"]');
 
@@ -119,7 +163,7 @@ document.addEventListener("DOMContentLoaded", function () {
         element.textContent = Math.floor(start) + suffix;
         requestAnimationFrame(updateCounter);
       } else {
-        element.textContent = target.toLocaleString("vi-VN") + suffix;
+        element.textContent = target.toLocaleString(getLang() === "en" ? "en-US" : "vi-VN") + suffix;
       }
     }
 
@@ -185,9 +229,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     
     if (pickupTimeSelect) {
-      // Set default time to 2 hours from now
+      // Set default time to 15 minutes from now (remove 2 hours constraint for placement time suggestion)
       const now = new Date();
-      const futureTime = new Date(now.getTime() + 2 * 60 * 60 * 1000);
+      const futureTime = new Date(now.getTime() + 15 * 60 * 1000);
       const hours = futureTime.getHours();
       
       // Find closest available time slot
@@ -217,9 +261,9 @@ document.addEventListener("DOMContentLoaded", function () {
     // Format date
     let dateDisplay = '';
     if (date.toDateString() === today.toDateString()) {
-      dateDisplay = 'hôm nay';
+      dateDisplay = t('hôm nay');
     } else if (date.toDateString() === tomorrow.toDateString()) {
-      dateDisplay = 'ngày mai';
+      dateDisplay = t('ngày mai');
     } else {
       const day = String(date.getDate()).padStart(2, '0');
       const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -229,13 +273,12 @@ document.addEventListener("DOMContentLoaded", function () {
     return `${timeStr} ${dateDisplay}`;
   }
   
-  // Function to validate pickup time (must be at least 2 hours from now)
+  // Function to validate pickup time (must be in the future)
   function validatePickupTime(dateStr, timeStr) {
     const pickupDateTime = new Date(`${dateStr}T${timeStr}`);
     const now = new Date();
-    const minPickupTime = new Date(now.getTime() + 2 * 60 * 60 * 1000); // 2 hours from now
     
-    return pickupDateTime >= minPickupTime;
+    return pickupDateTime >= now;
   }
   
   // Initialize pickup datetime on page load
@@ -308,7 +351,7 @@ document.addEventListener("DOMContentLoaded", function () {
           }, 500);
         }
         
-        alert("⏰ Vui lòng chọn ngày và giờ nhận hàng!");
+        alert(t("⏰ Vui lòng chọn ngày và giờ nhận hàng!"));
         return false;
       }
       
@@ -321,12 +364,12 @@ document.addEventListener("DOMContentLoaded", function () {
           pickupSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
         
-        alert("⚠️ Thời gian nhận hàng phải ít nhất 2 giờ kể từ bây giờ.\n\nVui lòng chọn thời gian khác!");
+        alert(t("⚠️ Thời gian nhận hàng phải ở tương lai.") + "\n\n" + t("Vui lòng chọn thời gian khác!"));
         return false;
       }
       
       const originalText = this.innerHTML;
-      this.innerHTML = '<i class="bi bi-hourglass-split"></i> Đang tạo đơn...';
+      this.innerHTML = '<i class="ph ph-hourglass-simple"></i> ' + t('Đang tạo đơn...');
       this.disabled = true;
 
       setTimeout(() => {
@@ -346,11 +389,22 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("modal-order-id").innerText = orderId;
         document.getElementById("modal-order-title").innerText = currentTitle;
         document.getElementById("modal-order-price").innerText = currentPrice;
-        document.getElementById("modal-order-seller").innerText = currentSeller;
+        const sellerEl = document.getElementById("modal-order-seller");
+        if (sellerEl) sellerEl.innerText = currentSeller;
 
         // Use selected pickup time instead of auto-calculated time
         const formattedPickupTime = formatPickupDateTime(pickupDate, pickupTime);
         document.getElementById("modal-order-time").innerText = formattedPickupTime;
+
+        // Show the modal programmatically since data attributes were removed to enforce validation
+        if (typeof bootstrap !== "undefined" && bootstrap.Modal) {
+          const modalEl = document.getElementById("orderModal");
+          let modalInstance = bootstrap.Modal.getInstance(modalEl);
+          if (!modalInstance) {
+            modalInstance = new bootstrap.Modal(modalEl);
+          }
+          modalInstance.show();
+        }
       }, 600);
     });
   }
@@ -880,57 +934,532 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Function to render the active dynamic suggestion
+    // ===== Dynamic Localization Dictionary for Simulator Output =====
+  const DICTIONARY = {
+    "Bữa sáng": "Breakfast",
+    "Bữa trưa": "Lunch",
+    "Bữa tối": "Dinner",
+    "Bữa sinh viên/tiết kiệm": "Student/Budget Meal",
+    "Bữa healthy": "Healthy Meal",
+    "Gian hàng Thực Phẩm Cô Lan": "Co Lan's Fresh Foods Stall",
+    "Sạp Thực Phẩm Tươi Sống Cô Vy": "Co Vy's Fresh Meat Stall",
+    "Quầy Gạo & Đồ Khô Cô Xuân": "Co Xuan's Rice & Dry Goods",
+    "Sạp Cá Đồng Chú Sáu": "Chu Sau's Fresh Fish Stall",
+    "Vựa Cá Sông Mekong - Anh Ba": "Anh Ba's Mekong River Fish",
+    "Sạp Gà Ta Cô Tám": "Co Tam's Chicken Stall",
+    "Cửa Hàng Rau Sạch Cô Năm": "Co Nam's Clean Veggies",
+    "Nông Sản Sạch Đà Lạt Gia Nghĩa": "Gia Nghia Dalat Veggies",
+    "Thủy Hải Sản Cao Cấp Tươi Sạch": "Premium Fresh Seafood",
+    "Cửa Hàng Thực Phẩm Nhập Khẩu GreenFoods": "GreenFoods Imports",
+    "Sườn non heo": "Pork ribs",
+    "Mọc (giò sống)": "Pork paste (giò sống)",
+    "Bún tươi": "Fresh rice noodles",
+    "Rau thơm & hành lá": "Herbs & green onions",
+    "Sườn sụn heo": "Pork soft bone",
+    "Quẩy giòn": "Crispy fried dough",
+    "Hành lá & gia vị": "Green onions & spices",
+    "Cá rô đồng phi lê": "Fillet climbing perch",
+    "Bún tươi sạch": "Clean rice noodles",
+    "Rau cải & thì là": "Mustard greens & dill",
+    "Sườn cốt lết heo": "Pork chops",
+    "Cà chua chín": "Ripe tomatoes",
+    "Dưa leo sạch": "Clean cucumbers",
+    "Hành tỏi gia vị": "Onion, garlic & spices",
+    "Cá hú tươi cắt lát": "Sliced basa fish",
+    "Thịt ba chỉ heo": "Pork belly",
+    "Rau cải ngọt": "Choy sum",
+    "Thịt ba chỉ ngon": "Premium pork belly",
+    "Rau muống non": "Baby water spinach",
+    "Cà pháo muối": "Salted eggplants",
+    "Thịt heo xay": "Ground pork",
+    "Đậu hũ trắng": "White tofu",
+    "Gạo thơm dẻo": "Fragrant rice",
+    "Gia vị hành tỏi": "Garlic & onion seasoning",
+    "Cá diêu hồng tươi": "Fresh red tilapia",
+    "Đồ nấu canh chua": "Sour soup ingredients",
+    "Rau sống ăn kèm": "Fresh side herbs",
+    "Thịt gà kho sả ớt": "Lemongrass chicken",
+    "Đùi gà": "Chicken thighs",
+    "Bí đỏ tươi": "Fresh pumpkin",
+    "Thịt heo xay (canh)": "Ground pork (soup)",
+    "Sả & ớt bằm": "Minced lemongrass & chili",
+    "Trứng gà ta": "Local chicken eggs",
+    "Thịt nạc vai heo": "Pork shoulder",
+    "Hành tây & hành lá": "Onions & green onions",
+    "Salad ức gà áp chảo sốt mè": "Pan-seared chicken salad",
+    "Ức gà phi lê sạch": "Clean chicken breast",
+    "Xà lách Romaine": "Romaine lettuce",
+    "Cà chua bi ngọt": "Sweet cherry tomatoes",
+    "Sốt mè rang Kewpie": "Kewpie sesame dressing",
+    "Bún lứt tôm sú xào bông cải": "Brown noodles with prawns & broccoli",
+    "Tôm sú tươi ngon": "Fresh tiger prawns",
+    "Bún gạo lứt khô": "Dry brown rice noodles",
+    "Bông cải & ớt chuông": "Broccoli & bell peppers",
+    "Dầu ô liu xào": "Olive oil for stir-fry",
+    "Cá hồi áp chảo sốt cam": "Pan-seared salmon with orange sauce",
+    "Phi lê cá hồi tươi": "Fresh salmon fillet",
+    "Cam sành vắt nước": "Fresh oranges",
+    "Măng tây sạch": "Clean asparagus",
+    "Còn dư (Tiết kiệm):": "Savings / Remaining:",
+    "Vượt hạn mức:": "Over budget limit:",
+    "Tổng cộng": "Total",
+    "Đặt trước thực đơn này": "Pre-order this menu",
+    "Đặt trước thành công!": "Pre-ordered successfully!",
+    "Mã đơn:": "Order ID:",
+    "Thực đơn:": "Menu:",
+    "Tổng tiền:": "Total cost:",
+    "Nhận tại:": "Pickup at:",
+    "Thời gian nhận:": "Pickup time:",
+    "Trạng thái:": "Status:",
+    "Chờ người bán xác nhận": "Awaiting merchant approval",
+    "Chọn thời gian nhận hàng:": "Choose pickup time:",
+    "Ngày nhận:": "Pickup date:",
+    "Giờ nhận:": "Pickup time:",
+    "Chọn giờ": "Select time",
+    "Sáng sớm": "Early morning",
+    "Sáng": "Morning",
+    "Trưa": "Noon",
+    "Chiều": "Afternoon",
+    "Tối": "Evening",
+    "Vui lòng đặt trước ít nhất 2 giờ so với thời gian nhận hàng": "Please pre-order at least 2 hours before pickup time",
+    "Gian hàng": "Stall",
+    "Sản phẩm": "Product",
+    "Số lượng": "Quantity",
+    "Đơn giá": "Unit Price",
+    "Thành tiền": "Amount",
+    "Không vượt ngân sách": "Within budget",
+    "Đủ khẩu phần": "Adequate portion",
+    "Vượt hạn mức": "Budget exceeded",
+    "Lý do đề xuất:": "AI Recommendation:",
+    "Đề xuất thực đơn": "Suggested menus",
+    "Gợi ý": "Option",
+    "Món gợi ý:": "Recommended dishes:",
+    "Tổng tiền:": "Total cost:",
+    "Ngân sách:": "Budget:",
+    "Sử dụng": "Used",
+    "ngân sách": "budget",
+    "Thêm món khác:": "Add item:",
+    "Chọn nguyên liệu muốn thêm": "Select item to add",
+    "Thêm": "Add",
+    "Cảnh báo: Chi phí đã vượt ngân sách đề ra là": "Warning: Cost exceeds the specified budget of",
+    "miếng": "pcs",
+    "quả": "eggs",
+    "bó": "bunch",
+    "phần": "portion",
+    "bát": "bowl",
+    "túi": "bag",
+    "kg": "kg",
+    
+    // Alerts and static interactive strings
+    "⏰ Vui lòng chọn ngày và giờ nhận hàng!": "⏰ Please select pickup date and time!",
+    "⚠️ Thời gian nhận hàng phải ít nhất 2 giờ kể từ bây giờ.": "⚠️ Pickup time must be at least 2 hours from now.",
+    "Vui lòng chọn thời gian khác!": "Please choose another time!",
+    "Đang tạo đơn...": "Creating order...",
+    "Vui lòng nhập nhu cầu của bạn!": "Please enter your request!",
+    "hôm nay": "today",
+    "ngày mai": "tomorrow",
+
+    // Simulated order customer names
+    "Nguyễn Thị Hòa": "Nguyen Thi Hoa",
+    "Vũ Thị Linh": "Vu Thi Linh",
+    "Hoàng Anh Tuấn": "Hoang Anh Tuan",
+    "Lê Văn Bình": "Le Van Binh",
+    "Phạm Minh Cường": "Pham Minh Cuong",
+    "Trần Thanh Ngọc": "Tran Thanh Ngoc",
+    "Đặng Hồng Phương": "Dang Hong Phuong",
+    "Bùi Quang Dũng": "Bui Quang Dung",
+    "Ngô Quốc Tùng": "Ngo Quoc Tung",
+    "Lý Mỹ Duyên": "Ly My Duyen",
+    "Đỗ Anh Đức": "Do Anh Duc",
+    "Nguyễn Mai Chi": "Nguyen Mai Chi",
+    "Phan Văn Nam": "Phan Van Nam",
+    "Trịnh Kim Oanh": "Trinh Kim Oanh",
+    "Vũ Hoàng Long": "Vu Hoang Long",
+    "Lâm Thúy Hằng": "Lam Thuy Hang",
+    "Trần Đình Khôi": "Tran Dinh Khoi",
+    "Nguyễn Bích Thủy": "Nguyen Bich Thuy",
+    "Phạm Hải Đăng": "Pham Hai Dang",
+    "Đoàn Minh Tú": "Doan Minh Tu",
+
+    // Simulated order items
+    "0.5kg đùi gà tỏi tươi": "0.5kg fresh chicken drumsticks",
+    "Ba chỉ lợn nướng kèm 1 bó xà lách": "Pork belly for grilling with 1 bunch of lettuce",
+    "Combo ba chỉ lợn nướng, 1 bó xà lách": "Combo pork belly for grilling, 1 bunch of lettuce",
+    "1.2kg sườn heo non sạch": "1.2kg clean baby pork ribs",
+    "Ba chỉ heo và sườn sụn nướng": "Pork belly and soft-bone for grilling",
+    "Combo ba chỉ heo và sườn sụn nướng": "Combo pork belly and soft-bone for grilling",
+    "0.5kg thịt heo xay tươi ngon": "0.5kg fresh ground pork",
+    "1kg xương ống heo ngọt nước": "1kg sweet pork marrow bones",
+    "0.8kg thịt nạc vai heo sạch": "0.8kg clean pork shoulder",
+    "0.5kg ba chỉ heo giòn ngon": "0.5kg delicious pork belly",
+    "0.6kg sườn sụn heo giòn sần sật": "0.6kg crunchy pork soft-bone",
+    "1kg thịt đùi heo tươi": "1kg fresh pork leg",
+    "1.5kg cánh gà tươi loại 1": "1.5kg grade-A fresh chicken wings",
+    "0.7kg nạc dăm heo mềm ngon": "0.7kg tender pork collar",
+    "2kg xương cổ heo hầm măng": "2kg pork neck bones for bamboo shoot soup",
+    "0.5kg thịt bò ba chỉ Mỹ cuộn nhúng lẩu": "0.5kg rolled US beef short plate for hotpot",
+    "1.2kg tai heo làm giò thủ ngon": "1.2kg pork ears for head cheese",
+    "0.8kg chân giò heo rút xương": "0.8kg boneless pork trotters",
+    "0.5kg tim heo tươi rói": "0.5kg fresh pork heart",
+    "1kg móng giò chặt sẵn": "1kg pre-chopped pork trotters",
+    "0.6kg thịt mông sấn làm ruốc": "0.6kg pork rump meat for meat floss",
+    "1kg lòng non và dạ dày heo làm sạch": "1kg clean pork small intestines and stomach",
+    "Vừa xong": "Just now",
+    "phút trước": "minutes ago"
+  };
+
+  const TRANSLATED_MENU_NAMES = {
+    "Bún sườn mọc": "Pork rib & meatball noodles",
+    "Cháo sườn sụn": "Pork soft-bone congee",
+    "Bún cá rô đồng": "Climbing perch fish noodles",
+    "Cơm sườn rim chua ngọt": "Sweet & sour pork rib rice",
+    "Cơm cá hú kho tộ & canh cải": "Claypot basa fish & soup rice",
+    "Cơm thịt ba chỉ luộc & canh rau muống": "Boiled pork belly & water spinach soup rice",
+    "Thịt bằm sốt cà & Đậu hũ chiên": "Minced pork tomato sauce & fried tofu",
+    "Cá diêu hồng chiên xù & canh chua": "Crispy fried tilapia & sour soup",
+    "Thịt gà kho sả ớt & canh bí đỏ": "Lemongrass chicken & pumpkin soup",
+    "Đậu hũ sốt cà & Canh trứng": "Tomato tofu & egg soup",
+    "Trứng rán hành & Canh rau muống": "Omelette & water spinach soup",
+    "Cơm thịt heo xào hành tây": "Stir-fried pork with onions rice",
+    "Salad ức gà áp chảo sốt mè": "Pan-seared chicken breast salad",
+    "Bún lứt tôm sú xào bông cải": "Brown noodles with shrimp & broccoli",
+    "Cá hồi áp chảo sốt cam": "Pan-seared salmon with orange sauce"
+  };
+
+  const TRANSLATED_SUGGESTIONS = {
+    "Bún tươi dai ngon kết hợp sườn heo non ngọt nước và mọc giò sống viên tròn hấp dẫn.": "Delectable fresh noodles combined with sweet baby pork ribs and savory pork paste meatballs.",
+    "Cháo gạo thơm dẻo ninh nhừ với sườn sụn heo giòn sần sật, ăn kèm quẩy giòn và hành lá.": "Fragrant soft rice congee simmered with crunchy pork soft-bone, served with crispy dough sticks and green onions.",
+    "Bún cá rô đồng phi lê rán vàng giòn riêu thanh mát ngọt bùi ăn kèm thì là hành ngò.": "Golden crispy fried climbing perch fish fillet noodles with refreshing sweet riêu broth, dill and coriander.",
+    "Cơm tấm nóng hổi kết hợp sườn rim chua ngọt đưa cơm xào hành tỏi dưa leo.": "Steaming hot broken rice served with rich sweet and sour pork ribs, garlic-sauteed onions, and fresh cucumbers.",
+    "Cá hú kho tộ sền sệt béo ngậy ăn với canh rau cải ngọt nấu thịt bằm thanh mát.": "Rich claypot braised fish served with refreshing choy sum and minced pork soup.",
+    "Thịt ba chỉ luộc chín mềm ăn kèm cà pháo muối giòn và canh rau muống luộc vắt chanh.": "Tender boiled pork belly served with crunchy salted eggplants and lime-infused morning glory soup.",
+    "Thịt heo xay sốt cà chua đậm đà, đậu hũ chiên giòn và canh rau muống tỏi.": "Savory ground pork in tomato sauce, crispy fried tofu, and garlic morning glory soup.",
+    "Cá diêu hồng tươi chiên giòn cuốn rau sống chấm nước mắm tỏi ớt kèm bát canh chua dọc mùng thanh nhiệt.": "Crispy fried red tilapia wrapped in fresh herbs, garlic-chili dip, and sweet-sour soup.",
+    "Thịt gà góc đùi ta xào sả ớt cay thơm đậm đà dọn kèm bát canh bí đỏ nấu thịt bằm.": "Spicy stir-fried lemongrass chicken thigh served with nutritious pumpkin and minced pork soup.",
+    "Đậu hũ chiên sốt cà chua hành lá thơm ngậy cùng bát canh trứng cà chua thơm lừng.": "Pan-fried tofu in tomato scallion sauce paired with fragrant tomato egg drop soup.",
+    "Trứng chiên hành lá thơm lừng ăn kèm canh rau muống luộc mát ruột đưa cơm.": "Scallion omelette served with refreshing morning glory soup and hot rice.",
+    "Thịt heo xào hành tây giòn ngọt thơm lừng tiêu sọ dùng nóng cùng cơm tẻ.": "Stir-fried pork with sweet onions and black pepper served hot with steamed rice.",
+    "Ức gà áp chảo xé sợi trộn rau xà lách Romaine, dưa leo, cà chua bi kết hợp nước sốt mè rang béo nhẹ.": "Shredded pan-seared chicken breast mixed with Romaine lettuce, cucumbers, cherry tomatoes, and light sesame sauce.",
+    "Bún gạo lứt luộc trộn tôm sú bóc vỏ xào bông cải xanh giòn ngọt đầy đủ vitamin.": "Boiled brown rice noodles tossed with sweet tiger prawns and crispy stir-fried broccoli.",
+    "Cá hồi phi lê áp chảo chín tới thơm mềm sốt cam vắt nguyên chất dọn kèm măng tây xào tỏi.": "Pan-seared tender salmon fillet with fresh orange reduction and garlic asparagus."
+  };
+
+  const TRANSLATED_REASONS = {
+    "Món ăn giàu dinh dưỡng, cung cấp đủ năng lượng cho ngày mới, sườn heo và mọc tự làm sạch sẽ.": "Highly nutritious dish providing energy for the day, clean homemade pork ribs and meatballs.",
+    "Dễ tiêu hóa, phù hợp cho cả gia đình, sườn sụn giòn ngon ngọt tự nhiên từ xương heo.": "Easy to digest, family-friendly, naturally sweet soft-bone pork broth.",
+    "Cá rô đồng tươi ngon giàu đạm lành tính xào thơm nấu canh thì là mát ruột đưa bún.": "Fresh, protein-rich climbing perch fish cooked with refreshing dill soup.",
+    "Sườn non heo ngon rim sốt chua ngọt đậm vị truyền thống giàu đạm hấp dẫn trôi cơm.": "Traditional sweet & sour pork chops, protein-rich and highly appealing.",
+    "Cá hú béo ngậy kho tộ đậm đà đưa cơm ăn kèm canh cải ngọt nóng hổi bổ sung chất xơ.": "Savory claypot basa fish paired with hot choy sum soup for essential fiber.",
+    "Món ăn dân dã mát ruột cho ngày hè, thịt heo ba chỉ beo béo ăn cùng cà pháo chua giòn.": "Rustic cooling dish for summer, tender pork belly with crunchy pickled eggplants.",
+    "Bữa ăn ấm cúng đủ chất với vị chua ngọt tự nhiên của cà chua, đạm dồi dào từ thịt heo và đậu hũ.": "Cozy, balanced meal with sweet tomato flavor, rich protein from pork and tofu.",
+    "Món cá diêu hồng giàu dinh dưỡng, ăn kèm canh chua bạc hà mát lành cho bữa cơm tối gia đình.": "Nutritious red tilapia paired with refreshing sour soup for a family dinner.",
+    "Thịt gà xào đậm đà đưa cơm kết hợp canh bí đỏ bổ dưỡng, giúp cả nhà bồi bổ sức khỏe tối nay.": "Rich stir-fried chicken paired with wholesome pumpkin soup for health.",
+    "Chi phí cực thấp nhưng cung cấp đầy đủ dinh dưỡng cơ bản. Phù hợp tuyệt vời cho ví tiền sinh viên.": "Ultra-low cost yet provides basic nutrition. Perfect for a student budget.",
+    "Món ăn quốc dân dễ nấu, rẻ mà ngon, cung cấp đủ đạm trứng và chất xơ từ rau muống.": "Classic budget-friendly meal, rich in egg protein and morning glory fiber.",
+    "Thịt nạc heo giàu dinh dưỡng xào hành tây giòn ngọt thơm ngon kích thích vị giác với giá sinh viên.": "Nutritious pork stir-fried with onions, appetizing and student-priced.",
+    "Thực đơn chuẩn Eat Clean giàu protein ít calo giúp giữ dáng, săn cơ khỏe khoắn.": "Eat Clean menu, high protein, low calories to maintain health and shape.",
+    "Bữa ăn lành mạnh giàu xơ, tinh bột tốt từ gạo lứt và protein ngọt tự nhiên từ tôm sú tươi.": "Healthy meal rich in fiber, complex carbs from brown rice, and fresh prawn protein.",
+    "Cung cấp chất béo tốt Omega-3 cho tim mạch từ cá hồi tươi sạch và măng tây giàu xơ, kali.": "Provides heart-healthy Omega-3 from fresh salmon and fiber-rich asparagus."
+  };
+
+  // Helper to map ingredient names to matching Phosphor Icons
+  function getIngredientIcon(name) {
+    const lowerName = name.toLowerCase();
+    if (lowerName.includes("thịt") || lowerName.includes("sườn") || lowerName.includes("giò") || lowerName.includes("ba chỉ") || lowerName.includes("mọc") || lowerName.includes("heo") || lowerName.includes("lợn") || lowerName.includes("nạc")) {
+      return "ph-meat";
+    }
+    if (lowerName.includes("cá") || lowerName.includes("hồi") || lowerName.includes("hú")) {
+      return "ph-fish";
+    }
+    if (lowerName.includes("tôm") || lowerName.includes("sú") || lowerName.includes("hải sản")) {
+      return "ph-shrimp";
+    }
+    if (lowerName.includes("gà") || lowerName.includes("đùi") || lowerName.includes("cánh")) {
+      return "ph-bird";
+    }
+    if (lowerName.includes("rau") || lowerName.includes("cải") || lowerName.includes("xà lách") || lowerName.includes("muống") || lowerName.includes("bí đỏ") || lowerName.includes("cà chua") || lowerName.includes("măng tây") || lowerName.includes("hành") || lowerName.includes("tỏi") || lowerName.includes("sả") || lowerName.includes("ớt") || lowerName.includes("thì là") || lowerName.includes("ngò")) {
+      return "ph-leaf";
+    }
+    if (lowerName.includes("trứng")) {
+      return "ph-egg";
+    }
+    if (lowerName.includes("bún") || lowerName.includes("cơm") || lowerName.includes("cháo") || lowerName.includes("quẩy")) {
+      return "ph-bowl";
+    }
+    if (lowerName.includes("đậu hũ") || lowerName.includes("trắng")) {
+      return "ph-cube";
+    }
+    if (lowerName.includes("dầu") || lowerName.includes("sốt") || lowerName.includes("kewpie") || lowerName.includes("nước") || lowerName.includes("cam")) {
+      return "ph-drop";
+    }
+    return "ph-package";
+  }
+
+  // Helper translation function
+  function t(text) {
+    const lang = localStorage.getItem("lang") || "vi";
+    if (lang === "vi") return text;
+    return DICTIONARY[text] || 
+           TRANSLATED_MENU_NAMES[text] || 
+           TRANSLATED_SUGGESTIONS[text] || 
+           TRANSLATED_REASONS[text] || 
+           text;
+  }
+
+  // Function to adjust item quantity in cart or delete if at minimum and clicking minus
+  function adjustItemQuantity(idx, direction) {
+    const item = currentSimulation.activeItems[idx];
+    if (!item) return;
+
+    // Determine step based on unit
+    let step = 0.1;
+    if (["quả", "miếng", "cuộn", "ổ", "gói", "túi", "cây", "chén", "bó", "phần", "bát"].includes(item.unit.toLowerCase())) {
+      step = 1;
+    }
+
+    // Check if we should delete
+    if (direction === -1 && item.qty <= step) {
+      // Delete the item
+      currentSimulation.activeItems.splice(idx, 1);
+    } else {
+      // Perform adjustment
+      item.qty += direction * step;
+      // Handle rounding float errors
+      item.qty = Math.round(item.qty * 100) / 100;
+    }
+
+    // Re-render suggestion to update totals and summary
+    renderActiveSuggestion();
+  }
+
+  // Function to render the active dynamic suggestion
   function renderActiveSuggestion() {
-    const { peopleCount, budgetLimit, activeOptionIdx, options } =
+    const { peopleCount, budgetLimit, activeOptionIdx, options, activeItems } =
       currentSimulation;
-    if (!options || options.length === 0) return;
+    if (!options || options.length === 0 || !activeItems) return;
     const option = options[activeOptionIdx];
+
+    const lang = localStorage.getItem("lang") || "vi";
 
     let totalCost = 0;
     let tableRowsHtml = "";
 
-    option.items.forEach((item) => {
-      const qty = calculateQuantity(item, peopleCount);
-      const cost = qty * item.pricePerUnit;
-      totalCost += cost;
-
-      const qtyStr = qty.toLocaleString("vi-VN");
-      const unitPriceStr =
-        item.pricePerUnit.toLocaleString("vi-VN") + "đ/" + item.unit;
-      const costStr = cost.toLocaleString("vi-VN") + "đ";
-
-      tableRowsHtml += `<tr>
-                <td>${item.name}</td>
-                <td>${qtyStr} ${item.unit}</td>
-                <td>${unitPriceStr}</td>
-                <td class="fw-bold">${costStr}</td>
-            </tr>`;
+    // Find all unique products in database for the add dropdown
+    const allDbItems = [];
+    Object.keys(SIMULATOR_DATABASE).forEach(category => {
+      SIMULATOR_DATABASE[category].forEach(opt => {
+        opt.items.forEach(item => {
+          if (!allDbItems.some(existing => existing.name.toLowerCase() === item.name.toLowerCase())) {
+            allDbItems.push({
+              name: item.name,
+              unit: item.unit,
+              pricePerUnit: item.pricePerUnit,
+              fixed: item.fixed || false
+            });
+          }
+        });
+      });
     });
 
-    tableRowsHtml += `<tr class="total-row">
-            <td colspan="3">Tổng cộng</td>
-            <td class="fw-bold">${totalCost.toLocaleString("vi-VN")}đ</td>
-        </tr>`;
+    activeItems.forEach((item, idx) => {
+      const cost = item.qty * item.pricePerUnit;
+      totalCost += cost;
 
-    // Update basic suggestions UI
-    document.getElementById("result-title").innerHTML =
-      `<i class="bi bi-check-circle-fill text-success"></i> ${currentSimulation.mealType} ${peopleCount} người: ${option.name}`;
-    document.getElementById("result-suggestion").innerText = option.suggestion;
-    document.getElementById("result-total-price").innerText =
-      totalCost.toLocaleString("vi-VN") + "đ";
-    document.getElementById("result-budget-limit").innerText =
-      budgetLimit.toLocaleString("vi-VN") + "đ";
-    document.getElementById("result-table-body").innerHTML = tableRowsHtml;
-    document.getElementById("result-seller-name").innerText = option.seller;
+      const qtyStr = item.qty.toLocaleString(lang === "en" ? "en-US" : "vi-VN");
+      const unitPriceStr = item.pricePerUnit.toLocaleString(lang === "en" ? "en-US" : "vi-VN") + "đ/" + t(item.unit);
+      const costStr = cost.toLocaleString(lang === "en" ? "en-US" : "vi-VN") + "đ";
+      const iconClass = getIngredientIcon(item.name);
 
-    // Dynamic recommendation reason
+      // Determine if we show a minus or trash icon for the minus button
+      let step = 0.1;
+      if (["quả", "miếng", "cuộn", "ổ", "gói", "túi", "cây", "chén", "bó", "phần", "bát"].includes(item.unit.toLowerCase())) {
+        step = 1;
+      }
+      
+      const isMinQty = item.qty <= step;
+      const minusBtnContent = isMinQty ? '<i class="ph ph-trash text-danger" style="font-size: 0.85rem;"></i>' : '-';
+
+      tableRowsHtml += `
+        <tr>
+          <td>
+            <div class="cart-product-cell">
+              <div class="ingredient-icon-wrapper rounded-circle d-flex align-items-center justify-content-center me-2 bg-soft-green flex-shrink-0" style="width: 28px; height: 28px;">
+                <i class="ph-fill ${iconClass} text-primary" style="font-size: 0.9rem;"></i>
+              </div>
+              <span class="fw-semibold text-dark" style="font-size: 0.85rem;">${t(item.name)}</span>
+            </div>
+          </td>
+          <td>
+            <!-- Interactive Quantity Controls -->
+            <div class="cart-qty-controls">
+              <button type="button" class="cart-btn-qty cart-btn-qty-minus" data-idx="${idx}">${minusBtnContent}</button>
+              <span class="cart-qty-val">${qtyStr} ${t(item.unit)}</span>
+              <button type="button" class="cart-btn-qty cart-btn-qty-plus" data-idx="${idx}">+</button>
+            </div>
+          </td>
+          <td class="text-muted" style="font-size: 0.8rem;">${unitPriceStr}</td>
+          <td class="fw-bold text-dark text-end" style="font-size: 0.85rem;">${costStr}</td>
+        </tr>
+      `;
+    });
+
     const diff = budgetLimit - totalCost;
     const ratio = ((totalCost / budgetLimit) * 100).toFixed(1);
-    let customReason = option.reason;
+    const diffClass = diff >= 0 ? "text-success" : "text-danger";
+    
+    // Translation tags
+    const tDiffLabel = diff >= 0 ? t("Còn dư (Tiết kiệm):") : t("Vượt hạn mức:");
+    const diffValStr = Math.abs(diff).toLocaleString(lang === "en" ? "en-US" : "vi-VN") + "đ";
+
+    // Assemble the Table layout
+    let tableHtml = `
+      <div class="cart-table-container">
+        <table class="cart-table">
+          <thead>
+            <tr>
+              <th>${t("Sản phẩm")}</th>
+              <th>${t("Số lượng")}</th>
+              <th>${t("Đơn giá")}</th>
+              <th class="text-end">${t("Thành tiền")}</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${tableRowsHtml}
+            <!-- Total Row -->
+            <tr class="cart-total-row">
+              <td colspan="2" class="fw-bold text-dark" style="font-size: 0.9rem; padding: 1rem;">${t("Tổng cộng")}</td>
+              <td></td>
+              <td class="fw-extrabold text-dark text-end" style="font-size: 1.05rem; padding: 1rem; color: var(--primary-dark) !important;">
+                ${totalCost.toLocaleString(lang === "en" ? "en-US" : "vi-VN")}đ
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    `;
+
+    // Add budget warning card if exceeded
+    if (totalCost > budgetLimit) {
+      tableHtml = `
+        <div class="exceeded-alert">
+          <i class="ph-fill ph-warning-circle" style="font-size: 1.25rem;"></i>
+          <span>${t("Cảnh báo: Chi phí đã vượt ngân sách đề ra là")} ${budgetLimit.toLocaleString(lang === "en" ? "en-US" : "vi-VN")}đ!</span>
+        </div>
+      ` + tableHtml;
+    }
+
+    // Filter out items already in cart for add dropdown
+    const availableToAdd = allDbItems.filter(dbItem => {
+      return !activeItems.some(active => active.name.toLowerCase() === dbItem.name.toLowerCase());
+    });
+    
+    // Sort alphabetically
+    availableToAdd.sort((a, b) => a.name.localeCompare(b.name, "vi"));
+
+    let selectOptionsHtml = `<option value="">-- ${t("Chọn nguyên liệu muốn thêm")} --</option>`;
+    availableToAdd.forEach(item => {
+      const priceStr = item.pricePerUnit.toLocaleString(lang === "en" ? "en-US" : "vi-VN") + "đ/" + t(item.unit);
+      selectOptionsHtml += `<option value="${item.name}">${t(item.name)} (${priceStr})</option>`;
+    });
+
+    const addBoxHtml = `
+      <div class="add-item-box d-flex align-items-center mt-3">
+        <label class="text-muted small fw-bold flex-shrink-0 me-2" style="font-size: 0.75rem;"><i class="ph ph-plus"></i> ${t("Thêm món khác:")}</label>
+        <select class="form-select form-select-sm add-item-select" id="add-item-select" style="min-width: 150px;">
+          ${selectOptionsHtml}
+        </select>
+        <button type="button" class="btn btn-success btn-sm btn-add-item flex-shrink-0" id="btn-add-item">
+          <i class="ph ph-plus-circle"></i> ${t("Thêm")}
+        </button>
+      </div>
+    `;
+
+    tableHtml += addBoxHtml;
+
+    // Update basic suggestions UI
+    const mealLabel = lang === "en" ? `${t(currentSimulation.mealType)} for ${peopleCount} people` : `${currentSimulation.mealType} ${peopleCount} người`;
+    document.getElementById("result-title").innerHTML =
+      `<i class="ph-fill ph-check-circle text-success"></i> ${mealLabel}: ${t(option.name)}`;
+    document.getElementById("result-suggestion").innerText = t(option.suggestion);
+    document.getElementById("result-total-price").innerText =
+      totalCost.toLocaleString(lang === "en" ? "en-US" : "vi-VN") + "đ";
+    document.getElementById("result-budget-limit").innerText =
+      budgetLimit.toLocaleString(lang === "en" ? "en-US" : "vi-VN") + "đ";
+    
+    const receiptContainer = document.getElementById("receipt-invoice-container");
+    if (receiptContainer) {
+      receiptContainer.innerHTML = tableHtml;
+      
+      // Attach click events to dynamic quantity buttons in the table
+      const minusBtns = receiptContainer.querySelectorAll(".cart-btn-qty-minus");
+      const plusBtns = receiptContainer.querySelectorAll(".cart-btn-qty-plus");
+
+      minusBtns.forEach(btn => {
+        btn.addEventListener("click", function() {
+          const idx = parseInt(this.getAttribute("data-idx"));
+          adjustItemQuantity(idx, -1);
+        });
+      });
+
+      plusBtns.forEach(btn => {
+        btn.addEventListener("click", function() {
+          const idx = parseInt(this.getAttribute("data-idx"));
+          adjustItemQuantity(idx, 1);
+        });
+      });
+
+      // Attach add item event handler
+      const btnAddItem = receiptContainer.querySelector("#btn-add-item");
+      if (btnAddItem) {
+        btnAddItem.addEventListener("click", function() {
+          const selectEl = receiptContainer.querySelector("#add-item-select");
+          if (!selectEl) return;
+          const selectedName = selectEl.value;
+          if (!selectedName) {
+            alert(lang === "en" ? "Please select an ingredient to add!" : "Vui lòng chọn nguyên liệu muốn thêm!");
+            return;
+          }
+          
+          // Find item in allDbItems
+          const found = allDbItems.find(item => item.name === selectedName);
+          if (found) {
+            // Add to activeItems with default quantity
+            let defaultQty = 1;
+            if (found.unit.toLowerCase() === "kg") {
+              defaultQty = 0.5; // default 0.5kg for weight items
+            }
+            
+            currentSimulation.activeItems.push({
+              name: found.name,
+              qty: defaultQty,
+              unit: found.unit,
+              pricePerUnit: found.pricePerUnit,
+              fixed: found.fixed
+            });
+            
+            // Re-render
+            renderActiveSuggestion();
+          }
+        });
+      }
+    }
+    
+    document.getElementById("result-seller-name").innerText = t(option.seller);
+
+    // Dynamic recommendation reason
+    let customReason = t(option.reason);
     if (diff >= 0) {
-      customReason += ` Thực đơn này sử dụng ${totalCost.toLocaleString("vi-VN")}đ (chiếm ${ratio}% ngân sách), giúp bạn tiết kiệm được ${diff.toLocaleString("vi-VN")}đ so với hạn mức đề ra.`;
+      if (lang === "en") {
+        customReason += ` This menu uses ${totalCost.toLocaleString("en-US")}đ (occupying ${ratio}% of budget), saving you ${diff.toLocaleString("en-US")}đ compared to your limit.`;
+      } else {
+        customReason += ` Thực đơn này sử dụng ${totalCost.toLocaleString("vi-VN")}đ (chiếm ${ratio}% ngân sách), giúp bạn tiết kiệm được ${diff.toLocaleString("vi-VN")}đ so với hạn mức đề ra.`;
+      }
     } else {
-      customReason += ` Cảnh báo: Chi phí nguyên liệu thực tế là ${totalCost.toLocaleString("vi-VN")}đ (chiếm ${ratio}% ngân sách), đã vượt quá hạn mức ngân sách của bạn là ${budgetLimit.toLocaleString("vi-VN")}đ.`;
+      if (lang === "en") {
+        customReason += ` Warning: Actual cost is ${totalCost.toLocaleString("en-US")}đ (occupying ${ratio}% of budget), which exceeds your budget limit of ${budgetLimit.toLocaleString("en-US")}đ.`;
+      } else {
+        customReason += ` Cảnh báo: Chi phí nguyên liệu thực tế là ${totalCost.toLocaleString("vi-VN")}đ (chiếm ${ratio}% ngân sách), đã vượt quá hạn mức ngân sách của bạn là ${budgetLimit.toLocaleString("vi-VN")}đ.`;
+      }
     }
     document.getElementById("result-reason").innerText = customReason;
 
@@ -948,7 +1477,11 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
     if (progressPercent) {
-      progressPercent.innerText = `Sử dụng ${ratio}% ngân sách`;
+      if (lang === "en") {
+        progressPercent.innerText = `Using ${ratio}% of budget`;
+      } else {
+        progressPercent.innerText = `Sử dụng ${ratio}% ngân sách`;
+      }
       if (totalCost > budgetLimit) {
         progressPercent.classList.add("exceeded");
       } else {
@@ -963,13 +1496,13 @@ document.addEventListener("DOMContentLoaded", function () {
     if (verificationBadgesContainer) {
       if (totalCost > budgetLimit) {
         verificationBadgesContainer.innerHTML = `
-                    <div class="verify-badge exceeded"><i class="bi bi-exclamation-triangle-fill"></i> Vượt hạn mức</div>
-                    <div class="verify-badge"><i class="bi bi-people-fill"></i> Đủ khẩu phần</div>
+                    <div class="verify-badge exceeded"><i class="ph-fill ph-warning"></i> ${t("Vượt hạn mức")}</div>
+                    <div class="verify-badge"><i class="ph-fill ph-users"></i> ${t("Đủ khẩu phần")}</div>
                 `;
       } else {
         verificationBadgesContainer.innerHTML = `
-                    <div class="verify-badge"><i class="bi bi-shield-check"></i> Không vượt ngân sách</div>
-                    <div class="verify-badge"><i class="bi bi-people-fill"></i> Đủ khẩu phần</div>
+                    <div class="verify-badge"><i class="ph ph-shield-check"></i> ${t("Không vượt ngân sách")}</div>
+                    <div class="verify-badge"><i class="ph-fill ph-users"></i> ${t("Đủ khẩu phần")}</div>
                 `;
       }
     }
@@ -980,11 +1513,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const container = document.getElementById("option-tabs-container");
     if (!container) return;
 
+    const lang = localStorage.getItem("lang") || "vi";
+
     let tabsHtml = "";
     currentSimulation.options.forEach((opt, idx) => {
       const activeClass =
         idx === currentSimulation.activeOptionIdx ? "active" : "";
-      tabsHtml += `<button class="btn btn-outline-success btn-sm option-tab ${activeClass}" data-option-idx="${idx}">Gợi ý ${idx + 1}</button>`;
+      const labelText = lang === "en" ? `Option ${idx + 1}` : `Gợi ý ${idx + 1}`;
+      tabsHtml += `<button class="btn btn-outline-success btn-sm option-tab ${activeClass}" data-option-idx="${idx}">${labelText}</button>`;
     });
     container.innerHTML = tabsHtml;
 
@@ -997,6 +1533,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const idx = parseInt(this.getAttribute("data-option-idx"));
         currentSimulation.activeOptionIdx = idx;
+
+        // Initialize activeItems for the newly selected tab suggestion
+        const selectedOption = currentSimulation.options[idx];
+        currentSimulation.activeItems = selectedOption.items.map(item => {
+          return {
+            name: item.name,
+            qty: calculateQuantity(item, currentSimulation.peopleCount),
+            unit: item.unit,
+            pricePerUnit: item.pricePerUnit,
+            fixed: item.fixed || false
+          };
+        });
+
         renderActiveSuggestion();
       });
     });
@@ -1062,6 +1611,46 @@ document.addEventListener("DOMContentLoaded", function () {
 
     currentSimulation.options = filteredOptions;
 
+    // Map initial active items from the selected suggestion
+    currentSimulation.activeItems = filteredOptions[0].items.map(item => {
+      return {
+        name: item.name,
+        qty: calculateQuantity(item, peopleCount),
+        unit: item.unit,
+        pricePerUnit: item.pricePerUnit,
+        fixed: item.fixed || false
+      };
+    });
+
+    // Synchronize preset button highlights
+    const presetBtns = document.querySelectorAll(".preset-btn");
+    presetBtns.forEach((btn) => {
+      btn.classList.remove("active");
+      const presetKey = btn.getAttribute("data-preset");
+      const isMatch = (presetKey === "55k" && mealType === "Bữa sáng" && budgetLimit === 55000) ||
+                      (presetKey === "90k" && mealType === "Bữa trưa" && budgetLimit === 90000) ||
+                      (presetKey === "130k" && mealType === "Bữa tối" && budgetLimit === 130000) ||
+                      (presetKey === "45k" && mealType === "Bữa sinh viên/tiết kiệm" && budgetLimit === 45000) ||
+                      (presetKey === "120k" && mealType === "Bữa healthy" && budgetLimit === 120000);
+      if (isMatch) {
+        btn.classList.add("active");
+      }
+    });
+
+    // Disable all inputs during the 1.8s simulation to prevent double submits
+    const btnCustomSubmit = document.getElementById("btn-custom-submit");
+    const customInputText = document.getElementById("custom-input-text");
+    const lang = localStorage.getItem("lang") || "vi";
+    
+    presetBtns.forEach(btn => btn.disabled = true);
+    if (btnCustomSubmit) {
+      btnCustomSubmit.disabled = true;
+      btnCustomSubmit.innerHTML = lang === "en" ? '<i class="ph ph-circle-notch spinner-btn me-1"></i> Searching...' : '<i class="ph ph-circle-notch spinner-btn me-1"></i> Đang tìm...';
+    }
+    if (customInputText) {
+      customInputText.disabled = true;
+    }
+
     // Show overlay on result card
     const overlay = document.getElementById("sim-loading-overlay");
     if (overlay) overlay.classList.remove("d-none");
@@ -1083,24 +1672,24 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     icons.forEach((icon) => {
       if (icon) {
-        icon.innerHTML = '<i class="bi bi-circle"></i>';
+        icon.innerHTML = '<i class="ph ph-circle"></i>';
         icon.className = "sim-step-icon text-muted me-2";
       }
     });
 
     // Set parsing badge initial state
     const parsedBadge = document.getElementById("ai-parsed-badge");
-    if (parsedBadge) parsedBadge.innerText = "Chờ...";
+    if (parsedBadge) parsedBadge.innerText = lang === "en" ? "Wait..." : "Chờ...";
 
-    // Step 1: Active
+    // Step 1: Active (Start at 100ms)
     setTimeout(() => {
       if (steps[0]) steps[0].classList.add("active");
       if (icons[0]) {
-        icons[0].innerHTML = '<i class="bi bi-arrow-repeat"></i>';
+        icons[0].innerHTML = '<i class="ph ph-arrows-counter-clockwise spinner-btn"></i>';
         icons[0].className = "sim-step-icon me-2 text-primary";
       }
 
-      // Step 1 Done, Step 2 Active
+      // Step 1 Done, Step 2 Active (Trigger at 600ms)
       setTimeout(() => {
         if (steps[0]) {
           steps[0].classList.remove("active");
@@ -1108,65 +1697,75 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         if (icons[0]) {
           icons[0].innerHTML =
-            '<i class="bi bi-check-circle-fill text-success"></i>';
+            '<i class="ph-fill ph-check-circle text-success"></i>';
           icons[0].className = "sim-step-icon me-2 text-success";
         }
         if (parsedBadge) {
           const budgetFormatted = budgetLimit / 1000 + "k";
-          parsedBadge.innerText = `${budgetFormatted}, ${peopleCount} người, ${mealType}`;
+          parsedBadge.innerText = budgetFormatted + ", " + peopleCount + " " + (lang === "en" ? "people" : "người") + ", " + t(mealType);
         }
 
+        if (steps[1]) steps[1].classList.add("active");
+        if (icons[1]) {
+          icons[1].innerHTML = '<i class="ph ph-arrows-counter-clockwise spinner-btn"></i>';
+          icons[1].className = "sim-step-icon me-2 text-primary";
+        }
+
+        // Step 2 Done, Step 3 Active (Trigger at 1100ms)
         setTimeout(() => {
-          if (steps[1]) steps[1].classList.add("active");
+          if (steps[1]) {
+            steps[1].classList.remove("active");
+            steps[1].classList.add("done");
+          }
           if (icons[1]) {
-            icons[1].innerHTML = '<i class="bi bi-arrow-repeat"></i>';
-            icons[1].className = "sim-step-icon me-2 text-primary";
+            icons[1].innerHTML =
+              '<i class="ph-fill ph-check-circle text-success"></i>';
+            icons[1].className = "sim-step-icon me-2 text-success";
           }
 
-          // Step 2 Done, Step 3 Active
+          if (steps[2]) steps[2].classList.add("active");
+          if (icons[2]) {
+            icons[2].innerHTML = '<i class="ph ph-arrows-counter-clockwise spinner-btn"></i>';
+            icons[2].className = "sim-step-icon me-2 text-primary";
+          }
+
+          // Step 3 Done, Render results and hide overlay (Trigger at 1600ms)
           setTimeout(() => {
-            if (steps[1]) {
-              steps[1].classList.remove("active");
-              steps[1].classList.add("done");
+            if (steps[2]) {
+              steps[2].classList.remove("active");
+              steps[2].classList.add("done");
             }
-            if (icons[1]) {
-              icons[1].innerHTML =
-                '<i class="bi bi-check-circle-fill text-success"></i>';
-              icons[1].className = "sim-step-icon me-2 text-success";
+            if (icons[2]) {
+              icons[2].innerHTML =
+                '<i class="ph-fill ph-check-circle text-success"></i>';
+              icons[2].className = "sim-step-icon me-2 text-success";
             }
 
+            // Render suggestion details
+            renderOptionTabs();
+            renderActiveSuggestion();
+
+            // Hide overlay
+            if (overlay) overlay.classList.add("d-none");
+
+            // Step 4: Re-enable buttons and inputs (Trigger at 1800ms)
             setTimeout(() => {
-              if (steps[2]) steps[2].classList.add("active");
-              if (icons[2]) {
-                icons[2].innerHTML = '<i class="bi bi-arrow-repeat"></i>';
-                icons[2].className = "sim-step-icon me-2 text-primary";
+              presetBtns.forEach(btn => btn.disabled = false);
+              if (btnCustomSubmit) {
+                btnCustomSubmit.disabled = false;
+                btnCustomSubmit.innerHTML = lang === "en" ? '<i class="ph ph-magnifying-glass"></i> Find Menu' : '<i class="ph ph-magnifying-glass"></i> Tìm thực đơn';
               }
-
-              // Step 3 Done, Render results
-              setTimeout(() => {
-                if (steps[2]) {
-                  steps[2].classList.remove("active");
-                  steps[2].classList.add("done");
-                }
-                if (icons[2]) {
-                  icons[2].innerHTML =
-                    '<i class="bi bi-check-circle-fill text-success"></i>';
-                  icons[2].className = "sim-step-icon me-2 text-success";
-                }
-
-                // Render suggestion details
-                renderOptionTabs();
-                renderActiveSuggestion();
-
-                // Hide overlay
-                if (overlay) overlay.classList.add("d-none");
-              }, 800);
+              if (customInputText) {
+                customInputText.disabled = false;
+              }
             }, 200);
-          }, 800);
-        }, 200);
-      }, 800);
-    }, 200);
+
+          }, 500);
+        }, 500);
+      }, 500);
+    }, 100);
   }
+
 
   // Set up preset buttons click handler
   const presetBtns = document.querySelectorAll(".preset-btn");
@@ -1261,7 +1860,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const inputValue = customInputText.value.trim();
       
       if (!inputValue) {
-        alert("Vui lòng nhập nhu cầu của bạn!");
+        alert(t("Vui lòng nhập nhu cầu của bạn!"));
         return;
       }
       
@@ -1276,7 +1875,11 @@ document.addEventListener("DOMContentLoaded", function () {
       
       // Show feedback to user
       customInputText.value = "";
-      customInputText.placeholder = `Đã tìm: ${budget.toLocaleString('vi-VN')}đ cho ${people} người - ${mealType}`;
+      if (getLang() === "en") {
+        customInputText.placeholder = `Searched: ${budget.toLocaleString('en-US')}đ for ${people} people - ${t(mealType)}`;
+      } else {
+        customInputText.placeholder = `Đã tìm: ${budget.toLocaleString('vi-VN')}đ cho ${people} người - ${mealType}`;
+      }
     });
     
     // Allow Enter key to submit
@@ -1425,7 +2028,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const ordersEl = document.getElementById("todayOrders");
 
     if (revenueEl) {
-      revenueEl.textContent = currentRevenue.toLocaleString("vi-VN") + "đ";
+      revenueEl.textContent = currentRevenue.toLocaleString(getLang() === "en" ? "en-US" : "vi-VN") + "đ";
     }
     if (ordersEl) {
       ordersEl.textContent = currentOrdersCount.toString();
@@ -1444,14 +2047,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const orderEl = document.createElement("div");
     orderEl.className =
       "order-item-simulation py-2 border-bottom d-flex align-items-center justify-content-between";
+    const orderLocale = getLang() === "en" ? "en-US" : "vi-VN";
     orderEl.innerHTML = `
       <div class="order-details-left min-w-0">
         <div class="fw-bold text-truncate text-dark" style="font-size: 0.9rem;">${template.customer}</div>
         <div class="text-muted text-truncate" style="font-size: 0.8rem;">${template.items}</div>
       </div>
       <div class="order-details-right text-end flex-shrink-0 ps-2">
-        <div class="fw-bold text-success" style="font-size: 0.9rem;">${template.price.toLocaleString("vi-VN")}đ</div>
-        <div class="text-muted small" style="font-size: 0.75rem;">Vừa xong</div>
+        <div class="fw-bold text-success" style="font-size: 0.9rem;">${template.price.toLocaleString(orderLocale)}đ</div>
+        <div class="text-muted small" style="font-size: 0.75rem;">${t('Vừa xong')}</div>
       </div>
     `;
 
@@ -1465,7 +2069,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const timeEl = item.querySelector(".order-details-right .text-muted");
       if (timeEl) {
-        timeEl.textContent = `${index * 2} phút trước`;
+        timeEl.textContent = getLang() === "en" ? `${index * 2} mins ago` : `${index * 2} phút trước`;
       }
     });
 
@@ -1492,5 +2096,454 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Start the order simulation loop (every 15 seconds)
   setInterval(simulateNewOrder, 3000);
+    // ===== STATIC TRANSLATIONS FOR LANDING PAGE (Bilingual VI/EN Support) =====
+  const STATIC_TRANSLATIONS = {
+    // Navbar Logo
+    "nav.navbar .navbar-brand": {
+      vi: `<img src="assets/team/logo.png" alt="Chợ AI Local" width="28" height="28" class="me-2 align-middle" />Chợ AI Local`,
+      en: `<img src="assets/team/logo.png" alt="Chợ AI Local" width="28" height="28" class="me-2 align-middle" />AI Local Market`
+    },
+    
+    
+    // Obsolete selectors migrated to HTML-based lang-vi/lang-en spans
+
+    
+    // Business Section
+    "#business h2": {
+      vi: "Mô hình kinh doanh thực tế",
+      en: "Realistic Business Model"
+    },
+    "#business p.business-subtitle": {
+      vi: "Mô hình chia sẻ doanh thu và dịch vụ số bền vững",
+      en: "Sustainable revenue-sharing and digital service models"
+    },
+    "#business .col-lg-6:nth-child(1) .business-role-card h4": {
+      vi: "Miễn phí cho Người mua",
+      en: "Free for Buyers"
+    },
+    "#business .col-lg-6:nth-child(1) .business-role-card p": {
+      vi: "Luôn luôn tìm kiếm thực đơn và đặt trước miễn phí.",
+      en: "Always search menus and pre-order for free."
+    },
+    "#business .col-lg-6:nth-child(2) .business-role-card h4": {
+      vi: "Dịch vụ Số cho Tiểu thương",
+      en: "Digital Services for Merchants"
+    },
+    "#business .col-lg-6:nth-child(2) .business-role-card p": {
+      vi: "Bắt đầu miễn phí, thu phí dịch vụ nhỏ khi quy mô tăng.",
+      en: "Start for free, small service fee as scale grows."
+    },
+    "#business h3": {
+      vi: "Các gói dành cho người bán",
+      en: "Merchant Service Plans"
+    },
+    "#business h3 + p": {
+      vi: "Giai đoạn đầu ưu tiên để tiểu thương dùng thử dễ dàng, sau đó thu phí khi giá trị đã rõ ràng.",
+      en: "Trial phase is prioritised for easy merchant adoption, transitioning to paid plans once value is established."
+    },
+    
+    // Pricing
+    ".pricing-card:nth-child(1) .pricing-header .plan-tag": {
+      vi: "Khởi đầu",
+      en: "Starter"
+    },
+    ".pricing-card:nth-child(1) h4": {
+      vi: "FREE",
+      en: "FREE"
+    },
+    ".pricing-card:nth-child(1) .price": {
+      vi: "Miễn phí",
+      en: "Free"
+    },
+    ".pricing-card:nth-child(1) p": {
+      vi: "Dành cho người bán mới bắt đầu số hóa gian hàng.",
+      en: "For merchants starting to digitize their stalls."
+    },
+    ".pricing-card:nth-child(1) li:nth-child(1)": {
+      vi: `<i class="ph-fill ph-check-circle"></i> Đăng sản phẩm cơ bản`,
+      en: `<i class="ph-fill ph-check-circle"></i> Post basic products`
+    },
+    ".pricing-card:nth-child(1) li:nth-child(2)": {
+      vi: `<i class="ph-fill ph-check-circle"></i> Nhận đơn đặt trước`,
+      en: `<i class="ph-fill ph-check-circle"></i> Receive pre-orders`
+    },
+    ".pricing-card:nth-child(1) li:nth-child(3)": {
+      vi: `<i class="ph-fill ph-check-circle"></i> Cảnh báo hết hàng`,
+      en: `<i class="ph-fill ph-check-circle"></i> Low stock alerts`
+    },
+    ".pricing-card:nth-child(1) li:nth-child(4)": {
+      vi: `<i class="ph-fill ph-check-circle"></i> Dashboard tổng quan`,
+      en: `<i class="ph-fill ph-check-circle"></i> Overview dashboard`
+    },
+    ".pricing-card:nth-child(1) button": {
+      vi: "Bản hiện tại",
+      en: "Current Version"
+    },
+    
+    // Pro
+    ".pricing-card.featured .plan-tag": {
+      vi: "Tăng trưởng",
+      en: "Growth"
+    },
+    ".pricing-card.featured h4": {
+      vi: "PRO",
+      en: "PRO"
+    },
+    ".pricing-card.featured .price": {
+      vi: "99.000đ<span>/tháng</span>",
+      en: "99,000đ<span>/month</span>"
+    },
+    ".pricing-card.featured p": {
+      vi: "Dành cho gian hàng muốn tăng đơn và hiểu dữ liệu bán hàng.",
+      en: "For stalls wanting to increase orders and understand sales data."
+    },
+    ".pricing-card.featured li:nth-child(1)": {
+      vi: `<i class="ph-fill ph-check-circle"></i> Toàn bộ tính năng gói FREE`,
+      en: `<i class="ph-fill ph-check-circle"></i> All FREE package features`
+    },
+    ".pricing-card.featured li:nth-child(2)": {
+      vi: `<i class="ph-fill ph-check-circle"></i> Xem sản phẩm bán chạy`,
+      en: `<i class="ph-fill ph-check-circle"></i> View top-selling products`
+    },
+    ".pricing-card.featured li:nth-child(3)": {
+      vi: `<i class="ph-fill ph-check-circle"></i> Gợi ý nhóm sản phẩm bán kèm`,
+      en: `<i class="ph-fill ph-check-circle"></i> Suggest cross-selling items`
+    },
+    ".pricing-card.featured li:nth-child(4)": {
+      vi: `<i class="ph-fill ph-check-circle"></i> Insight AI nâng cao`,
+      en: `<i class="ph-fill ph-check-circle"></i> Advanced AI Insights`
+    },
+    ".pricing-card.featured li:nth-child(5)": {
+      vi: `<i class="ph-fill ph-check-circle"></i> Báo cáo doanh thu theo ngày/tuần`,
+      en: `<i class="ph-fill ph-check-circle"></i> Daily/weekly revenue reports`
+    },
+    ".pricing-card.featured button": {
+      vi: "Nâng cấp gói PRO",
+      en: "Upgrade to PRO"
+    },
+    
+    // Premium
+    ".pricing-card:not(.featured):nth-child(3) .plan-tag": {
+      vi: "Mở rộng",
+      en: "Expansion"
+    },
+    ".pricing-card:not(.featured):nth-child(3) h4": {
+      vi: "PREMIUM",
+      en: "PREMIUM"
+    },
+    ".pricing-card:not(.featured):nth-child(3) .price": {
+      vi: "199.000đ<span>/tháng</span>",
+      en: "199,000đ<span>/month</span>"
+    },
+    ".pricing-card:not(.featured):nth-child(3) p": {
+      vi: "Dành cho gian hàng muốn được ưu tiên hiển thị và mở rộng khách hàng.",
+      en: "For stalls wanting priority listing and customer expansion."
+    },
+    ".pricing-card:not(.featured):nth-child(3) li:nth-child(1)": {
+      vi: `<i class="ph-fill ph-check-circle"></i> Toàn bộ tính năng gói PRO`,
+      en: `<i class="ph-fill ph-check-circle"></i> All PRO package features`
+    },
+    ".pricing-card:not(.featured):nth-child(3) li:nth-child(2)": {
+      vi: `<i class="ph-fill ph-check-circle"></i> Ưu tiên hiển thị gian hàng`,
+      en: `<i class="ph-fill ph-check-circle"></i> Priority stall placement`
+    },
+    ".pricing-card:not(.featured):nth-child(3) li:nth-child(3)": {
+      vi: `<i class="ph-fill ph-check-circle"></i> Gợi ý khuyến mãi theo tồn kho`,
+      en: `<i class="ph-fill ph-check-circle"></i> Inventory-based promo suggestions`
+    },
+    ".pricing-card:not(.featured):nth-child(3) li:nth-child(4)": {
+      vi: `<i class="ph-fill ph-check-circle"></i> Báo cáo nhóm khách hàng tiềm năng`,
+      en: `<i class="ph-fill ph-check-circle"></i> Target customer reporting`
+    },
+    ".pricing-card:not(.featured):nth-child(3) button": {
+      vi: "Nâng cấp gói PREMIUM",
+      en: "Upgrade to PREMIUM"
+    },
+    
+    // Revenue block
+    ".revenue-box h4": {
+      vi: "Dòng tiền bổ sung",
+      en: "Additional Revenue Streams"
+    },
+    ".revenue-box p.text-muted": {
+      vi: "Ngoài gói tháng, nền tảng có thể tạo doanh thu từ giao dịch và dịch vụ mở rộng.",
+      en: "In addition to monthly plans, the platform can generate revenue from transactions and value-added services."
+    },
+    ".revenue-item:nth-child(1) h6": {
+      vi: "Phí giao dịch",
+      en: "Transaction Fee"
+    },
+    ".revenue-item:nth-child(1) p": {
+      vi: "Thu khoản nhỏ trên đơn đặt trước thành công.",
+      en: "Charge a small fee on successful pre-orders."
+    },
+    ".revenue-item:nth-child(2) h6": {
+      vi: "Quảng bá sạp hàng",
+      en: "Stall Promotion"
+    },
+    ".revenue-item:nth-child(2) p": {
+      vi: "Ưu tiên hiển thị sản phẩm hoặc gian hàng nổi bật.",
+      en: "Priority listings for featured items or stalls."
+    },
+    ".revenue-item:nth-child(3) h6": {
+      vi: "Đối tác mở rộng",
+      en: "Expansion Partners"
+    },
+    ".revenue-item:nth-child(3) p": {
+      vi: "Hợp tác thanh toán và giao hàng.",
+      en: "Integrations with payment and delivery partners."
+    },
+    ".business-highlight span": {
+      vi: "Người mua tạo nhu cầu thật. Người bán nhận đơn hàng thật. Nền tảng tạo doanh thu từ giá trị thật.",
+      en: "Buyers create real demand. Sellers receive real orders. The platform generates revenue from real value."
+    },
+    
+    // Roadmap Section
+    "#roadmap h2": {
+      vi: "Lộ trình phát triển & Gọi vốn",
+      en: "Development & Fundraising Roadmap"
+    },
+    "#roadmap p.lead": {
+      vi: "Các bước đi chiến lược từ MVP đến nhân rộng toàn quốc",
+      en: "Strategic steps from MVP to national scaling"
+    },
+    ".roadmap-card-new:nth-child(1) .roadmap-step": {
+      vi: "Giai đoạn 1",
+      en: "Phase 1"
+    },
+    ".roadmap-card-new:nth-child(1) h5": {
+      vi: "Quý 3/2026: Ra mắt MVP",
+      en: "Q3/2026: MVP Launch"
+    },
+    ".roadmap-card-new:nth-child(1) p": {
+      vi: "Thử nghiệm tại 3 chợ truyền thống TP.HCM, số hóa 50 sạp hàng.",
+      en: "Trial at 3 traditional markets in HCMC, digitizing 50 stalls."
+    },
+    
+    ".roadmap-card-new:nth-child(2) .roadmap-step": {
+      vi: "Giai đoạn 2",
+      en: "Phase 2"
+    },
+    ".roadmap-card-new:nth-child(2) h5": {
+      vi: "Quý 4/2026: Gọi vốn Vòng hạt giống",
+      en: "Q4/2026: Seed Round"
+    },
+    ".roadmap-card-new:nth-child(2) p": {
+      vi: "Mục tiêu 100.000 USD để hoàn thiện AI Parser và App di động.",
+      en: "Targeting $100k to perfect AI Parser and launch mobile app."
+    },
+    
+    ".roadmap-card-new:nth-child(3) .roadmap-step": {
+      vi: "Giai đoạn 3",
+      en: "Phase 3"
+    },
+    ".roadmap-card-new:nth-child(3) h5": {
+      vi: "Quý 1/2027: Tích hợp ví điện tử",
+      en: "Q1/2027: E-Wallet Integration"
+    },
+    ".roadmap-card-new:nth-child(3) p": {
+      vi: "Thanh toán không tiền mặt trực tiếp khi đặt đơn qua QR.",
+      en: "Cashless payment directly when placing orders via QR."
+    },
+    
+    ".roadmap-card-new:nth-child(4) .roadmap-step": {
+      vi: "Giai đoạn 4",
+      en: "Phase 4"
+    },
+    ".roadmap-card-new:nth-child(4) h5": {
+      vi: "Quý 2/2027: Nhân rộng mô hình",
+      en: "Q2/2027: Model Scaling"
+    },
+    ".roadmap-card-new:nth-child(4) p": {
+      vi: "Mở rộng ra 20 chợ tại Hà Nội và Đà Nẵng, số hóa 1.000 sạp hàng.",
+      en: "Expand to 20 markets in Hanoi and Danang, digitizing 1,000 stalls."
+    },
+    
+    // Team Section
+    "#team h2": {
+      vi: "Đội ngũ phát triển HUIT EMART",
+      en: "HUIT EMART Development Team"
+    },
+    "#team p.lead": {
+      vi: "Sinh viên công nghệ nhiệt huyết đến từ Trường Đại học Công Thương TP.HCM",
+      en: "Enthusiastic tech students from Ho Chi Minh City University of Industry and Trade"
+    },
+
+    // Final CTA Section
+    ".cta-section h2": {
+      vi: "Chợ AI Local",
+      en: "AI Local Market"
+    },
+    ".cta-section p.lead": {
+      vi: "Chợ AI Local giúp người mua tìm thực đơn tự nấu theo ngân sách từ sản phẩm thật của gian hàng địa phương, đồng thời hỗ trợ tiểu thương quản lý sản phẩm, tồn kho và đơn đặt trước bằng dữ liệu.",
+      en: "Chợ AI Local helps buyers search home-cooking menus within budget using real items from local stalls, while supporting merchants to manage products, inventory, and pre-orders with data."
+    },
+    ".cta-section a[href='#demo'].btn-light": {
+      vi: `<i class="ph ph-arrows-counter-clockwise"></i> Xem lại demo`,
+      en: `<i class="ph ph-arrows-counter-clockwise"></i> Replay Demo`
+    },
+    ".cta-section a[href^='mailto'].btn-outline-light": {
+      vi: `<i class="ph ph-envelope"></i> Liên hệ đội thi`,
+      en: `<i class="ph ph-envelope"></i> Contact Team`
+    },
+    
+    // Footer
+    "footer p": {
+      vi: "© 2026 Chợ AI Local — Đi chợ thông minh, ăn ngon đúng ngân sách.",
+      en: "© 2026 AI Local Market — Shop smart, eat well, stay within budget."
+    },
+    
+    // Back to top
+    "#backToTop": {
+      vi: `<i class="ph ph-arrow-up"></i>`,
+      en: `<i class="ph ph-arrow-up"></i>`
+    },
+    
+    // Order Modal
+    "#orderModal h4": {
+      vi: "Đặt trước thành công!",
+      en: "Pre-order Successful!"
+    },
+    "#orderModal .detail-row:nth-child(1) .detail-label": {
+      vi: "Mã đơn:",
+      en: "Order ID:"
+    },
+    "#orderModal .detail-row:nth-child(2) .detail-label": {
+      vi: "Thực đơn:",
+      en: "Menu:"
+    },
+    "#orderModal .detail-row:nth-child(3) .detail-label": {
+      vi: "Tổng tiền:",
+      en: "Total cost:"
+    },
+    "#orderModal .detail-row:nth-child(4) .detail-label": {
+      vi: "Nhận tại:",
+      en: "Pickup at:"
+    },
+    "#orderModal .detail-row:nth-child(5) .detail-label": {
+      vi: "Thời gian nhận:",
+      en: "Pickup time:"
+    },
+    "#orderModal .detail-row:nth-child(6) .detail-label": {
+      vi: "Trạng thái:",
+      en: "Status:"
+    },
+    "#orderModal button[data-bs-dismiss='modal'].btn-primary": {
+      vi: "Đóng",
+      en: "Close"
+    }
+  };
+
+  // Static translation applier function
+  function applyLanguage(lang) {
+    document.documentElement.setAttribute("lang", lang);
+    
+    // Translate Pickup Time options
+    const pickupTimeSelect = document.getElementById("pickup-time");
+    if (pickupTimeSelect) {
+      const options = pickupTimeSelect.options;
+      for (let i = 0; i < options.length; i++) {
+        const opt = options[i];
+        if (opt.value === "") {
+          opt.textContent = lang === "en" ? "Select time" : "Chọn giờ";
+        } else {
+          const time = opt.value;
+          let period = "";
+          if (time === "06:00") period = lang === "en" ? "Early morning" : "Sáng sớm";
+          else if (["07:00", "08:00", "09:00", "10:00"].includes(time)) period = lang === "en" ? "Morning" : "Sáng";
+          else if (["11:00", "12:00"].includes(time)) period = lang === "en" ? "Noon" : "Trưa";
+          else if (["13:00", "14:00", "15:00", "16:00", "17:00"].includes(time)) period = lang === "en" ? "Afternoon" : "Chiều";
+          else if (["18:00", "19:00", "20:00"].includes(time)) period = lang === "en" ? "Evening" : "Tối";
+          opt.textContent = `${time} - ${period}`;
+        }
+      }
+    }
+
+    // Format dynamic revenue metric
+    const revenueEl = document.getElementById("todayRevenue");
+    if (revenueEl && typeof currentRevenue !== 'undefined') {
+      revenueEl.textContent = currentRevenue.toLocaleString(lang === "en" ? "en-US" : "vi-VN") + "đ";
+    }
+
+    // Set switcher button state text
+    const langBtnText = document.getElementById("lang-toggle-text");
+    if (langBtnText) {
+      langBtnText.textContent = lang === "en" ? "VI" : "EN";
+    }
+    
+    // Translate Title
+    document.title = lang === "en" ? "AI Local Market - Smart Local Market" : "Chợ AI Local - Chợ địa phương thông minh";
+    
+    // Custom input text placeholder translation
+    const customInputText = document.getElementById("custom-input-text");
+    if (customInputText) {
+      customInputText.placeholder = lang === "en" 
+        ? "Example: dinner for 3 people around 100k with rice" 
+        : "Ví dụ: bữa tối 3 người khoảng 100k ăn cơm";
+    }
+
+    // Apply translations
+    Object.keys(STATIC_TRANSLATIONS).forEach(selector => {
+      const els = document.querySelectorAll(selector);
+      els.forEach(el => {
+        const trans = STATIC_TRANSLATIONS[selector][lang];
+        if (trans !== undefined) {
+          el.innerHTML = trans;
+        }
+      });
+    });
+    
+    // Re-render active simulator suggestions
+    if (typeof currentSimulation !== 'undefined' && currentSimulation.options && currentSimulation.options.length > 0) {
+      renderOptionTabs();
+      renderActiveSuggestion();
+    }
+  }
+
+  // ===== Theme and Language Event Listeners and Initialization =====
+  
+  // Theme Toggle Logic
+  const themeToggleBtn = document.getElementById("theme-toggle");
+  const themeIcon = document.getElementById("theme-icon");
+  
+  if (themeToggleBtn && themeIcon) {
+    themeToggleBtn.addEventListener("click", function () {
+      const isDark = document.body.classList.toggle("dark-mode");
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+      
+      // Update icon
+      if (isDark) {
+        themeIcon.className = "ph ph-sun";
+      } else {
+        themeIcon.className = "ph ph-moon";
+      }
+    });
+  }
+  
+  // Language Toggle Logic
+  const langToggleBtn = document.getElementById("lang-toggle");
+  if (langToggleBtn) {
+    langToggleBtn.addEventListener("click", function () {
+      const currentLang = localStorage.getItem("lang") || "vi";
+      const newLang = currentLang === "vi" ? "en" : "vi";
+      localStorage.setItem("lang", newLang);
+      applyLanguage(newLang);
+    });
+  }
+  
+  // INITIAL RUN: Retrieve saved settings on page load
+  const savedTheme = localStorage.getItem("theme") || "light";
+  if (savedTheme === "dark") {
+    document.body.classList.add("dark-mode");
+    if (themeIcon) themeIcon.className = "ph ph-sun";
+  } else {
+    document.body.classList.remove("dark-mode");
+    if (themeIcon) themeIcon.className = "ph ph-moon";
+  }
+  
+  const savedLang = localStorage.getItem("lang") || "vi";
+  applyLanguage(savedLang);
+
+
   console.log("Chợ AI Local - Landing Page Loaded Successfully!");
 });

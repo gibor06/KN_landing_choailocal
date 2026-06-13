@@ -671,6 +671,28 @@ Các tính năng UX:
 - Scroll tự động và shake animation nếu thiếu thông tin
 - Format hiển thị thân thiện: "17:00 hôm nay", "10:00 ngày mai", "15:00 25/06"
 
+### Tính năng Giỏ hàng tương tác & Tùy biến nguyên liệu (Mới hoàn thành)
+
+Người dùng có thể trực tiếp tinh chỉnh thực đơn đề xuất:
+- **Tăng/giảm số lượng** từng nguyên liệu bằng nút bấm cộng/trừ trực quan.
+- **Xóa nguyên liệu** khỏi thực đơn bằng cách giảm số lượng về 0 (nút trừ tự chuyển thành biểu tượng Thùng rác).
+- **Cảnh báo vượt hạn mức**: Nếu người dùng tăng số lượng khiến tổng chi phí vượt quá ngân sách đề ra ban đầu, hệ thống sẽ hiển thị thẻ cảnh báo màu đỏ và cập nhật thanh tiến độ tương ứng.
+- **Thêm nguyên liệu mới**: Hộp lựa chọn dropdown tự động lọc ra các nguyên liệu có trong cơ sở dữ liệu của tiểu thương nhưng chưa có trong giỏ hàng hiện tại, cho phép người dùng tự do thêm vào thực đơn.
+- **Tính toán thời gian thực**: Mọi thay đổi về số lượng hoặc thành phần nguyên liệu đều lập tức cập nhật tổng tiền, số tiền tiết kiệm/vượt hạn mức, thanh tiến độ ngân sách và lý do đề xuất của AI.
+
+### Tính năng Đa ngôn ngữ (Song ngữ Việt/Anh) (Mới hoàn thành)
+
+Hệ thống hỗ trợ chuyển đổi giao diện hoàn chỉnh:
+- **Nút chuyển đổi ngôn ngữ**: Tích hợp trên thanh điều hướng, tự động lưu lựa chọn của người dùng vào `localStorage`.
+- **Dịch tĩnh**: Hầu hết các phần giới thiệu, tiêu đề, tính năng, đội ngũ, lộ trình và modal xác nhận được dịch chính xác thông qua tệp từ điển.
+- **Dịch động**: Các dữ liệu mô phỏng như tên thực đơn, thành phần nguyên liệu, đơn vị tính, lý do đề xuất của AI và feed đơn hàng tự động hiển thị theo ngôn ngữ đã chọn.
+
+### Tính năng Giao diện Sáng/Tối (Light/Dark Mode) (Mới hoàn thành)
+
+- Nút chuyển đổi giao diện trực quan với hiệu ứng transition mượt mà.
+- Lưu trạng thái giao diện đã chọn để tự động kích hoạt trong lần truy cập sau.
+- Tối ưu hóa độ tương phản cho Seller Dashboard và Hóa đơn trong chế độ tối.
+
 Website demo:
 
 ```txt
