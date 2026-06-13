@@ -2187,7 +2187,7 @@ footer {
   padding: 2.25rem 1.75rem;
   box-shadow: var(--card-shadow);
   text-align: center;
-  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out, border-color 0.3s ease-out;
   border: 1px solid rgba(25, 135, 84, 0.08);
   height: 100%;
   display: flex;
