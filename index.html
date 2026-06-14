@@ -1,1398 +1,2631 @@
 <!doctype html>
 <html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Chợ AI Local - Gợi ý thực đơn theo ngân sách từ sản phẩm thật của tiểu thương địa phương"
+    />
+    <link rel="icon" type="image/png" href="assets/team/logo.png" />
+    <link rel="shortcut icon" href="assets/team/logo.png" />
+    <title>Chợ AI Local - Chợ địa phương thông minh</title>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description"
-    content="Chợ AI Local - Gợi ý thực đơn theo ngân sách từ sản phẩm thật của tiểu thương địa phương" />
-  <link rel="icon" type="image/png" href="assets/team/logo.png" />
-  <link rel="shortcut icon" href="assets/team/logo.png" />
-  <title>Chợ AI Local - Chợ địa phương thông minh</title>
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap Icons (kept for compatibility) -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
+    />
+    <!-- Google Fonts: Inter & Be Vietnam Pro -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css" />
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css" />
+    
+    <!-- Flaticon Uicons (Bold) -->
+    <link href="https://cdn.jsdelivr.net/npm/@flaticon/flaticon-uicons@3.3.1/css/all/all.min.css" rel="stylesheet" />
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
 
-  <!-- Bootstrap 5 CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <!-- Bootstrap Icons -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="css/style.css" />
-</head>
-
-<body>
-  <!-- Header -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
-    <div class="container">
-      <a class="navbar-brand fw-bold text-primary" href="#home">
-        <img src="assets/team/logo.png" alt="Chợ AI Local" width="28" height="28" class="me-2 align-middle" />
-        Chợ AI Local
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="#problem">Vấn đề</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#why-now">Thời điểm</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#solution">Giải pháp</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#different">Công nghệ</a>
-          </li>
-          <li class="nav-item"><a class="nav-link" href="#demo">Demo</a></li>
-          <li class="nav-item">
-            <a class="nav-link" href="#seller">Người bán</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#business">Kinh doanh</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#roadmap">Lộ trình</a>
-          </li>
-        </ul>
-        <a href="#demo" class="btn btn-primary btn-rounded ms-3">Xem demo</a>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Hero Section -->
-  <section id="home" class="hero-section">
-    <div class="hero-bg-decoration"></div>
-    <div class="container position-relative">
-      <div class="row align-items-center min-vh-80">
-        <div class="col-lg-6 mb-5 mb-lg-0 reveal">
-          <div class="badge badge-mvp mb-3">
-            <i class="bi bi-lightbulb"></i> Chợ địa phương thông minh với AI
-          </div>
-          <h1 class="display-3 fw-bold text-dark mb-3">Chợ AI Local</h1>
-          <h2 class="h3 text-dark mb-4">
-            Biến một câu hỏi "hôm nay ăn gì?" thành thực đơn đúng ngân sách.
-          </h2>
-          <p class="lead text-muted mb-4">
-            Người mua chỉ cần nhập nhu cầu bằng tiếng Việt. Hệ thống phân tích
-            ngân sách, số người ăn, loại bữa và tạo thực đơn từ dữ liệu sản
-            phẩm thật không bịa giá, không vượt ngân sách.
-          </p>
-          <div class="d-flex flex-wrap gap-3 mb-4">
-            <a href="#demo" class="btn btn-primary btn-lg btn-rounded">
-              <i class="bi bi-play-circle"></i> Xem demo thực đơn
-            </a>
-            <a href="#solution" class="btn btn-outline-primary btn-lg btn-rounded">
-              Khám phá cách hoạt động
-            </a>
-          </div>
-          <div class="trust-badges">
-            <div class="trust-badge">
-              <i class="bi bi-check-circle-fill text-success"></i>
-              <span>Không vượt ngân sách</span>
-            </div>
-            <div class="trust-badge">
-              <i class="bi bi-check-circle-fill text-success"></i>
-              <span>Đặt trước tại gian hàng</span>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6 reveal">
-          <div class="ai-workflow-card">
-            <div class="workflow-layer layer-1">
-              <div class="layer-label">Người mua nhập</div>
-              <div class="layer-content">
-                <i class="bi bi-chat-left-text"></i>
-                <span>"100k cho bữa tối 3 người"</span>
-              </div>
-            </div>
-            <div class="workflow-arrow">
-              <i class="bi bi-arrow-down"></i>
-            </div>
-            <div class="workflow-layer layer-2">
-              <div class="layer-label">
-                <i class="bi bi-cpu"></i> AI hiểu nhu cầu
-              </div>
-              <div class="layer-content parsed-data">
-                <div class="parsed-item">
-                  <span class="label">Ngân sách:</span>
-                  <span class="value">100.000đ</span>
-                </div>
-                <div class="parsed-item">
-                  <span class="label">Số người:</span>
-                  <span class="value">3</span>
-                </div>
-                <div class="parsed-item">
-                  <span class="label">Loại bữa:</span>
-                  <span class="value">Bữa tối</span>
-                </div>
-              </div>
-            </div>
-            <div class="workflow-arrow">
-              <i class="bi bi-arrow-down"></i>
-            </div>
-            <div class="workflow-layer layer-3">
-              <div class="layer-label">Kết quả</div>
-              <div class="layer-content result-content">
-                <div class="result-title">
-                  <i class="bi bi-check-circle-fill text-success"></i>
-                  <span>"Thực đơn bữa tối 3 người: Thịt bằm sốt cà"</span>
-                </div>
-                <div class="result-price">
-                  <span class="price-value">93.500đ</span>
-                  <span class="price-total">/ 100.000đ</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Problem Section -->
-  <section id="problem" class="section-padding bg-section">
-    <div class="container">
-      <div class="text-center mb-5 reveal">
-        <h2 class="display-5 fw-bold mb-3">
-          Một nhu cầu nhỏ, lặp lại mỗi ngày
-        </h2>
-        <p class="lead text-muted">
-          Người mua cần quyết định nhanh hơn, còn tiểu thương cần bán hàng
-          thông minh hơn.
-        </p>
-      </div>
-      <div class="row g-4 mb-5">
-        <div class="col-md-6 col-lg-3 reveal">
-          <div class="feature-card text-center h-100">
-            <div class="icon-box mb-3">
-              <i class="bi bi-clock"></i>
-            </div>
-            <h5 class="fw-bold mb-3">Mất thời gian chọn món</h5>
-            <p class="text-muted">
-              Người mua thường mất nhiều thời gian suy nghĩ hôm nay ăn gì, mua
-              gì cho đủ bữa.
-            </p>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-3 reveal">
-          <div class="feature-card text-center h-100">
-            <div class="icon-box mb-3">
-              <i class="bi bi-wallet2"></i>
-            </div>
-            <h5 class="fw-bold mb-3">Khó cân đối ngân sách</h5>
-            <p class="text-muted">
-              Cần tự tính số người ăn, khẩu phần, giá tiền và tổng chi phí.
-            </p>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-3 reveal">
-          <div class="feature-card text-center h-100">
-            <div class="icon-box mb-3">
-              <i class="bi bi-shop"></i>
-            </div>
-            <h5 class="fw-bold mb-3">Tiểu thương thiếu công cụ số</h5>
-            <p class="text-muted">
-              Nhiều người bán hàng địa phương chưa có công cụ quản lý cửa hàng
-              đơn giản.
-            </p>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-3 reveal">
-          <div class="feature-card text-center h-100">
-            <div class="icon-box mb-3">
-              <i class="bi bi-bag-check"></i>
-            </div>
-            <h5 class="fw-bold mb-3">Chưa tối ưu cho bữa ăn tự nấu</h5>
-            <p class="text-muted">
-              Các app hiện nay chủ yếu phục vụ món ăn chế biến sẵn. Trong khi
-              đó, người muốn tự nấu vẫn cần một giải pháp giúp chọn nguyên
-              liệu đúng ngân sách, đủ khẩu phần và còn hàng tại cửa hàng gần
-              mình.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Market Gap -->
-      <div class="market-gap-section reveal">
-        <h5 class="text-center fw-bold mb-4">Khoảng trống thị trường</h5>
-        <div class="row g-4">
-          <div class="col-md-4">
-            <div class="gap-card">
-              <div class="gap-icon">
-                <i class="bi bi-phone"></i>
-              </div>
-              <h6 class="fw-bold mb-2">App giao đồ ăn</h6>
-              <p class="text-muted small mb-0">
-                Tối ưu cho món ăn chế biến sẵn, chưa tập trung vào nhu cầu mua
-                nguyên liệu để tự nấu.
-              </p>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="gap-card">
-              <div class="gap-icon">
-                <i class="bi bi-basket"></i>
-              </div>
-              <h6 class="fw-bold mb-2">Chợ truyền thống</h6>
-              <p class="text-muted small mb-0">
-                Có hàng thật và khách hàng thật, nhưng việc quản lý sản phẩm
-                và đơn đặt trước vẫn còn thủ công.
-              </p>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="gap-card gap-card-highlight">
-              <div class="gap-icon">
-                <i class="bi bi-shop-window"></i>
-              </div>
-              <h6 class="fw-bold mb-2">Chợ AI Local</h6>
-              <p class="text-success small mb-0 fw-bold">
-                Gợi ý thực đơn tự nấu theo ngân sách, số người ăn tại gian
-                hàng địa phương.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="text-center mt-5 reveal">
-        <div class="alert alert-primary d-inline-block">
-          <strong>Chợ AI Local không tạo ra nhu cầu mới</strong>, mà giải
-          quyết nhu cầu đã có mỗi ngày: ăn gì, mua gì, bao nhiêu tiền và mua ở
-          đâu gần nhất.
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Why Now Section -->
-  <section id="why-now" class="section-padding">
-    <div class="container">
-      <div class="text-center mb-5 reveal">
-        <h2 class="display-5 fw-bold mb-3">
-          Vì sao đây là thời điểm phù hợp?
-        </h2>
-      </div>
-      <div class="row g-4">
-        <div class="col-lg-4 reveal">
-          <div class="why-card">
-            <div class="why-number">01</div>
-            <h5 class="fw-bold mb-3">Người mua quen đặt trước</h5>
-            <p class="text-muted">
-              Người dùng đã quen thao tác online, nhưng vẫn cần giải pháp sát
-              hơn với bữa ăn hằng ngày và ngân sách thực tế.
-            </p>
-          </div>
-        </div>
-        <div class="col-lg-4 reveal">
-          <div class="why-card">
-            <div class="why-number">02</div>
-            <h5 class="fw-bold mb-3">Tiểu thương cần chuyển đổi số</h5>
-            <p class="text-muted">
-              Không phải tiểu thương nào cũng cần một hệ thống phức tạp. Họ
-              cần công cụ dễ dùng để quản lý sản phẩm và nhận đơn hàng online.
-            </p>
-          </div>
-        </div>
-        <div class="col-lg-4 reveal">
-          <div class="why-card">
-            <div class="why-number">03</div>
-            <h5 class="fw-bold mb-3">AI phát triển gần hơn với đời sống</h5>
-            <p class="text-muted">
-              Người mua có thể nhập nhu cầu bằng tiếng Việt tự nhiên, còn hệ
-              thống chỉ trả kết quả dựa trên dữ liệu thật: đúng giá, còn hàng
-              và không vượt ngân sách.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Solution Section -->
-  <section id="solution" class="section-padding bg-section">
-    <div class="container">
-      <div class="text-center mb-5 reveal">
-        <h2 class="display-5 fw-bold mb-3">
-          Từ một câu nhập đơn giản đến một thực đơn có thể đặt trước
-        </h2>
-      </div>
-      <div class="timeline-container">
-        <div class="timeline-line"></div>
-        <div class="row g-4">
-          <div class="col-md-6 col-lg-3 reveal">
-            <div class="solution-step">
-              <div class="step-circle-wrapper">
-                <div class="step-number">1</div>
-                <div class="step-badge-icon">
-                  <i class="bi bi-chat-left-text"></i>
-                </div>
-              </div>
-              <h5 class="fw-bold mb-2">Người mua nói nhu cầu</h5>
-              <p class="text-muted small mb-3">
-                Nhập bằng tiếng Việt tự nhiên
-              </p>
-              <div class="bg-light p-3 rounded">
-                <p class="mb-0 fst-italic small">
-                  "100k cho bữa tối 3 người"
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-3 reveal">
-            <div class="solution-step">
-              <div class="step-circle-wrapper">
-                <div class="step-number">2</div>
-                <div class="step-badge-icon"><i class="bi bi-cpu"></i></div>
-              </div>
-              <h5 class="fw-bold mb-2">AI chuyển thành dữ liệu</h5>
-              <p class="text-muted small mb-3">Phân tích cấu trúc</p>
-              <ul class="list-unstyled small text-start d-inline-block ps-0 mb-0">
-                <li>
-                  <i class="bi bi-check2 text-success"></i> Ngân sách:
-                  100.000đ
-                </li>
-                <li><i class="bi bi-check2 text-success"></i> Số người: 3</li>
-                <li>
-                  <i class="bi bi-check2 text-success"></i> Loại bữa: bữa tối
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-3 reveal">
-            <div class="solution-step">
-              <div class="step-circle-wrapper">
-                <div class="step-number">3</div>
-                <div class="step-badge-icon">
-                  <i class="bi bi-shield-check"></i>
-                </div>
-              </div>
-              <h5 class="fw-bold mb-2">Bộ lọc kiểm tra thực tế</h5>
-              <p class="text-muted small mb-3">Đảm bảo dữ liệu chính xác</p>
-              <ul class="list-unstyled small text-start d-inline-block ps-0 mb-0">
-                <li><i class="bi bi-check2 text-success"></i> Còn hàng</li>
-                <li><i class="bi bi-check2 text-success"></i> Đúng giá</li>
-                <li>
-                  <i class="bi bi-check2 text-success"></i> Không vượt ngân
-                  sách
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-3 reveal">
-            <div class="solution-step">
-              <div class="step-circle-wrapper">
-                <div class="step-number">4</div>
-                <div class="step-badge-icon">
-                  <i class="bi bi-cart-check"></i>
-                </div>
-              </div>
-              <h5 class="fw-bold mb-2">Tạo đơn đặt trước</h5>
-              <p class="text-muted small mb-3">
-                Người bán nhận đơn và chuẩn bị
-              </p>
-              <div class="bg-success bg-opacity-10 p-3 rounded text-center">
-                <i class="bi bi-check-circle-fill text-success"></i>
-                <p class="mb-0 small fw-bold">Đơn đã tạo</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Differentiation Section -->
-  <section id="different" class="section-padding">
-    <div class="container">
-      <div class="text-center mb-5 reveal">
-        <h2 class="display-5 fw-bold mb-3">
-          Ba lớp kiểm soát để AI không bịa dữ liệu
-        </h2>
-        <p class="lead text-muted">
-          AI hiểu người mua, CLHUN hiểu giá trị kinh doanh, bộ lọc ràng buộc
-          đảm bảo kết quả đúng thực tế
-        </p>
-      </div>
-      <div class="row g-4 mb-5">
-        <div class="col-lg-4 reveal">
-          <div class="tech-card">
-            <div class="tech-layer-badge">Layer 1</div>
-            <div class="icon-box-lg mb-4">
-              <i class="bi bi-cpu"></i>
-            </div>
-            <h4 class="fw-bold mb-3">AI Layer</h4>
-            <p class="text-muted mb-0">
-              Hiểu nhu cầu tiếng Việt tự nhiên và chuyển thành dữ liệu có cấu
-              trúc.
-            </p>
-          </div>
-        </div>
-        <div class="col-lg-4 reveal">
-          <div class="tech-card">
-            <div class="tech-layer-badge">Layer 2</div>
-            <div class="icon-box-lg mb-4">
-              <i class="bi bi-diagram-3"></i>
-            </div>
-            <h4 class="fw-bold mb-3">CLHUN Layer</h4>
-            <p class="text-muted mb-0">
-              Khai thác nhóm sản phẩm có giá trị kinh doanh cao từ dữ liệu bán
-              hàng.
-            </p>
-          </div>
-        </div>
-        <div class="col-lg-4 reveal">
-          <div class="tech-card">
-            <div class="tech-layer-badge">Layer 3</div>
-            <div class="icon-box-lg mb-4">
-              <i class="bi bi-shield-check"></i>
-            </div>
-            <h4 class="fw-bold mb-3">Rule Layer</h4>
-            <p class="text-muted mb-0">
-              Loại sản phẩm hết hàng, vượt ngân sách hoặc không phù hợp khẩu
-              phần.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Technology Flow -->
-      <div class="tech-flow reveal">
-        <div class="flow-title mb-4 text-center">
-          <h6 class="fw-bold text-muted">Quy trình xử lý</h6>
-        </div>
-        <div class="flow-steps">
-          <div class="flow-step">
-            <div class="flow-icon"><i class="bi bi-person"></i></div>
-            <span>Nhu cần người dùng</span>
-          </div>
-          <div class="flow-arrow"><i class="bi bi-arrow-right"></i></div>
-          <div class="flow-step">
-            <div class="flow-icon"><i class="bi bi-cpu"></i></div>
-            <span>AI phân tích</span>
-          </div>
-          <div class="flow-arrow"><i class="bi bi-arrow-right"></i></div>
-          <div class="flow-step">
-            <div class="flow-icon"><i class="bi bi-diagram-3"></i></div>
-            <span>CLHUN gợi ý</span>
-          </div>
-          <div class="flow-arrow"><i class="bi bi-arrow-right"></i></div>
-          <div class="flow-step">
-            <div class="flow-icon"><i class="bi bi-shield-check"></i></div>
-            <span>Lọc theo quy tắc</span>
-          </div>
-          <div class="flow-arrow"><i class="bi bi-arrow-right"></i></div>
-          <div class="flow-step">
-            <div class="flow-icon"><i class="bi bi-check-circle"></i></div>
-            <span>Thực đơn hợp lệ</span>
-          </div>
-          <div class="flow-arrow"><i class="bi bi-arrow-right"></i></div>
-          <div class="flow-step">
-            <div class="flow-icon"><i class="bi bi-cart-check"></i></div>
-            <span>Đặt hàng trước</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="text-center mt-5 reveal">
-        <div class="alert alert-success d-inline-block">
-          <i class="bi bi-lightbulb-fill"></i>
-          <strong>Không chỉ gợi ý thực đơn, mà tạo được đơn đặt hàng trước.</strong>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Demo Menu Section -->
-  <section id="demo" class="section-padding bg-section">
-    <div class="container">
-      <div class="text-center mb-5 reveal">
-        <div class="badge badge-demo mb-3">
-          <i class="bi bi-cpu-fill"></i> Trình giả lập đề xuất
-        </div>
-        <h2 class="display-5 fw-bold mb-3">
-          Trình giả lập đề xuất thực đơn AI
-        </h2>
-        <p class="lead text-muted">
-          Nhấp chọn các nhu cầu mẫu hoặc tự tùy chỉnh để xem quy trình kiểm
-          soát 3 lớp của hệ thống hoạt động thực tế.
-        </p>
-      </div>
-
-      <div class="row g-4 reveal">
-        <!-- Left: Simulator Inputs & Process Flow -->
-        <div class="col-lg-5">
-          <div class="demo-input-card h-100">
-            <h5 class="fw-bold mb-4">
-              <i class="bi bi-sliders"></i> Người dùng nhập nhu cầu
-            </h5>
-
-            <!-- Presets -->
-            <div class="demo-presets mb-4">
-              <div class="input-label fw-bold mb-2">
-                Chọn nhanh nhu cầu mẫu để mô phỏng thực đơn:
-              </div>
-              <div class="d-flex flex-wrap gap-2" id="preset-buttons-container">
-                <button class="btn btn-outline-primary btn-sm preset-btn" data-preset="55k">
-                  55k ăn sáng 2 người
-                </button>
-                <button class="btn btn-outline-primary btn-sm preset-btn" data-preset="90k">
-                  90k ăn trưa 3 người
-                </button>
-                <button class="btn btn-outline-primary btn-sm preset-btn active" data-preset="130k">
-                  130k ăn tối 3 người
-                </button>
-                <button class="btn btn-outline-primary btn-sm preset-btn" data-preset="45k">
-                  45k ăn tiết kiệm 2 người
-                </button>
-                <button class="btn btn-outline-primary btn-sm preset-btn" data-preset="120k">
-                  120k ăn healthy 2 người
-                </button>
-              </div>
-            </div>
-
-            <!-- Simulation Flow Visualization -->
-            <div class="simulation-flow-card p-3 border rounded-3 bg-white">
-              <h6 class="fw-bold mb-3">
-                <i class="bi bi-gear-wide-connected text-primary"></i> Tiến
-                trình xử lý (3 Lớp):
-              </h6>
-              <div class="sim-steps">
-                <div class="sim-step border-bottom pb-2 mb-2 active" id="sim-step-1">
-                  <div class="sim-step-icon text-muted me-2" id="icon-step-1">
-                    <i class="bi bi-circle"></i>
-                  </div>
-                  <div class="sim-info">
-                    <div class="sim-title fw-bold small">
-                      Layer 1: AI Parse
-                    </div>
-                    <div class="sim-desc small text-muted">
-                      Trích xuất thực thể:
-                      <span id="ai-parsed-badge" class="badge bg-secondary">Chờ...</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="sim-step border-bottom pb-2 mb-2" id="sim-step-2">
-                  <div class="sim-step-icon text-muted me-2" id="icon-step-2">
-                    <i class="bi bi-circle"></i>
-                  </div>
-                  <div class="sim-info">
-                    <div class="sim-title fw-bold small">
-                      Layer 2: CLHUN Suggest
-                    </div>
-                    <div class="sim-desc small text-muted">
-                      Lọc sản phẩm có lợi nhuận cao & bán tốt tại sạp
-                    </div>
-                  </div>
-                </div>
-                <div class="sim-step" id="sim-step-3">
-                  <div class="sim-step-icon text-muted me-2" id="icon-step-3">
-                    <i class="bi bi-circle"></i>
-                  </div>
-                  <div class="sim-info">
-                    <div class="sim-title fw-bold small">
-                      Layer 3: Rule Filter
-                    </div>
-                    <div class="sim-desc small text-muted">
-                      Kiểm tra giá thật, tồn kho và giới hạn ngân sách
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Right: Menu Result -->
-        <div class="col-lg-7">
-          <div class="demo-result-card h-100 position-relative" id="result-card-container">
-            <!-- Processing Overlay -->
-            <div class="sim-loading-overlay d-none" id="sim-loading-overlay">
-              <div class="text-center text-white">
-                <div class="spinner-border text-primary mb-2" role="status" style="width: 3rem; height: 3rem">
-                  <span class="visually-hidden">Loading...</span>
-                </div>
-                <h5 class="fw-bold">AI đang tính toán thực đơn...</h5>
-                <p class="small opacity-75">
-                  Đang tối ưu nguyên liệu & ngân sách tại gian hàng gần bạn
-                </p>
-              </div>
-            </div>
-
-            <div class="result-header">
-              <h5 class="mb-0" id="result-title">
-                <i class="bi bi-check-circle-fill text-success"></i> Thực đơn
-                bữa tối 3 người: Thịt bằm sốt cà
-              </h5>
-            </div>
-            <div class="result-body">
-              <!-- Alternative Suggestions Tabs -->
-              <div class="menu-options-container mb-4" id="menu-options-container">
-                <div class="input-label fw-bold mb-2 text-muted small">
-                  <i class="bi bi-list-stars text-success"></i> Đề xuất thực
-                  đơn
-                </div>
-                <div class="d-flex flex-wrap gap-2" id="option-tabs-container">
-                  <button class="btn btn-outline-success btn-sm option-tab active" data-option-idx="0">
-                    Gợi ý 1
-                  </button>
-                  <button class="btn btn-outline-success btn-sm option-tab" data-option-idx="1">
-                    Gợi ý 2
-                  </button>
-                  <button class="btn btn-outline-success btn-sm option-tab" data-option-idx="2">
-                    Gợi ý 3
-                  </button>
-                </div>
-              </div>
-
-              <div class="menu-suggestion mb-4">
-                <h6 class="fw-bold mb-2">Món gợi ý:</h6>
-                <p class="text-muted mb-0" id="result-suggestion">
-                  Thịt bằm sốt cà chua + rau muống xào tỏi + đậu hũ chiên
-                </p>
-              </div>
-
-              <!-- Budget Usage -->
-              <div class="budget-section mb-4">
-                <div class="budget-info">
-                  <div>
-                    <span class="budget-label">Tổng tiền:</span>
-                    <span class="budget-value" id="result-total-price">93.500đ</span>
-                  </div>
-                  <div>
-                    <span class="budget-label">Ngân sách:</span>
-                    <span class="budget-total" id="result-budget-limit">100.000đ</span>
-                  </div>
-                </div>
-                <div class="progress-bar-custom">
-                  <div class="progress-fill" id="result-progress-fill" style="width: 93.5%"></div>
-                </div>
-                <div class="progress-label small mt-1 text-end" id="result-progress-percent">
-                  Sử dụng 93.5% ngân sách
-                </div>
-              </div>
-
-              <!-- Product Table -->
-              <div class="table-responsive mb-4 border">
-                <table class="table table-menu mb-0">
-                  <thead>
-                    <tr>
-                      <th>Sản phẩm</th>
-                      <th>Số lượng</th>
-                      <th>Đơn giá</th>
-                      <th>Thành tiền</th>
-                    </tr>
-                  </thead>
-                  <tbody id="result-table-body">
-                    <tr>
-                      <td>Thịt heo xay</td>
-                      <td>0.4kg</td>
-                      <td>95.000đ/kg</td>
-                      <td class="fw-bold">38.000đ</td>
-                    </tr>
-                    <tr>
-                      <td>Cà chua</td>
-                      <td>0.5kg</td>
-                      <td>25.000đ/kg</td>
-                      <td class="fw-bold">12.500đ</td>
-                    </tr>
-                    <tr>
-                      <td>Rau muống</td>
-                      <td>1 bó</td>
-                      <td>12.000đ/bó</td>
-                      <td class="fw-bold">12.000đ</td>
-                    </tr>
-                    <tr>
-                      <td>Đậu hũ trắng</td>
-                      <td>4 miếng</td>
-                      <td>5.000đ/miếng</td>
-                      <td class="fw-bold">20.000đ</td>
-                    </tr>
-                    <tr>
-                      <td>Hành lá</td>
-                      <td>1 bó</td>
-                      <td>3.000đ/bó</td>
-                      <td class="fw-bold">3.000đ</td>
-                    </tr>
-                    <tr>
-                      <td>Tỏi</td>
-                      <td>100g</td>
-                      <td>8.000đ/100g</td>
-                      <td class="fw-bold">8.000đ</td>
-                    </tr>
-                    <tr class="total-row">
-                      <td colspan="3">Tổng cộng</td>
-                      <td class="fw-bold">93.500đ</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-              <!-- Verification Badges -->
-              <div class="verification-badges mb-4">
-                <div class="verify-badge">
-                  <i class="bi bi-shield-check"></i> Không vượt ngân sách
-                </div>
-                <div class="verify-badge">
-                  <i class="bi bi-people-fill"></i> Đủ khẩu phần
-                </div>
-              </div>
-
-              <!-- Reason -->
-              <div class="reason-box mb-4">
-                <h6 class="fw-bold mb-2">
-                  <i class="bi bi-lightbulb-fill text-warning"></i> Lý do đề
-                  xuất:
-                </h6>
-                <p class="mb-0 small" id="result-reason">
-                  Thực đơn này dùng 93.500đ/100.000đ, có đạm từ thịt heo xay
-                  và đậu hũ, có rau xanh, phù hợp bữa tối 3 người.
-                </p>
-              </div>
-
-              <div class="menu-footer">
-                <div class="seller-info">
-                  <i class="bi bi-shop"></i>
-                  <span id="result-seller-name">Gian hàng Thực Phẩm Cô Lan</span>
-                </div>
-                <button class="btn btn-success btn-rounded btn-order" id="btn-preorder-trigger" data-bs-toggle="modal"
-                  data-bs-target="#orderModal">
-                  <i class="bi bi-cart-check"></i> Đặt trước thực đơn này
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Data Trust Section -->
-  <section id="data-trust" class="section-padding">
-    <div class="container">
-      <div class="text-center mb-5 reveal">
-        <h2 class="display-5 fw-bold mb-3">Độ chính xác của AI</h2>
-        <p class="lead text-muted">
-          Chợ AI Local không để AI tự quyết định một mình. AI chỉ hiểu nhu
-          cầu, dữ liệu và bộ lọc mới quyết định kết quả cuối cùng.
-        </p>
-      </div>
-      <div class="row g-4">
-        <div class="col-md-6 col-lg-3 reveal">
-          <div class="trust-card">
-            <div class="trust-icon">
-              <i class="bi bi-currency-dollar"></i>
-            </div>
-            <h5 class="fw-bold mb-3">Giá thật</h5>
-            <p class="text-muted mb-0">
-              Giá lấy từ dữ liệu sản phẩm của người bán.
-            </p>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-3 reveal">
-          <div class="trust-card">
-            <div class="trust-icon">
-              <i class="bi bi-box-seam"></i>
-            </div>
-            <h5 class="fw-bold mb-3">Còn hàng thật</h5>
-            <p class="text-muted mb-0">
-              Sản phẩm hết hàng sẽ bị loại khỏi gợi ý.
-            </p>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-3 reveal">
-          <div class="trust-card">
-            <div class="trust-icon">
-              <i class="bi bi-wallet2"></i>
-            </div>
-            <h5 class="fw-bold mb-3">Ngân sách thật</h5>
-            <p class="text-muted mb-0">
-              Tổng tiền được tính lại theo đơn giá hiện tại.
-            </p>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-3 reveal">
-          <div class="trust-card">
-            <div class="trust-icon">
-              <i class="bi bi-receipt"></i>
-            </div>
-            <h5 class="fw-bold mb-3">Đơn đặt trước thật</h5>
-            <p class="text-muted mb-0">
-              Người mua có thể tạo đơn để người bán chuẩn bị hàng.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Seller Section -->
-  <section id="seller" class="section-padding bg-section">
-    <div class="container">
-      <div class="text-center mb-5 reveal">
-        <h2 class="display-5 fw-bold mb-3">
-          Từ bán hàng thủ công đến ra quyết định bằng dữ liệu
-        </h2>
-      </div>
-      <div class="row">
-        <!-- Column 1 (Left): Value points for sellers -->
-        <div class="col-lg-3 mb-4 mb-lg-0 reveal">
-          <div class="seller-dashboard h-100 d-flex flex-column">
-            <div class="dashboard-header bg-success bg-opacity-75 text-white py-2 px-3">
-              <h6 class="mb-0 fw-bold" style="font-size: 0.85rem;">
-                <i class="bi bi-gift-fill me-1"></i> Giá trị cho người bán
-              </h6>
-            </div>
-            <div class="dashboard-body p-3 d-flex flex-column justify-content-between flex-grow-1">
-              <div class="value-points h-100 d-flex flex-column justify-content-between py-2 mb-0">
-                <div class="value-point">
-                  <div class="value-icon" style="width: 40px; height: 40px; border-radius: 8px;">
-                    <i class="bi bi-graph-up-arrow" style="font-size: 1.2rem;"></i>
-                  </div>
-                  <div class="value-content">
-                    <h6 class="fw-bold mb-1" style="font-size: 0.8rem;">Sản phẩm bán chạy</h6>
-                    <p class="text-muted small mb-0" style="font-size: 0.72rem; line-height: 1.35;">
-                      Phân tích dữ liệu thực tế từ các đơn đặt trước hàng ngày để biết mặt hàng nào đang được ưa chuộng.
-                    </p>
-                  </div>
-                </div>
-                <div class="value-point">
-                  <div class="value-icon" style="width: 40px; height: 40px; border-radius: 8px;">
-                    <i class="bi bi-exclamation-triangle" style="font-size: 1.2rem;"></i>
-                  </div>
-                  <div class="value-content">
-                    <h6 class="fw-bold mb-1" style="font-size: 0.8rem;">Cảnh báo tồn kho</h6>
-                    <p class="text-muted small mb-0" style="font-size: 0.72rem; line-height: 1.35;">
-                      Hệ thống tự động thông báo kịp thời các mặt hàng sắp hết hàng để chủ động nhập sạp.
-                    </p>
-                  </div>
-                </div>
-                <div class="value-point">
-                  <div class="value-icon" style="width: 40px; height: 40px; border-radius: 8px;">
-                    <i class="bi bi-lightbulb" style="font-size: 1.2rem;"></i>
-                  </div>
-                  <div class="value-content">
-                    <h6 class="fw-bold mb-1" style="font-size: 0.8rem;">Đề xuất bán kèm</h6>
-                    <p class="text-muted small mb-0" style="font-size: 0.72rem; line-height: 1.35;">
-                      Gợi ý các combo sạp kết hợp thông minh (CLHUN) mang lại tỷ lệ lợi nhuận tối ưu.
-                    </p>
-                  </div>
-                </div>
-                <div class="value-point">
-                  <div class="value-icon" style="width: 40px; height: 40px; border-radius: 8px;">
-                    <i class="bi bi-cash-stack" style="font-size: 1.2rem;"></i>
-                  </div>
-                  <div class="value-content">
-                    <h6 class="fw-bold mb-1" style="font-size: 0.8rem;">D&#242;ng ti&#7873;n t&#7913;c th&#236;</h6>
-                    <p class="text-muted small mb-0" style="font-size: 0.72rem; line-height: 1.35;">
-                      Theo d&#245;i doanh s&#7889;, d&#242;ng ti&#7873;n chi ti&#7871;t v&#224; ch&#237;nh x&#225;c theo
-                      th&#7901;i gian th&#7921;c.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Column 2 (Right): Seller Dashboard -->
-        <div class="col-lg-9 reveal">
-          <div class="seller-dashboard h-100 d-flex flex-column">
-            <div class="dashboard-header bg-success bg-opacity-75 text-white py-2 px-3">
-              <h5 class="mb-0 fw-bold" style="font-size: 0.95rem;">
-                <i class="bi bi-speedometer2 me-1"></i> Seller Dashboard — Thịt Sạch Cô Vy
-              </h5>
-            </div>
-            <div class="dashboard-body flex-grow-1 p-3 pb-0 d-flex flex-column">
-              <!-- Metrics Row (Optimized to col-lg-3 for single line on desktop) -->
-              <div class="row g-3 mb-3 flex-shrink-0">
-                <div class="col-lg-3 col-6">
-                  <div class="metric-card-new p-2" style="gap: 0.5rem;">
-                    <div class="metric-icon" style="width: 35px; height: 35px; border-radius: 8px;"><i class="bi bi-box"
-                        style="font-size: 1rem;"></i></div>
-                    <div class="metric-data">
-                      <div class="metric-value" id="totalProducts">32</div>
-                      <div class="metric-label" style="font-size: 0.68rem; margin-top: 0;">Tổng sản phẩm</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-3 col-6">
-                  <div class="metric-card-new p-2" style="gap: 0.5rem;">
-                    <div class="metric-icon" style="width: 35px; height: 35px; border-radius: 8px;"><i
-                        class="bi bi-cart" style="font-size: 1rem;"></i></div>
-                    <div class="metric-data">
-                      <div class="metric-value" id="todayOrders">7</div>
-                      <div class="metric-label" style="font-size: 0.68rem; margin-top: 0;">Đơn hôm nay</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-3 col-6">
-                  <div class="metric-card-new p-2" style="gap: 0.5rem;">
-                    <div class="metric-icon" style="width: 35px; height: 35px; border-radius: 8px;"><i
-                        class="bi bi-cash" style="font-size: 1rem;"></i></div>
-                    <div class="metric-data">
-                      <div class="metric-value" id="todayRevenue">
-                        682.000đ
-                      </div>
-                      <div class="metric-label" style="font-size: 0.68rem; margin-top: 0;">Doanh thu hôm nay</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-3 col-6">
-                  <div class="metric-card-new metric-card-danger p-2" style="gap: 0.5rem;">
-                    <div class="metric-icon" style="width: 35px; height: 35px; border-radius: 8px;"><i
-                        class="bi bi-exclamation-triangle" style="font-size: 1rem;"></i></div>
-                    <div class="metric-data">
-                      <div class="metric-value text-danger" id="lowStock">4</div>
-                      <div class="metric-label" style="font-size: 0.68rem; margin-top: 0;">Sản phẩm sắp hết</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Product lists row (Bán chạy & Sắp hết hàng) -->
-              <div class="row g-3 mb-3 flex-shrink-0">
-                <div class="col-md-6">
-                  <div class="dashboard-list p-2" style="border-radius: 10px;">
-                    <h6 class="fw-bold mb-2" style="font-size: 0.8rem;">
-                      <i class="bi bi-trophy text-warning me-1"></i> Bán chạy
-                    </h6>
-                    <ol class="list-styled mb-0" style="font-size: 0.72rem;">
-                      <li style="padding: 0.3rem 0;">Thịt ba chỉ heo</li>
-                      <li style="padding: 0.3rem 0;">Sườn non heo</li>
-                      <li style="padding: 0.3rem 0;">Thịt heo xay</li>
-                      <li style="padding: 0.3rem 0; border-bottom: 0;">Thịt bò phi lê</li>
-                    </ol>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="dashboard-list p-2" style="border-radius: 10px;">
-                    <h6 class="fw-bold mb-2" style="font-size: 0.8rem;">
-                      <i class="bi bi-exclamation-circle text-danger me-1"></i> Sắp hết hàng
-                    </h6>
-                    <ul class="list-styled mb-0" style="font-size: 0.72rem;">
-                      <li style="padding: 0.3rem 0;"><span class="badge bg-danger badge-sm"
-                          style="font-size: 0.6rem; padding: 0.15rem 0.3rem;">1.5kg</span> Sườn sụn heo</li>
-                      <li style="padding: 0.3rem 0;"><span class="badge bg-danger badge-sm"
-                          style="font-size: 0.6rem; padding: 0.15rem 0.3rem;">2kg</span> Thịt nạc vai</li>
-                      <li style="padding: 0.3rem 0;"><span class="badge bg-warning badge-sm"
-                          style="font-size: 0.6rem; padding: 0.15rem 0.3rem;">3 vỉ</span> Thịt ba chỉ bò</li>
-                      <li style="padding: 0.3rem 0; border-bottom: 0;"><span class="badge bg-warning badge-sm"
-                          style="font-size: 0.6rem; padding: 0.15rem 0.3rem;">2.5kg</span> Thịt đùi heo</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Simulated feed and AI report side-by-side (Balanced height and stretched to bottom) -->
-              <div class="row g-3 mb-0 flex-grow-1 align-items-stretch">
-                <!-- Hoạt động Đơn Hàng Gần Đây -->
-                <div class="col-md-6 d-flex">
-                  <div class="card w-100 border-0"
-                    style="background: var(--section-bg); border-top-left-radius: 12px; border-top-right-radius: 12px; border-bottom-left-radius: 0; border-bottom-right-radius: 0; border: 1px solid rgba(0,0,0,0.05) !important; border-bottom: 0 !important; display: flex; flex-direction: column;">
-                    <div class="card-header bg-success bg-opacity-75 text-white py-2 px-3"
-                      style="border-top-left-radius: 12px; border-top-right-radius: 12px; border-bottom: 0;">
-                      <h6 class="mb-0 fw-bold" style="font-size: 0.8rem;">
-                        Hoạt động Đơn Hàng Gần Đây
-                      </h6>
-                    </div>
-                    <div class="card-body p-3 flex-grow-1" style="max-height: 290px; overflow-y: auto;">
-                      <div class="recent-orders-list" id="recent-orders-container">
-                        <!-- Initial simulated orders -->
-                        <div
-                          class="order-item-simulation py-2 border-bottom d-flex align-items-center justify-content-between">
-                          <div class="order-details-left min-w-0">
-                            <div class="fw-bold text-truncate text-dark" style="font-size: 0.8rem;">Nguyễn Thị H.</div>
-                             <div class="text-muted text-truncate" style="font-size: 0.72rem;">0.5kg đùi gà tỏi tươi</div>
-                          </div>
-                          <div class="order-details-right text-end flex-shrink-0 ps-2">
-                            <div class="fw-bold text-success" style="font-size: 0.8rem;">45.000đ</div>
-                            <div class="text-muted small" style="font-size: 0.68rem;">Vừa xong</div>
-                          </div>
-                        </div>
-                        <div
-                          class="order-item-simulation py-2 border-bottom d-flex align-items-center justify-content-between">
-                          <div class="order-details-left min-w-0">
-                            <div class="fw-bold text-truncate text-dark" style="font-size: 0.8rem;">Vũ Thị L.</div>
-                            <div class="text-muted text-truncate" style="font-size: 0.72rem;">Combo ba chỉ lợn nướng, 1 bó xà lách</div>
-                          </div>
-                          <div class="order-details-right text-end flex-shrink-0 ps-2">
-                            <div class="fw-bold text-success" style="font-size: 0.8rem;">87.000đ</div>
-                            <div class="text-muted small" style="font-size: 0.68rem;">2 phút trước</div>
-                          </div>
-                        </div>
-                        <div
-                          class="order-item-simulation py-2 border-bottom d-flex align-items-center justify-content-between">
-                          <div class="order-details-left min-w-0">
-                            <div class="fw-bold text-truncate text-dark" style="font-size: 0.8rem;">Hoàng Anh T.</div>
-                            <div class="text-muted text-truncate" style="font-size: 0.72rem;">1.2kg sườn heo non sạch</div>
-                          </div>
-                          <div class="order-details-right text-end flex-shrink-0 ps-2">
-                            <div class="fw-bold text-success" style="font-size: 0.8rem;">168.000đ</div>
-                            <div class="text-muted small" style="font-size: 0.68rem;">4 phút trước</div>
-                          </div>
-                        </div>
-                        <div class="order-item-simulation py-2 d-flex align-items-center justify-content-between">
-                          <div class="order-details-left min-w-0">
-                            <div class="fw-bold text-truncate text-dark" style="font-size: 0.8rem;">Lê Văn T.</div>
-                             <div class="text-muted text-truncate" style="font-size: 0.72rem;">Combo ba chỉ heo và sườn sụn nướng</div>
-                          </div>
-                          <div class="order-details-right text-end flex-shrink-0 ps-2">
-                            <div class="fw-bold text-success" style="font-size: 0.8rem;">108.000đ</div>
-                            <div class="text-muted small" style="font-size: 0.68rem;">6 phút trước</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Gợi Ý Chiến Lược Kinh Doanh (SellerAIInsights) -->
-                <div class="col-md-6 d-flex">
-                  <div class="card w-100 border-0"
-                    style="background: var(--section-bg); border-top-left-radius: 12px; border-top-right-radius: 12px; border-bottom-left-radius: 0; border-bottom-right-radius: 0; border: 1px solid rgba(0,0,0,0.05) !important; border-bottom: 0 !important; display: flex; flex-direction: column;">
-                    <div
-                      class="card-header d-flex justify-content-between align-items-center bg-success bg-opacity-75 text-white py-2 px-3"
-                      style="border-top-left-radius: 12px; border-top-right-radius: 12px; border-bottom: 0;">
-                      <h6 class="mb-0 fw-bold" style="font-size: 0.8rem;">
-                        <i class="bi bi-lightbulb-fill text-warning me-1"></i> Gợi Ý Chiến Lược
-                      </h6>
-                      <span class="badge bg-white text-success fw-bold small"
-                        style="font-size: 0.58rem; border: 1px solid rgba(25, 135, 84, 0.3); padding: 0.15rem 0.3rem;">AI
-                        REPORT</span>
-                    </div>
-                    <div class="card-body p-3 flex-grow-1" style="max-height: 290px; overflow-y: auto;">
-                      <div class="insights-list">
-                        <!-- Card 1 -->
-                        <div class="insight-item-card p-2 mb-2"
-                          style="border: 1px solid #e2e8f0; border-left: 4px solid #198754; border-radius: 8px; background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.02);">
-                          <h6 class="fw-bold mb-1"
-                            style="font-size: 0.75rem; color: #1e3a1e; display: flex; align-items: center; gap: 0.2rem;">
-                            <span>🧺</span> Đề Xuất Gói Combo CLHUN
-                          </h6>
-                          <p class="mb-0 text-muted" style="font-size: 0.68rem; line-height: 1.35;">
-                            Thuật toán phân tích thấy có <b>70% khách hàng mua Thịt ba chỉ heo sẽ chọn mua thêm Sườn sụn heo</b> để làm món nướng/kho gia đình. Hãy đóng gói sẵn <b>"Combo Ba Chỉ & Sườn Sụn"</b> với giá ưu đãi.
-                          </p>
-                        </div>
-                        <!-- Card 2 -->
-                        <div class="insight-item-card p-2 mb-2"
-                          style="border: 1px solid #e2e8f0; border-left: 4px solid #198754; border-radius: 8px; background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.02);">
-                          <h6 class="fw-bold mb-1"
-                            style="font-size: 0.75rem; color: #1e3a1e; display: flex; align-items: center; gap: 0.2rem;">
-                            <span>🥩</span> Giải Phóng Hàng Tồn Kho
-                          </h6>
-                          <p class="mb-0 text-muted" style="font-size: 0.68rem; line-height: 1.35;">
-                            Mặt hàng <b>"Sườn non heo"</b> hiện tại còn tồn kho 8kg có xu hướng giảm sức mua vào cuối ngày. Hệ thống đã <b>tự động đẩy mạnh sườn non vào các thực đơn gợi ý bữa tối gia đình dưới 150k</b>.
-                          </p>
-                        </div>
-                        <!-- Card 3 -->
-                        <div class="insight-item-card p-2"
-                          style="border: 1px solid #e2e8f0; border-left: 4px solid #198754; border-radius: 8px; background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.02);">
-                          <h6 class="fw-bold mb-1"
-                            style="font-size: 0.75rem; color: #1e3a1e; display: flex; align-items: center; gap: 0.2rem;">
-                            <span>🚜</span> Tối Ưu Hóa Nhập Hàng
-                          </h6>
-                          <p class="mb-0 text-muted" style="font-size: 0.68rem; line-height: 1.35;">
-                            Phân tích Utility Score ghi nhận tổ hợp chất đạm <b>{Ba chỉ heo, Sườn sụn}</b> mang lại tỷ lệ sinh lời cao nhất tuần qua. Khuyến nghị tăng lượng nhập sạp thêm <b>15%</b> cho ngày mai.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Roadmap Section -->
-  <section id="roadmap" class="section-padding bg-section">
-          <div class="container">
-            <div class="text-center mb-5 reveal">
-              <h2 class="display-5 fw-bold mb-3">Lộ trình phát triển</h2>
-            </div>
-            <div class="roadmap-timeline">
-              <div class="row g-4">
-                <div class="col-lg-4 reveal">
-                  <div class="roadmap-card-new roadmap-now">
-                    <div class="roadmap-status">
-                      <i class="bi bi-play-circle-fill"></i>
-                      <span>Now / MVP</span>
-                    </div>
-                    <div class="roadmap-period">0–6 tháng</div>
-                    <h5 class="fw-bold mb-3">Giai đoạn 1: MVP</h5>
-                    <ul class="roadmap-list">
-                      <li><i class="bi bi-check2"></i> Hoàn thiện MVP</li>
-                      <li><i class="bi bi-check2"></i> Mô phỏng quanh HUIT</li>
-                      <li>
-                        <i class="bi bi-check2"></i> Kiểm chứng nhu cầu người mua
-                      </li>
-                      <li>
-                        <i class="bi bi-check2"></i> Đo khả năng cập nhật tồn kho
-                        của người bán
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="col-lg-4 reveal">
-                  <div class="roadmap-card-new roadmap-next">
-                    <div class="roadmap-status">
-                      <i class="bi bi-arrow-right-circle"></i>
-                      <span>Next / Pilot</span>
-                    </div>
-                    <div class="roadmap-period">6–12 tháng</div>
-                    <h5 class="fw-bold mb-3">Giai đoạn 2: Mở rộng</h5>
-                    <ul class="roadmap-list">
-                      <li><i class="bi bi-circle"></i> Kết nối gian hàng thật</li>
-                      <li><i class="bi bi-circle"></i> Đo hành vi người dùng</li>
-                      <li><i class="bi bi-circle"></i> Cải thiện dashboard</li>
-                      <li><i class="bi bi-circle"></i> Tối ưu cơ chế gợi ý</li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="col-lg-4 reveal">
-                  <div class="roadmap-card-new roadmap-later">
-                    <div class="roadmap-status">
-                      <i class="bi bi-rocket"></i>
-                      <span>Later / Scale</span>
-                    </div>
-                    <div class="roadmap-period">12–24 tháng</div>
-                    <h5 class="fw-bold mb-3">Giai đoạn 3: Toàn diện</h5>
-                    <ul class="roadmap-list">
-                      <li><i class="bi bi-circle"></i> Phát triển mobile app</li>
-                      <li>
-                        <i class="bi bi-circle"></i> Bản đồ gian hàng gần nhất
-                      </li>
-                      <li><i class="bi bi-circle"></i> Thanh toán điện tử</li>
-                      <li>
-                        <i class="bi bi-circle"></i> Kết nối giao hàng bên thứ ba
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Team Section -->
-        <section id="team" class="section-padding">
-          <div class="container">
-            <div class="text-center mb-5 reveal">
-              <div class="badge badge-team mb-3">
-                <i class="bi bi-mortarboard"></i> HUIT EMART LOCAL
-              </div>
-              <h2 class="display-5 fw-bold mb-3">Đội ngũ phát triển</h2>
-            </div>
-            <div class="row g-4 justify-content-center">
-              <div class="col-md-6 col-lg-4 reveal">
-                <div class="team-card-new">
-                  <div class="team-avatar-new">
-                    <img src="https://avatars.githubusercontent.com/u/208788489?v=4" alt="Trần Gia Bảo" />
-                  </div>
-                  <h5 class="fw-bold mb-1">Trần Gia Bảo</h5>
-                  <div class="team-badge-role">AI Engineer & Developer</div>
-                  <p class="team-role-sub mb-3">Sinh viên K15 HUIT</p>
-                  <p class="team-description small text-muted mb-3">
-                    Kiến trúc sư hệ thống, chịu trách nhiệm tích hợp mô hình ngôn
-                    ngữ lớn (LLM), xử lý ngôn ngữ tự nhiên tiếng Việt và phân tích
-                    cấu trúc nhu cầu.
-                  </p>
-                  <div class="team-socials">
-                    <a href="https://www.linkedin.com/in/gibor06/" class="social-icon" title="LinkedIn" target="_blank"
-                      rel="noopener noreferrer"><i class="bi bi-linkedin"></i></a>
-                    <a href="https://github.com/gibor06" class="social-icon" title="GitHub" target="_blank"
-                      rel="noopener noreferrer"><i class="bi bi-github"></i></a>
-                    <a href="mailto:gibor06.dev@gmail.com" class="social-icon" title="Email"><i
-                        class="bi bi-envelope"></i></a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-6 col-lg-4 reveal">
-                <div class="team-card-new">
-                  <div class="team-avatar-new">
-                    <img src="assets/team/nguyen-thi-phuong-nhung.jpg" alt="Nguyễn Thị Phương Nhung" />
-                  </div>
-                  <h5 class="fw-bold mb-1">Nguyễn Thị Phương Nhung</h5>
-                  <div class="team-badge-role">Project Leader & BA</div>
-                  <p class="team-role-sub mb-3">Sinh viên K15 HUIT</p>
-                  <p class="team-description small text-muted mb-3">
-                    Lập kế hoạch phát triển, phân tích nghiệp vụ thực tế tại các chợ
-                    địa phương và kết nối giải pháp với nhu cầu thực của tiểu
-                    thương.
-                  </p>
-                  <div class="team-socials">
-                    <a href="https://www.linkedin.com/in/ph%C6%B0%C6%A1ng-nhung-03024b404" class="social-icon"
-                      title="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin"></i></a>
-                    <a href="https://github.com/pon0212" class="social-icon" title="GitHub" target="_blank"
-                      rel="noopener noreferrer"><i class="bi bi-github"></i></a>
-                    <a href="mailto:pnhung0212@gmail.com" class="social-icon" title="Email"><i
-                        class="bi bi-envelope"></i></a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-6 col-lg-4 reveal">
-                <div class="team-card-new">
-                  <div class="team-avatar-new">
-                    <img src="https://avatars.githubusercontent.com/u/202115483?v=4" alt="Phạm Triệu Tấn Phúc" />
-                  </div>
-                  <h5 class="fw-bold mb-1">Phạm Triệu Tấn Phúc</h5>
-                  <div class="team-badge-role">Backend Developer</div>
-                  <p class="team-role-sub mb-3">Sinh viên K16 HUIT</p>
-                  <p class="team-description small text-muted mb-3">
-                    Lập trình ứng dụng phía máy chủ, thiết kế cơ sở dữ liệu sản
-                    phẩm, quản trị kho hàng và phát triển bộ lọc ràng buộc giá thật
-                    (Rule Layer).
-                  </p>
-                  <div class="team-socials">
-                    <a href="https://github.com/phucpham161027" class="social-icon" title="GitHub" target="_blank"
-                      rel="noopener noreferrer"><i class="bi bi-github"></i></a>
-                    <a href="mailto:phamtrieutanphuc@gmail.com" class="social-icon" title="Email"><i
-                        class="bi bi-envelope"></i></a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6 col-lg-4 reveal">
-                <div class="team-card-new">
-                  <div class="team-avatar-new">
-                    <img src="assets/team/vo-hong-bich-phuong.png" alt="Võ Hồng Bích Phượng" />
-                  </div>
-                  <h5 class="fw-bold mb-1">Võ Hồng Bích Phượng</h5>
-                  <div class="team-badge-role">Frontend & UI/UX Designer</div>
-                  <p class="team-role-sub mb-3">Sinh viên K16 HUIT</p>
-                  <p class="team-description small text-muted mb-3">
-                    Thiết kế trải nghiệm người dùng trực quan, xây dựng giao diện
-                    tương tác Responsive trên thiết bị di động, tối ưu hóa tốc độ
-                    tải trang.
-                  </p>
-                  <div class="team-socials">
-                    <a href="" class="social-icon" title="GitHub"><i class="bi bi-github"></i></a>
-                    <a href="mailto:pizzakuteyt@gmail.com" class="social-icon" title="Email"><i
-                        class="bi bi-envelope"></i></a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6 col-lg-4 reveal">
-                <div class="team-card-new">
-                  <div class="team-avatar-new">
-                    <img src="https://avatars.githubusercontent.com/u/291101981?v=4" alt="Huỳnh Thị Kim Phụng" />
-                  </div>
-                  <h5 class="fw-bold mb-1">Huỳnh Thị Kim Phụng</h5>
-                  <div class="team-badge-role">Data Analyst & Marketing</div>
-                  <p class="team-role-sub mb-3">Sinh viên K16 HUIT</p>
-                  <p class="team-description small text-muted mb-3">
-                    Khảo sát thị trường, thu thập dữ liệu giá bán từ tiểu thương tại
-                    các chợ đầu mối và xây dựng phương án mở rộng dịch vụ thương mại
-                    địa phương.
-                  </p>
-                  <div class="team-socials">
-                    <a href="" class="social-icon" title="GitHub"><i class="bi bi-github"></i></a>
-                    <a href="mailto:huynhthikimphung130427@gmail.com" class="social-icon" title="Email"><i
-                        class="bi bi-envelope"></i></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="row justify-content-center mb-5">
-            <div class="col-lg-10">
-              <div class="team-photo-card reveal">
-                <img src="assets/team/team-photo.jpg" alt="Ảnh nhóm Chợ AI Local" />
-                <div class="team-photo-caption">
-                  <span>HUIT EMART LOCAL</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Final CTA -->
-        <section id="contact" class="section-padding cta-section">
-          <div class="container text-center reveal">
-            <h2 class="display-4 fw-bold text-white mb-4">Chợ AI Local</h2>
-            <p class="lead text-white mb-5">
-              Chợ AI Local giúp người mua tìm thực đơn tự nấu theo ngân sách từ sản
-              phẩm thật của gian hàng địa phương, đồng thời hỗ trợ tiểu thương quản
-              lý sản phẩm, tồn kho và đơn đặt trước bằng dữ liệu.
-            </p>
-            <div class="d-flex justify-content-center gap-3 flex-wrap">
-              <a href="#demo" class="btn btn-light btn-lg btn-rounded">
-                <i class="bi bi-arrow-repeat"></i> Xem lại demo
-              </a>
-              <a href="mailto:gibor06.dev@gmail.com" class="btn btn-outline-light btn-lg btn-rounded">
-                <i class="bi bi-envelope"></i> Liên hệ đội thi
-              </a>
-            </div>
-          </div>
-        </section>
-
-        <!-- Footer -->
-        <footer class="bg-dark text-white py-4">
-          <div class="container text-center">
-            <p class="mb-0">
-              © 2026 Chợ AI Local — Đi chợ thông minh, ăn ngon đúng ngân sách.
-            </p>
-          </div>
-        </footer>
-
-        <!-- Back to Top Button -->
-        <button id="backToTop" class="btn btn-primary btn-floating" title="Lên đầu trang">
-          <i class="bi bi-arrow-up"></i>
+  <body>
+    <!-- Header -->
+    <nav
+      class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm"
+    >
+      <div class="container">
+        <a class="navbar-brand fw-bold text-primary" href="#home">
+          <img
+            src="assets/team/logo.png"
+            alt="Chợ AI Local"
+            width="28"
+            height="28"
+            class="me-2 align-middle navbar-brand-logo"
+          />
+          Chợ AI Local
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
         </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#problem">
+                <span class="lang-vi">Vấn đề</span><span class="lang-en">Problems</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#why-now">
+                <span class="lang-vi">Thời điểm</span><span class="lang-en">Why Now</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#solution">
+                <span class="lang-vi">Giải pháp</span><span class="lang-en">Solution</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#different">
+                <span class="lang-vi">Công nghệ</span><span class="lang-en">Technology</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#demo">
+                <span class="lang-vi">Demo AI</span><span class="lang-en">AI Demo</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#business">
+                <span class="lang-vi">Kinh doanh</span><span class="lang-en">Business</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#roadmap">
+                <span class="lang-vi">Lộ trình</span><span class="lang-en">Roadmap</span>
+              </a>
+            </li>
+          </ul>
+          <!-- Theme & Language Toggles -->
+          <div class="d-flex align-items-center ms-lg-3 gap-2 mt-3 mt-lg-0">
+            <button class="btn btn-outline-success btn-sm px-2 py-1" id="theme-toggle" title="Đổi giao diện / Toggle Theme">
+              <i class="ph ph-moon" id="theme-icon" style="font-size: 1.1rem; vertical-align: middle;"></i>
+            </button>
+            <button class="btn btn-outline-success btn-sm px-2 py-1" id="lang-toggle" title="Đổi ngôn ngữ / Change Language">
+              <i class="ph ph-translate" style="font-size: 1.1rem; vertical-align: middle;"></i>
+              <span class="ms-1 fw-bold" style="font-size: 0.8rem;" id="lang-toggle-text">EN</span>
+            </button>
+          </div>
+          <a href="#demo" class="btn btn-primary btn-rounded ms-3">
+            <span class="lang-vi">Xem demo</span><span class="lang-en">View Demo</span>
+          </a>
+        </div>
+      </div>
+    </nav>
 
-        <!-- Order Modal -->
-        <div class="modal fade" id="orderModal" tabindex="-1" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-              <div class="modal-header border-0 pb-0">
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+      <div class="hero-bg-decoration"></div>
+      <div class="container position-relative">
+        <div class="row align-items-center min-vh-80">
+          <div class="col-lg-6 mb-5 mb-lg-0 reveal">
+            <div class="badge badge-mvp mb-3">
+              <i class="ph ph-lightbulb"></i>
+              <span class="lang-vi">Chợ địa phương thông minh với AI</span>
+              <span class="lang-en">Smart local market with AI</span>
+            </div>
+            <h1 class="display-3 fw-bold text-dark mb-3">
+              <span class="lang-vi">Chợ AI Local</span>
+              <span class="lang-en">AI Local Market</span>
+            </h1>
+            <h2 class="h3 text-dark mb-4">
+              <span class="lang-vi">Biến một câu hỏi "hôm nay ăn gì?" thành thực đơn đúng ngân sách.</span>
+              <span class="lang-en">Turn the daily question "What to eat today?" into a budget-friendly menu.</span>
+            </h2>
+            <p class="lead text-muted mb-4">
+              <span class="lang-vi">Chỉ cần nhập nhu cầu bằng tiếng Việt, hệ thống sẽ phân tích ngân sách, số người và loại bữa ăn để đề xuất thực đơn phù hợp từ giá bán và sản phẩm có thật tại các gian hàng địa phương.</span>
+              <span class="lang-en">Just input your request in Vietnamese; the system will analyze the budget, portions, and meal type to suggest a suitable menu using real items and prices from local stalls.</span>
+            </p>
+            <div class="d-flex flex-wrap gap-3 mb-4">
+              <a href="#demo" class="btn btn-primary btn-lg btn-rounded">
+                <i class="ph ph-play-circle"></i>
+                <span class="lang-vi">Xem demo thực đơn</span>
+                <span class="lang-en">View Menu Demo</span>
+              </a>
+              <a
+                href="#solution"
+                class="btn btn-outline-primary btn-lg btn-rounded"
+              >
+                <span class="lang-vi">Khám phá cách hoạt động</span>
+                <span class="lang-en">Discover how it works</span>
+              </a>
+            </div>
+            <div class="trust-badges">
+              <div class="trust-badge">
+                <i class="ph-fill ph-check-circle text-success"></i>
+                <span class="lang-vi">Không vượt ngân sách</span>
+                <span class="lang-en">Within budget</span>
               </div>
-              <div class="modal-body text-center p-5">
-                <div class="success-icon mb-4">
-                  <i class="bi bi-check-circle-fill"></i>
+              <div class="trust-badge">
+                <i class="ph-fill ph-check-circle text-success"></i>
+                <span class="lang-vi">Đặt trước tại gian hàng</span>
+                <span class="lang-en">Pre-order at stalls</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 reveal">
+            <div class="ai-workflow-card">
+              <div class="workflow-layer layer-1">
+                <div class="layer-label">
+                  <span class="lang-vi">Người mua nhập</span>
+                  <span class="lang-en">Buyer inputs</span>
                 </div>
-                <h4 class="fw-bold mb-3">Đặt trước thành công!</h4>
-                <div class="order-details">
-                  <div class="detail-row">
-                    <span class="detail-label">Mã đơn:</span>
-                    <span class="detail-value" id="modal-order-id">ORD-DEMO-0001</span>
+                <div class="layer-content">
+                  <i class="ph ph-chat-text"></i>
+                  <span class="lang-vi">"100k cho bữa tối 3 người"</span>
+                  <span class="lang-en">"100k for dinner for 3 people"</span>
+                </div>
+              </div>
+              <div class="workflow-arrow">
+                <i class="ph ph-arrow-down"></i>
+              </div>
+              <div class="workflow-layer layer-2">
+                <div class="layer-label">
+                  <i class="ph ph-cpu"></i>
+                  <span class="lang-vi">AI hiểu nhu cầu</span>
+                  <span class="lang-en">AI parses intent</span>
+                </div>
+                <div class="layer-content parsed-data">
+                  <div class="parsed-item">
+                    <span class="label">
+                      <span class="lang-vi">Ngân sách:</span>
+                      <span class="lang-en">Budget:</span>
+                    </span>
+                    <span class="value">
+                      <span class="lang-vi">100.000đ</span>
+                      <span class="lang-en">100,000 VND</span>
+                    </span>
                   </div>
-                  <div class="detail-row">
-                    <span class="detail-label">Thực đơn:</span>
-                    <span class="detail-value" id="modal-order-title">Thực đơn bữa tối 3 người: Thịt bằm sốt cà</span>
+                  <div class="parsed-item">
+                    <span class="label">
+                      <span class="lang-vi">Số người:</span>
+                      <span class="lang-en">People:</span>
+                    </span>
+                    <span class="value">3</span>
                   </div>
-                  <div class="detail-row">
-                    <span class="detail-label">Tổng tiền:</span>
-                    <span class="detail-value fw-bold text-success" id="modal-order-price">93.500đ</span>
+                  <div class="parsed-item">
+                    <span class="label">
+                      <span class="lang-vi">Loại bữa:</span>
+                      <span class="lang-en">Meal type:</span>
+                    </span>
+                    <span class="value">
+                      <span class="lang-vi">Bữa tối</span>
+                      <span class="lang-en">Dinner</span>
+                    </span>
                   </div>
-                  <div class="detail-row">
-                    <span class="detail-label">Nhận tại:</span>
-                    <span class="detail-value" id="modal-order-seller">Gian hàng Thực Phẩm Cô Lan</span>
+                </div>
+              </div>
+              <div class="workflow-arrow">
+                <i class="ph ph-arrow-down"></i>
+              </div>
+              <div class="workflow-layer layer-3">
+                <div class="layer-label">
+                  <span class="lang-vi">Kết quả</span>
+                  <span class="lang-en">Output</span>
+                </div>
+                <div class="layer-content result-content">
+                  <div class="result-title">
+                    <i class="ph-fill ph-check-circle text-success"></i>
+                    <span class="lang-vi">"Thực đơn bữa tối 3 người: Thịt bằm sốt cà"</span>
+                    <span class="lang-en">"Dinner for 3 people: Minced pork with tomato sauce"</span>
                   </div>
-                  <div class="detail-row">
-                    <span class="detail-label">Thời gian nhận:</span>
-                    <span class="detail-value" id="modal-order-time">17:30 hôm nay</span>
-                  </div>
-                  <div class="detail-row">
-                    <span class="detail-label">Trạng thái:</span>
-                    <span class="badge bg-warning">Chờ người bán xác nhận</span>
+                  <div class="result-price">
+                    <span class="price-value">
+                      <span class="lang-vi">93.500đ</span>
+                      <span class="lang-en">93,500 VND</span>
+                    </span>
+                    <span class="price-total">
+                      <span class="lang-vi">/ 100.000đ</span>
+                      <span class="lang-en">/ 100,000 VND</span>
+                    </span>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
+    </section>
 
-        <!-- Bootstrap 5 JS -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Custom JS -->
-        <script src="js/main.js"></script>
-</body>
+    <!-- Problem Section -->
+    <section id="problem" class="section-padding bg-section">
+      <div class="container">
+        <div class="text-center mb-5 reveal">
+          <h2 class="display-5 fw-bold mb-3">
+            <span class="lang-vi">Một nhu cầu nhỏ, lặp lại mỗi ngày</span>
+            <span class="lang-en">A small, daily recurring need</span>
+          </h2>
+          <p class="lead text-muted">
+            <span class="lang-vi">Người mua quyết định nhanh hơn, tiểu thương bán hàng thông minh hơn.</span>
+            <span class="lang-en">Buyers decide faster, local merchants sell smarter.</span>
+          </p>
+        </div>
+        <div class="row g-4 mb-5">
+          <div class="col-md-6 col-lg-3 reveal">
+            <div class="feature-card text-center h-100">
+              <div class="icon-box mb-3">
+                <i class="ph ph-clock"></i>
+              </div>
+              <h5 class="fw-bold mb-3">
+                <span class="lang-vi">Mất thời gian chọn món</span>
+                <span class="lang-en">Time wasted choosing dishes</span>
+              </h5>
+              <p class="text-muted">
+                <span class="lang-vi">Người mua thường mất nhiều thời gian suy nghĩ hôm nay ăn gì, mua gì cho đủ bữa.</span>
+                <span class="lang-en">Buyers often spend too much time thinking about what to cook and buy for a meal.</span>
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 reveal">
+            <div class="feature-card text-center h-100">
+              <div class="icon-box mb-3">
+                <i class="ph ph-wallet"></i>
+              </div>
+              <h5 class="fw-bold mb-3">
+                <span class="lang-vi">Khó cân đối ngân sách</span>
+                <span class="lang-en">Hard to manage budget</span>
+              </h5>
+              <p class="text-muted">
+                <span class="lang-vi">Cần tự tính số người ăn, khẩu phần, giá tiền và tổng chi phí.</span>
+                <span class="lang-en">Need to manually calculate portion sizes, pricing, and total costs.</span>
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 reveal">
+            <div class="feature-card text-center h-100">
+              <div class="icon-box mb-3">
+                <i class="ph ph-storefront"></i>
+              </div>
+              <h5 class="fw-bold mb-3">
+                <span class="lang-vi">Tiểu thương thiếu công cụ số</span>
+                <span class="lang-en">Merchants lack digital tools</span>
+              </h5>
+              <p class="text-muted">
+                <span class="lang-vi">Nhiều người bán hàng địa phương chưa có công cụ quản lý cửa hàng.</span>
+                <span class="lang-en">Many local merchants do not have store management tools.</span>
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 reveal">
+            <div class="feature-card text-center h-100">
+              <div class="icon-box mb-3">
+                <i class="ph ph-shopping-bag-open"></i>
+              </div>
+              <h5 class="fw-bold mb-3">
+                <span class="lang-vi">Chưa tối ưu cho bữa ăn tự nấu</span>
+                <span class="lang-en">Not optimized for home cooking</span>
+              </h5>
+              <p class="text-muted">
+                <span class="lang-vi">Các app hiện nay chủ yếu phục vụ món ăn chế biến sẵn. Trong khi đó, người muốn tự nấu vẫn cần một giải pháp giúp chọn nguyên liệu đúng ngân sách, đủ khẩu phần.</span>
+                <span class="lang-en">Existing apps mainly serve ready-made meals. Meanwhile, those who want to cook themselves still need a solution to choose ingredients within budget and portions.</span>
+              </p>
+            </div>
+          </div>
+        </div>
 
+        <!-- Market Gap -->
+        <div class="market-gap-section reveal">
+          <h4 class="text-center fw-bold mb-4">
+            <span class="lang-vi">Khoảng trống thị trường</span>
+            <span class="lang-en">Market Gap</span>
+          </h4>
+          <div class="row g-4">
+            <div class="col-md-4">
+              <div class="gap-card">
+                <div class="gap-icon">
+                  <i class="ph ph-phone"></i>
+                </div>
+                <h6 class="fw-bold mb-2">
+                  <span class="lang-vi">App giao đồ ăn</span>
+                  <span class="lang-en">Food Delivery Apps</span>
+                </h6>
+
+                <p class="text-muted small mb-0">
+                  <span class="lang-vi">Tối ưu cho món ăn chế biến sẵn, chưa tập trung vào nhu cầu mua nguyên liệu để tự nấu.</span>
+                  <span class="lang-en">Optimized for ready-made meals, ignoring the need to buy raw ingredients for home cooking.</span>
+                </p>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="gap-card">
+                <div class="gap-icon">
+                  <i class="ph ph-basket"></i>
+                </div>
+                <h6 class="fw-bold mb-2">
+                  <span class="lang-vi">Chợ truyền thống</span>
+                  <span class="lang-en">Traditional Markets</span>
+                </h6>
+                <p class="text-muted small mb-0">
+                  <span class="lang-vi">Có hàng thật và khách hàng thật, nhưng việc quản lý sản phẩm và đơn đặt trước vẫn còn thủ công.</span>
+                  <span class="lang-en">Real products and real customers, but product inventory and pre-orders are still completely manual.</span>
+                </p>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="gap-card gap-card-highlight">
+                <div class="gap-icon">
+                  <i class="ph ph-storefront"></i>
+                </div>
+                <h6 class="fw-bold mb-2">
+                  <span class="lang-vi">Chợ AI Local</span>
+                  <span class="lang-en">AI Local Market</span>
+                </h6>
+                <p class="text-success small mb-0 fw-bold">
+                  <span class="lang-vi">Gợi ý thực đơn tự nấu theo ngân sách, số người ăn tại gian hàng địa phương.</span>
+                  <span class="lang-en">Suggests cooking menus based on budget and portions, sourced directly from local stalls.</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-5 reveal">
+          <div class="alert alert-primary d-inline-block">
+            <span class="lang-vi"><strong>Chợ AI Local không tạo ra nhu cầu mới</strong>, mà giải quyết nhu cầu đã có mỗi ngày: ăn gì, mua gì, bao nhiêu tiền và mua ở đâu gần nhất.</span>
+            <span class="lang-en"><strong>AI Local Market does not create a new need</strong>; it solves an existing daily need: what to eat, what to buy, how much to spend, and where to buy it nearby.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Now Section -->
+    <section id="why-now" class="section-padding">
+      <div class="container">
+        <div class="text-center mb-5 reveal">
+          <h2 class="display-5 fw-bold mb-3">
+            <span class="lang-vi">Vì sao đây là thời điểm phù hợp?</span>
+            <span class="lang-en">Why Now?</span>
+          </h2>
+        </div>
+        <div class="row g-4">
+          <div class="col-lg-4 reveal">
+            <div class="why-card">
+              <div class="why-number">01</div>
+              <h5 class="fw-bold mb-3">
+                <span class="lang-vi">Người mua quen đặt trước</span>
+                <span class="lang-en">Buyers are used to pre-ordering</span>
+              </h5>
+              <p class="text-muted">
+                <span class="lang-vi">Người dùng đã quen thao tác online, nhưng vẫn cần giải pháp tối ưu hơn với bữa ăn hằng ngày và ngân sách thực tế.</span>
+                <span class="lang-en">Users are accustomed to online ordering, but still require a better optimization for daily home cooking and real budget constraints.</span>
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-4 reveal">
+            <div class="why-card">
+              <div class="why-number">02</div>
+              <h5 class="fw-bold mb-3">
+                <span class="lang-vi">Tiểu thương cần chuyển đổi số</span>
+                <span class="lang-en">Merchants need digitalization</span>
+              </h5>
+              <p class="text-muted">
+                <span class="lang-vi">Không phải tiểu thương nào cũng cần một hệ thống phức tạp. Họ cần công cụ dễ dùng để quản lý sản phẩm và nhận đơn hàng online.</span>
+                <span class="lang-en">Not all merchants need complex enterprise resource planning. They need simple, intuitive tools to track inventory and accept pre-orders.</span>
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-4 reveal">
+            <div class="why-card">
+              <div class="why-number">03</div>
+              <h5 class="fw-bold mb-3">
+                <span class="lang-vi">AI phát triển gần hơn với đời sống</span>
+                <span class="lang-en">AI is closer to daily life</span>
+              </h5>
+              <p class="text-muted">
+                <span class="lang-vi">Người mua có thể nhập nhu cầu bằng tiếng Việt tự nhiên, còn hệ thống chỉ trả kết quả dựa trên dữ liệu thật: đúng giá, còn hàng và không vượt ngân sách.</span>
+                <span class="lang-en">Buyers can enter their demands using natural local inputs, and the system filters it with real database constraints: actual prices, availability, and budgets.</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section id="solution" class="section-padding bg-section">
+      <div class="container">
+        <div class="text-center mb-5 reveal">
+          <h2 class="display-5 fw-bold mb-3">
+            <span class="lang-vi">Từ một câu nhập đơn giản đến một thực đơn có thể đặt trước</span>
+            <span class="lang-en">From a Simple Query to a Pre-orderable Menu</span>
+          </h2>
+        </div>
+        <div class="timeline-container">
+          <div class="timeline-line"></div>
+          <div class="row g-4">
+            <div class="col-md-6 col-lg-3 reveal">
+              <div class="solution-step">
+                <div class="step-circle-wrapper">
+                  <div class="step-number">1</div>
+                  <div class="step-badge-icon">
+                    <i class="ph ph-chat-text"></i>
+                  </div>
+                </div>
+                <h5 class="fw-bold mb-2">
+                  <span class="lang-vi">Người mua nói nhu cầu</span>
+                  <span class="lang-en">Buyer States Needs</span>
+                </h5>
+                <p class="text-muted small mb-3">
+                  <span class="lang-vi">Nhập bằng tiếng Việt tự nhiên</span>
+                  <span class="lang-en">Enter in natural language</span>
+                </p>
+                <div class="quote-box p-3 rounded">
+                  <p class="mb-0 fst-italic small">
+                    <span class="lang-vi">"100k cho bữa tối 3 người"</span>
+                    <span class="lang-en">"100k for dinner for 3 people"</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 reveal">
+              <div class="solution-step">
+                <div class="step-circle-wrapper">
+                  <div class="step-number">2</div>
+                  <div class="step-badge-icon"><i class="ph ph-cpu"></i></div>
+                </div>
+                <h5 class="fw-bold mb-2">
+                  <span class="lang-vi">AI chuyển thành dữ liệu</span>
+                  <span class="lang-en">AI Converts to Data</span>
+                </h5>
+                <p class="text-muted small mb-3">
+                  <span class="lang-vi">Phân tích cấu trúc</span>
+                  <span class="lang-en">Structure Parsing</span>
+                </p>
+                <ul
+                  class="list-unstyled small text-start d-inline-block ps-0 mb-0"
+                >
+                  <li>
+                    <i class="ph ph-check text-success"></i>
+                    <span class="lang-vi">Ngân sách: 100.000đ</span>
+                    <span class="lang-en">Budget: 100,000đ</span>
+                  </li>
+                  <li>
+                    <i class="ph ph-check text-success"></i>
+                    <span class="lang-vi">Số người: 3</span>
+                    <span class="lang-en">Portions: 3</span>
+                  </li>
+                  <li>
+                    <i class="ph ph-check text-success"></i>
+                    <span class="lang-vi">Loại bữa: bữa tối</span>
+                    <span class="lang-en">Meal type: dinner</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 reveal">
+              <div class="solution-step">
+                <div class="step-circle-wrapper">
+                  <div class="step-number">3</div>
+                  <div class="step-badge-icon">
+                    <i class="ph ph-shield-check"></i>
+                  </div>
+                </div>
+                <h5 class="fw-bold mb-2">
+                  <span class="lang-vi">Bộ lọc kiểm tra thực tế</span>
+                  <span class="lang-en">Real-world Constraints Filter</span>
+                </h5>
+                <p class="text-muted small mb-3">
+                  <span class="lang-vi">Đảm bảo dữ liệu chính xác</span>
+                  <span class="lang-en">Ensure data accuracy</span>
+                </p>
+                <ul
+                  class="list-unstyled small text-start d-inline-block ps-0 mb-0"
+                >
+                  <li>
+                    <i class="ph ph-check text-success"></i>
+                    <span class="lang-vi">Còn hàng</span>
+                    <span class="lang-en">In stock</span>
+                  </li>
+                  <li>
+                    <i class="ph ph-check text-success"></i>
+                    <span class="lang-vi">Đúng giá</span>
+                    <span class="lang-en">Correct prices</span>
+                  </li>
+                  <li>
+                    <i class="ph ph-check text-success"></i>
+                    <span class="lang-vi">Không vượt ngân sách</span>
+                    <span class="lang-en">Within budget limit</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 reveal">
+              <div class="solution-step">
+                <div class="step-circle-wrapper">
+                  <div class="step-number">4</div>
+                  <div class="step-badge-icon">
+                    <i class="ph ph-shopping-cart-simple"></i>
+                  </div>
+                </div>
+                <h5 class="fw-bold mb-2">
+                  <span class="lang-vi">Tạo đơn đặt trước</span>
+                  <span class="lang-en">Generate Pre-order</span>
+                </h5>
+                <p class="text-muted small mb-3">
+                  <span class="lang-vi">Người bán nhận đơn và chuẩn bị</span>
+                  <span class="lang-en">Merchant receives & prepares</span>
+                </p>
+                <div class="bg-success bg-opacity-10 p-3 rounded text-center">
+                  <i class="ph-fill ph-check-circle text-success"></i>
+                  <p class="mb-0 small fw-bold">
+                    <span class="lang-vi">Đơn đã tạo</span>
+                    <span class="lang-en">Order Created</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Differentiation Section -->
+    <section id="different" class="section-padding">
+      <div class="container">
+        <div class="text-center mb-5 reveal">
+          <h2 class="display-5 fw-bold mb-3">
+            <span class="lang-vi">Ba lớp kiểm soát để AI không bịa dữ liệu</span>
+            <span class="lang-en">Three Control Layers to Prevent AI Hallucinations</span>
+          </h2>
+          <p class="lead text-muted">
+            <span class="lang-vi">AI hiểu người mua, CLHUN hiểu giá trị kinh doanh, bộ lọc ràng buộc đảm bảo kết quả đúng thực tế</span>
+            <span class="lang-en">AI understands buyers, CLHUN suggests business value, and rule filters ensure realistic results</span>
+          </p>
+        </div>
+        <div class="row g-4 mb-5">
+          <div class="col-lg-4 reveal">
+            <div class="tech-card">
+              <div class="tech-layer-badge">Layer 1</div>
+              <div class="icon-box-lg mb-4">
+                <i class="ph ph-cpu"></i>
+              </div>
+              <h4 class="fw-bold mb-3">AI Layer</h4>
+              <p class="text-muted mb-0">
+                <span class="lang-vi">Hiểu nhu cầu tiếng Việt tự nhiên và chuyển thành dữ liệu có cấu trúc.</span>
+                <span class="lang-en">Parses natural Vietnamese requests and structures them into structured data.</span>
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-4 reveal">
+            <div class="tech-card">
+              <div class="tech-layer-badge">Layer 2</div>
+              <div class="icon-box-lg mb-4">
+                <i class="ph ph-tree-structure"></i>
+              </div>
+              <h4 class="fw-bold mb-3">CLHUN Layer</h4>
+              <p class="text-muted mb-0">
+                <span class="lang-vi">Khai thác nhóm sản phẩm có giá trị kinh doanh cao từ dữ liệu bán hàng.</span>
+                <span class="lang-en">Leverages high-utility itemsets and business-critical products from sales data.</span>
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-4 reveal">
+            <div class="tech-card">
+              <div class="tech-layer-badge">Layer 3</div>
+              <div class="icon-box-lg mb-4">
+                <i class="ph ph-shield-check"></i>
+              </div>
+              <h4 class="fw-bold mb-3">Rule Layer</h4>
+              <p class="text-muted mb-0">
+                <span class="lang-vi">Loại sản phẩm hết hàng, vượt ngân sách hoặc không phù hợp khẩu phần.</span>
+                <span class="lang-en">Filters out out-of-stock items, budget-exceeding offers, or mismatched portion sizes.</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Technology Flow -->
+        <div class="tech-flow reveal">
+          <div class="flow-title mb-4 text-center">
+            <h6 class="fw-bold text-muted">
+              <span class="lang-vi">Quy trình xử lý</span>
+              <span class="lang-en">Processing Pipeline</span>
+            </h6>
+          </div>
+          <div class="flow-steps">
+            <div class="flow-step">
+              <div class="flow-icon"><i class="ph ph-user"></i></div>
+              <span>
+                <span class="lang-vi">Nhu cầu người dùng</span>
+                <span class="lang-en">User Request</span>
+              </span>
+            </div>
+            <div class="flow-arrow"><i class="ph ph-arrow-right"></i></div>
+            <div class="flow-step">
+              <div class="flow-icon"><i class="ph ph-cpu"></i></div>
+              <span>
+                <span class="lang-vi">AI phân tích</span>
+                <span class="lang-en">AI Parsing</span>
+              </span>
+            </div>
+            <div class="flow-arrow"><i class="ph ph-arrow-right"></i></div>
+            <div class="flow-step">
+              <div class="flow-icon"><i class="ph ph-tree-structure"></i></div>
+              <span>
+                <span class="lang-vi">CLHUN gợi ý</span>
+                <span class="lang-en">CLHUN Recommendations</span>
+              </span>
+            </div>
+            <div class="flow-arrow"><i class="ph ph-arrow-right"></i></div>
+            <div class="flow-step">
+              <div class="flow-icon"><i class="ph ph-shield-check"></i></div>
+              <span>
+                <span class="lang-vi">Lọc theo quy tắc</span>
+                <span class="lang-en">Rule Filtering</span>
+              </span>
+            </div>
+            <div class="flow-arrow"><i class="ph ph-arrow-right"></i></div>
+            <div class="flow-step">
+              <div class="flow-icon"><i class="ph ph-check-circle"></i></div>
+              <span>
+                <span class="lang-vi">Thực đơn hợp lệ</span>
+                <span class="lang-en">Valid Menu</span>
+              </span>
+            </div>
+            <div class="flow-arrow"><i class="ph ph-arrow-right"></i></div>
+            <div class="flow-step">
+              <div class="flow-icon"><i class="ph ph-shopping-cart-simple"></i></div>
+              <span>
+                <span class="lang-vi">Đặt hàng trước</span>
+                <span class="lang-en">Pre-order</span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-5 reveal">
+          <div class="alert alert-success d-inline-block">
+            <i class="ph-fill ph-lightbulb"></i>
+            <strong>
+              <span class="lang-vi">Không chỉ gợi ý thực đơn, mà tạo được đơn đặt hàng trước.</span>
+              <span class="lang-en">More than menu suggestions—directly generates pre-orders.</span>
+            </strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Demo Menu Section -->
+    <section id="demo" class="section-padding bg-section">
+      <div class="container">
+        <div class="text-center mb-5 reveal">
+          <h2 class="display-5 fw-bold mb-3">
+            <span class="lang-vi">Trình giả lập đề xuất thực đơn AI</span>
+            <span class="lang-en">AI Menu Recommendation Simulator</span>
+          </h2>
+          <p class="lead text-muted">
+            <span class="lang-vi">Nhấp chọn các nhu cầu mẫu hoặc tự tùy chỉnh để xem quy trình kiểm soát 3 lớp của hệ thống hoạt động thực tế.</span>
+            <span class="lang-en">Click preset dining needs or customize below to see our 3-layer verification system in action.</span>
+          </p>
+        </div>
+
+        <div class="row g-4 reveal">
+          <!-- Left: Simulator Inputs & Process Flow -->
+          <div class="col-lg-5">
+            <div class="demo-input-card h-100">
+              <h5 class="fw-bold mb-4">
+                <i class="ph ph-sliders"></i>
+                <span class="lang-vi">Người dùng nhập nhu cầu</span>
+                <span class="lang-en">User Inputs</span>
+              </h5>
+
+              <!-- Presets -->
+              <div class="demo-presets mb-4">
+                <div class="input-label fw-bold mb-2">
+                  <span class="lang-vi">Chọn nhanh nhu cầu mẫu để mô phỏng thực đơn:</span>
+                  <span class="lang-en">Quickly select a preset to simulate:</span>
+                </div>
+                <div
+                  class="d-flex flex-wrap gap-2"
+                  id="preset-buttons-container"
+                >
+                  <button
+                    class="btn btn-outline-primary btn-sm preset-btn"
+                    data-preset="55k"
+                  >
+                    <span class="lang-vi">55k ăn sáng cho 2 người</span>
+                    <span class="lang-en">55k breakfast for 2 people</span>
+                  </button>
+                  <button
+                    class="btn btn-outline-primary btn-sm preset-btn"
+                    data-preset="90k"
+                  >
+                    <span class="lang-vi">Còn 90k ăn trưa cho 3 người</span>
+                    <span class="lang-en">90k left for lunch for 3 people</span>
+                  </button>
+                  <button
+                    class="btn btn-outline-primary btn-sm preset-btn active"
+                    data-preset="130k"
+                  >
+                    <span class="lang-vi">Ăn tối 3 người với 130k</span>
+                    <span class="lang-en">Dinner for 3 people with 130k</span>
+                  </button>
+                  <button
+                    class="btn btn-outline-primary btn-sm preset-btn"
+                    data-preset="45k"
+                  >
+                    <span class="lang-vi">45k ăn tiết kiệm 2 người</span>
+                    <span class="lang-en">45k budget meal for 2 people</span>
+                  </button>
+                  <button
+                    class="btn btn-outline-primary btn-sm preset-btn"
+                    data-preset="120k"
+                  >
+                    <span class="lang-vi">120k ăn healthy 2 người</span>
+                    <span class="lang-en">120k healthy meal for 2 people</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Custom Input -->
+              <div class="custom-input-section mb-4">
+                <div class="input-label fw-bold mb-2">
+                  <i class="ph ph-keyboard"></i>
+                  <span class="lang-vi">Hoặc tự nhập nhu cầu của bạn:</span>
+                  <span class="lang-en">Or enter your own request:</span>
+                </div>
+                <div class="input-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="custom-input-text"
+                    placeholder="Ví dụ: 100k cho bữa tối 3 người"
+                    aria-label="Nhập nhu cầu"
+                  />
+                  <button
+                    class="btn btn-primary"
+                    type="button"
+                    id="btn-custom-submit"
+                  >
+                    <i class="ph ph-magnifying-glass"></i>
+                    <span class="lang-vi">Tìm thực đơn</span>
+                    <span class="lang-en">Find Menu</span>
+                  </button>
+                </div>
+                <small class="text-muted d-block mt-2">
+                  <span class="lang-vi"><i class="ph ph-info"></i> Gợi ý: Nhập số tiền, số người và loại bữa ăn</span>
+                  <span class="lang-en"><i class="ph ph-info"></i> Tip: Enter budget, portions, and meal type</span>
+                </small>
+              </div>
+
+              <!-- Simulation Flow Visualization -->
+              <div class="simulation-flow-card p-3 border rounded-3 bg-white">
+                <h6 class="fw-bold mb-3">
+                  <i class="ph ph-gear text-primary"></i>
+                  <span class="lang-vi">Tiến trình xử lý (3 Lớp):</span>
+                  <span class="lang-en">Processing Status (3 Layers):</span>
+                </h6>
+                <div class="sim-steps">
+                  <div
+                    class="sim-step border-bottom pb-2 mb-2 active"
+                    id="sim-step-1"
+                  >
+                    <div class="sim-step-icon text-muted me-2" id="icon-step-1">
+                      <i class="ph ph-circle"></i>
+                    </div>
+                    <div class="sim-info">
+                      <div class="sim-title fw-bold small">
+                        Layer 1: AI Parse
+                      </div>
+                      <div class="sim-desc small text-muted">
+                        <span class="lang-vi">Trích xuất thực thể:</span>
+                        <span class="lang-en">Extracting entities:</span>
+                        <span id="ai-parsed-badge" class="badge bg-secondary"
+                          >Chờ...</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="sim-step border-bottom pb-2 mb-2" id="sim-step-2">
+                    <div class="sim-step-icon text-muted me-2" id="icon-step-2">
+                      <i class="ph ph-circle"></i>
+                    </div>
+                    <div class="sim-info">
+                      <div class="sim-title fw-bold small">
+                        Layer 2: CLHUN Suggest
+                      </div>
+                      <div class="sim-desc small text-muted">
+                        <span class="lang-vi">Lọc sản phẩm có lợi nhuận cao & bán tốt tại sạp</span>
+                        <span class="lang-en">Filtering high-margin & top-selling items at stalls</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="sim-step" id="sim-step-3">
+                    <div class="sim-step-icon text-muted me-2" id="icon-step-3">
+                      <i class="ph ph-circle"></i>
+                    </div>
+                    <div class="sim-info">
+                      <div class="sim-title fw-bold small">
+                        Layer 3: Rule Filter
+                      </div>
+                      <div class="sim-desc small text-muted">
+                        <span class="lang-vi">Kiểm tra giá thật, tồn kho và giới hạn ngân sách</span>
+                        <span class="lang-en">Checking real prices, inventory, and budget caps</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Menu Result -->
+          <div class="col-lg-7">
+            <div
+              class="demo-result-card h-100 position-relative"
+              id="result-card-container"
+            >
+              <!-- Processing Overlay -->
+              <div class="sim-loading-overlay d-none" id="sim-loading-overlay">
+                <div class="text-center text-white">
+                  <div
+                    class="spinner-border text-primary mb-2"
+                    role="status"
+                    style="width: 3rem; height: 3rem"
+                  >
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+                  <h5 class="fw-bold">
+                    <span class="lang-vi">AI đang tính toán thực đơn...</span>
+                    <span class="lang-en">AI is calculating the menu...</span>
+                  </h5>
+                  <p class="small opacity-75">
+                    <span class="lang-vi">Đang tối ưu nguyên liệu & ngân sách tại gian hàng gần bạn</span>
+                    <span class="lang-en">Optimizing ingredients & budget at stalls near you</span>
+                  </p>
+                </div>
+              </div>
+
+              <div class="result-header">
+                <h5 class="mb-0" id="result-title">
+                  <i class="ph-fill ph-check-circle text-success"></i>
+                  <span class="lang-vi">Thực đơn bữa tối 3 người: Thịt bằm sốt cà</span>
+                  <span class="lang-en">Dinner for 3 people: Minced pork with tomato sauce</span>
+                </h5>
+              </div>
+              <div class="result-body">
+                <!-- Alternative Suggestions Tabs -->
+                <div
+                  class="menu-options-container mb-4"
+                  id="menu-options-container"
+                >
+                  <div class="input-label fw-bold mb-2 text-muted small">
+                    <i class="ph ph-list-star text-success"></i>
+                    <span class="lang-vi">Đề xuất thực đơn</span>
+                    <span class="lang-en">Suggested menus</span>
+                  </div>
+                  <div
+                    class="d-flex flex-wrap gap-2"
+                    id="option-tabs-container"
+                  >
+                    <button
+                      class="btn btn-outline-success btn-sm option-tab active"
+                      data-option-idx="0"
+                    >
+                      <span class="lang-vi">Gợi ý 1</span>
+                      <span class="lang-en">Option 1</span>
+                    </button>
+                    <button
+                      class="btn btn-outline-success btn-sm option-tab"
+                      data-option-idx="1"
+                    >
+                      <span class="lang-vi">Gợi ý 2</span>
+                      <span class="lang-en">Option 2</span>
+                    </button>
+                    <button
+                      class="btn btn-outline-success btn-sm option-tab"
+                      data-option-idx="2"
+                    >
+                      <span class="lang-vi">Gợi ý 3</span>
+                      <span class="lang-en">Option 3</span>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="menu-suggestion mb-4">
+                  <h6 class="fw-bold mb-2">
+                    <span class="lang-vi">Món gợi ý:</span>
+                    <span class="lang-en">Recommended dishes:</span>
+                  </h6>
+                  <p class="text-muted mb-0" id="result-suggestion">
+                    <span class="lang-vi">Thịt bằm sốt cà chua + rau muống xào tỏi + đậu hũ chiên</span>
+                    <span class="lang-en">Minced pork tomato sauce + stir-fried water spinach + fried tofu</span>
+                  </p>
+                </div>
+
+                <!-- Budget Usage -->
+                <div class="budget-section mb-4">
+                  <div class="budget-info">
+                    <div>
+                      <span class="budget-label">
+                        <span class="lang-vi">Tổng tiền:</span>
+                        <span class="lang-en">Total price:</span>
+                      </span>
+                      <span class="budget-value" id="result-total-price"
+                        >93.500đ</span
+                      >
+                    </div>
+                    <div>
+                      <span class="budget-label">
+                        <span class="lang-vi">Ngân sách:</span>
+                        <span class="lang-en">Budget:</span>
+                      </span>
+                      <span class="budget-total" id="result-budget-limit"
+                        >100.000đ</span
+                      >
+                    </div>
+                  </div>
+                  <div class="progress-bar-custom">
+                    <div
+                      class="progress-fill"
+                      id="result-progress-fill"
+                      style="width: 93.5%"
+                    ></div>
+                  </div>
+                  <div
+                    class="progress-label small mt-1 text-end"
+                    id="result-progress-percent"
+                  >
+                    <span class="lang-vi">Sử dụng 93.5% ngân sách</span>
+                    <span class="lang-en">Using 93.5% of budget</span>
+                  </div>
+                </div>
+
+                <!-- Proposed Menu Receipt / Hóa Đơn Đề Xuất -->
+                <div class="receipt-invoice mb-4" id="receipt-invoice-container">
+                  <table class="table table-sm mb-0">
+                    <thead>
+                      <tr>
+                        <th>
+                          <span class="lang-vi">Nguyên liệu</span>
+                          <span class="lang-en">Ingredient</span>
+                        </th>
+                        <th>
+                          <span class="lang-vi">Số lượng</span>
+                          <span class="lang-en">Quantity</span>
+                        </th>
+                        <th>
+                          <span class="lang-vi">Đơn giá</span>
+                          <span class="lang-en">Unit Price</span>
+                        </th>
+                        <th>
+                          <span class="lang-vi">Thành tiền</span>
+                          <span class="lang-en">Subtotal</span>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody id="result-table-body">
+                      <!-- Dynamic rows rendered via JS -->
+                    </tbody>
+                  </table>
+                </div>
+
+                <!-- Verification Badges -->
+                <div class="verification-badges mb-4">
+                  <div class="verify-badge">
+                    <i class="ph ph-shield-check"></i>
+                    <span class="lang-vi">Không vượt ngân sách</span>
+                    <span class="lang-en">Within budget</span>
+                  </div>
+                  <div class="verify-badge">
+                    <i class="ph-fill ph-users"></i>
+                    <span class="lang-vi">Đủ khẩu phần</span>
+                    <span class="lang-en">Adequate portion</span>
+                  </div>
+                </div>
+
+                <!-- Reason -->
+                <div class="reason-box mb-4">
+                  <h6 class="fw-bold mb-2">
+                    <i class="ph-fill ph-lightbulb text-warning"></i>
+                    <span class="lang-vi">Lý do đề xuất:</span>
+                    <span class="lang-en">AI Recommendation:</span>
+                  </h6>
+                  <p class="mb-0 small" id="result-reason">
+                    <span class="lang-vi">Thực đơn này dùng 93.500đ/100.000đ, có đạm từ thịt heo xay và đậu hũ, có rau xanh, phù hợp bữa tối 3 người.</span>
+                    <span class="lang-en">This menu uses 93,500đ/100,000đ, provides protein from ground pork and tofu, includes vegetables, suitable for a dinner of 3 people.</span>
+                  </p>
+                </div>
+
+                <!-- Pickup Time Selection -->
+                <div class="pickup-time-section mb-4">
+                  <h6 class="fw-bold mb-3">
+                    <i class="ph ph-clock-countdown text-primary"></i>
+                    <span class="lang-vi">Chọn thời gian nhận hàng:</span>
+                    <span class="lang-en">Choose pickup time:</span>
+                  </h6>
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label for="pickup-date" class="form-label small fw-bold">
+                        <span class="lang-vi">Ngày nhận:</span>
+                        <span class="lang-en">Pickup date:</span>
+                      </label>
+                      <input
+                        type="date"
+                        class="form-control"
+                        id="pickup-date"
+                        required
+                      />
+                    </div>
+                    <div class="col-md-6">
+                      <label for="pickup-time" class="form-label small fw-bold">
+                        <span class="lang-vi">Giờ nhận:</span>
+                        <span class="lang-en">Pickup time:</span>
+                      </label>
+                      <select class="form-select" id="pickup-time" required>
+                        <option value="">Chọn giờ</option>
+                        <option value="06:00">06:00 - Sáng sớm</option>
+                        <option value="07:00">07:00 - Sáng</option>
+                        <option value="08:00">08:00 - Sáng</option>
+                        <option value="09:00">09:00 - Sáng</option>
+                        <option value="10:00">10:00 - Sáng</option>
+                        <option value="11:00">11:00 - Trưa</option>
+                        <option value="12:00">12:00 - Trưa</option>
+                        <option value="13:00">13:00 - Chiều</option>
+                        <option value="14:00">14:00 - Chiều</option>
+                        <option value="15:00">15:00 - Chiều</option>
+                        <option value="16:00">16:00 - Chiều</option>
+                        <option value="17:00" selected>17:00 - Chiều</option>
+                        <option value="18:00">18:00 - Tối</option>
+                        <option value="19:00">19:00 - Tối</option>
+                        <option value="20:00">20:00 - Tối</option>
+                      </select>
+                    </div>
+                  </div>
+                  <small class="text-muted d-block mt-2">
+                    <i class="ph ph-info"></i>
+                    <span class="lang-vi">Vui lòng chọn thời gian nhận hàng mong muốn của bạn</span>
+                    <span class="lang-en">Please select your desired pickup time</span>
+                  </small>
+                </div>
+
+                <div class="menu-footer">
+                  <div class="seller-info">
+                    <i class="ph ph-storefront"></i>
+                    <span id="result-seller-name">
+                      <span class="lang-vi">Gian hàng Thực Phẩm Cô Lan</span>
+                      <span class="lang-en">Co Lan's Fresh Foods Stall</span>
+                    </span>
+                  </div>
+                  <button
+                    class="btn btn-success btn-rounded btn-order"
+                    id="btn-preorder-trigger"
+                  >
+                    <i class="ph ph-shopping-cart-simple"></i>
+                    <span class="lang-vi">Đặt trước thực đơn này</span>
+                    <span class="lang-en">Pre-order this menu</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Data Trust Section -->
+    <section id="data-trust" class="section-padding">
+      <div class="container">
+        <div class="text-center mb-5 reveal">
+          <h2 class="display-5 fw-bold mb-3">
+            <span class="lang-vi">Độ chính xác của AI</span>
+            <span class="lang-en">AI Accuracy</span>
+          </h2>
+          <p class="lead text-muted">
+            <span class="lang-vi">Chợ AI Local không để AI tự quyết định một mình. AI chỉ hiểu nhu cầu, dữ liệu và bộ lọc mới quyết định kết quả cuối cùng.</span>
+            <span class="lang-en">AI Local Market does not let AI make decisions alone. AI only parses intent, while active data and filters determine the final result.</span>
+          </p>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-3 reveal">
+            <div class="trust-card">
+              <div class="trust-icon">
+                <i class="ph ph-currency-circle-dollar"></i>
+              </div>
+              <h5 class="fw-bold mb-3">
+                <span class="lang-vi">Giá thật</span>
+                <span class="lang-en">Real Prices</span>
+              </h5>
+              <p class="text-muted mb-0">
+                <span class="lang-vi">Giá lấy từ dữ liệu sản phẩm của người bán.</span>
+                <span class="lang-en">Prices are fetched from actual active seller products.</span>
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 reveal">
+            <div class="trust-card">
+              <div class="trust-icon">
+                <i class="ph ph-package"></i>
+              </div>
+              <h5 class="fw-bold mb-3">
+                <span class="lang-vi">Còn hàng thật</span>
+                <span class="lang-en">Real Availability</span>
+              </h5>
+              <p class="text-muted mb-0">
+                <span class="lang-vi">Sản phẩm hết hàng sẽ bị loại khỏi gợi ý.</span>
+                <span class="lang-en">Out-of-stock products are automatically excluded from recommendations.</span>
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 reveal">
+            <div class="trust-card">
+              <div class="trust-icon">
+                <i class="ph ph-wallet"></i>
+              </div>
+              <h5 class="fw-bold mb-3">
+                <span class="lang-vi">Ngân sách thật</span>
+                <span class="lang-en">Real Budget</span>
+              </h5>
+              <p class="text-muted mb-0">
+                <span class="lang-vi">Tổng tiền được tính lại theo đơn giá hiện tại.</span>
+                <span class="lang-en">Total cost is calculated from current actual unit prices.</span>
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 reveal">
+            <div class="trust-card">
+              <div class="trust-icon">
+                <i class="ph ph-receipt"></i>
+              </div>
+              <h5 class="fw-bold mb-3">
+                <span class="lang-vi">Đơn đặt trước thật</span>
+                <span class="lang-en">Real Pre-orders</span>
+              </h5>
+              <p class="text-muted mb-0">
+                <span class="lang-vi">Người mua có thể tạo đơn để người bán chuẩn bị hàng.</span>
+                <span class="lang-en">Buyers can place pre-orders so sellers can prepare items in advance.</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seller Section -->
+    <section id="seller" class="section-padding bg-section">
+      <div class="container">
+        <div class="text-center mb-5 reveal">
+          <h2 class="display-5 fw-bold mb-3">
+            <span class="lang-vi">Từ bán hàng thủ công đến ra quyết định bằng dữ liệu</span>
+            <span class="lang-en">From manual sales to data-driven decision making</span>
+          </h2>
+        </div>
+        <div class="row">
+          <!-- Column 1 (Left): Value points for sellers -->
+          <div class="col-lg-3 mb-4 mb-lg-0 reveal">
+            <div class="seller-dashboard h-100 d-flex flex-column">
+              <div
+                class="dashboard-header bg-success bg-opacity-75 text-white py-2 px-3"
+              >
+                <h6 class="mb-0 fw-bold" style="font-size: 0.85rem">
+                  <i class="ph-fill ph-gift me-1"></i>
+                  <span class="lang-vi">Giá trị cho người bán</span>
+                  <span class="lang-en">Value for Sellers</span>
+                </h6>
+              </div>
+              <div
+                class="dashboard-body p-3 d-flex flex-column justify-content-between flex-grow-1"
+              >
+                <div
+                  class="value-points h-100 d-flex flex-column justify-content-between py-2 mb-0"
+                >
+                  <div class="value-point">
+                    <div
+                      class="value-icon"
+                      style="width: 40px; height: 40px; border-radius: 8px"
+                    >
+                      <i
+                        class="ph ph-trend-up"
+                        style="font-size: 1.2rem"
+                      ></i>
+                    </div>
+                    <div class="value-content">
+                      <h6 class="fw-bold mb-1" style="font-size: 0.8rem">
+                        <span class="lang-vi">Sản phẩm bán chạy</span>
+                        <span class="lang-en">Top Selling Products</span>
+                      </h6>
+                      <p
+                        class="text-muted small mb-0"
+                        style="font-size: 0.72rem; line-height: 1.35"
+                      >
+                        <span class="lang-vi">Phân tích dữ liệu thực tế từ các đơn đặt trước hàng ngày để biết mặt hàng nào đang được ưa chuộng.</span>
+                        <span class="lang-en">Analyze real daily pre-order data to find out which items are popular.</span>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="value-point">
+                    <div
+                      class="value-icon"
+                      style="width: 40px; height: 40px; border-radius: 8px"
+                    >
+                      <i
+                        class="ph ph-warning-circle"
+                        style="font-size: 1.2rem"
+                      ></i>
+                    </div>
+                    <div class="value-content">
+                      <h6 class="fw-bold mb-1" style="font-size: 0.8rem">
+                        <span class="lang-vi">Cảnh báo tồn kho</span>
+                        <span class="lang-en">Low Stock Alert</span>
+                      </h6>
+                      <p
+                        class="text-muted small mb-0"
+                        style="font-size: 0.72rem; line-height: 1.35"
+                      >
+                        <span class="lang-vi">Hệ thống tự động thông báo kịp thời các mặt hàng sắp hết hàng để chủ động nhập sạp.</span>
+                        <span class="lang-en">Automatically alerts you when items are running low to proactively restock.</span>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="value-point">
+                    <div
+                      class="value-icon"
+                      style="width: 40px; height: 40px; border-radius: 8px"
+                    >
+                      <i class="ph ph-lightbulb" style="font-size: 1.2rem"></i>
+                    </div>
+                    <div class="value-content">
+                      <h6 class="fw-bold mb-1" style="font-size: 0.8rem">
+                        <span class="lang-vi">Đề xuất bán kèm</span>
+                        <span class="lang-en">Cross-selling Suggestions</span>
+                      </h6>
+                      <p
+                        class="text-muted small mb-0"
+                        style="font-size: 0.72rem; line-height: 1.35"
+                      >
+                        <span class="lang-vi">Gợi ý các combo sạp kết hợp thông minh (CLHUN) mang lại tỷ lệ lợi nhuận tối ưu.</span>
+                        <span class="lang-en">Suggests smart combo combinations (CLHUN) to deliver optimal profit margins.</span>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="value-point">
+                    <div
+                      class="value-icon"
+                      style="width: 40px; height: 40px; border-radius: 8px"
+                    >
+                      <i class="ph ph-money-coin" style="font-size: 1.2rem"></i>
+                    </div>
+                    <div class="value-content">
+                      <h6 class="fw-bold mb-1" style="font-size: 0.8rem">
+                        <span class="lang-vi">Dòng tiền tức thì</span>
+                        <span class="lang-en">Instant Cash Flow</span>
+                      </h6>
+                      <p
+                        class="text-muted small mb-0"
+                        style="font-size: 0.72rem; line-height: 1.35"
+                      >
+                        <span class="lang-vi">Theo dõi doanh số, dòng tiền chi tiết và chính xác theo thời gian thực.</span>
+                        <span class="lang-en">Track sales and cash flow in detail and precision in real time.</span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Column 2 (Right): Seller Dashboard -->
+          <div class="col-lg-9 reveal">
+            <div class="seller-dashboard h-100 d-flex flex-column">
+              <div
+                class="dashboard-header bg-success bg-opacity-75 text-white py-2 px-3"
+              >
+                <h5 class="mb-0 fw-bold" style="font-size: 0.95rem">
+                  <i class="ph ph-gauge me-1"></i> Seller Dashboard —
+                  <span class="lang-vi">Thịt Sạch Cô Vy</span>
+                  <span class="lang-en">Co Vy's Fresh Meat</span>
+                </h5>
+              </div>
+              <div
+                class="dashboard-body flex-grow-1 p-3 pb-0 d-flex flex-column"
+              >
+                <!-- Metrics Row (Optimized to col-lg-3 for single line on desktop) -->
+                <div class="row g-3 mb-3 flex-shrink-0">
+                  <div class="col-lg-3 col-6">
+                    <div class="metric-card-new p-2" style="gap: 0.5rem">
+                      <div
+                        class="metric-icon"
+                        style="width: 35px; height: 35px; border-radius: 8px"
+                      >
+                        <i class="ph ph-cube" style="font-size: 1rem"></i>
+                      </div>
+                      <div class="metric-data">
+                        <div class="metric-value" id="totalProducts">32</div>
+                        <div
+                          class="metric-label"
+                          style="font-size: 0.68rem; margin-top: 0"
+                        >
+                          <span class="lang-vi">Tổng sản phẩm</span>
+                          <span class="lang-en">Total Products</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-6">
+                    <div class="metric-card-new p-2" style="gap: 0.5rem">
+                      <div
+                        class="metric-icon"
+                        style="width: 35px; height: 35px; border-radius: 8px"
+                      >
+                        <i class="ph ph-shopping-cart-simple" style="font-size: 1rem"></i>
+                      </div>
+                      <div class="metric-data">
+                        <div class="metric-value" id="todayOrders">7</div>
+                        <div
+                          class="metric-label"
+                          style="font-size: 0.68rem; margin-top: 0"
+                        >
+                          <span class="lang-vi">Đơn hôm nay</span>
+                          <span class="lang-en">Today's Orders</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-6">
+                    <div class="metric-card-new p-2" style="gap: 0.5rem">
+                      <div
+                        class="metric-icon"
+                        style="width: 35px; height: 35px; border-radius: 8px"
+                      >
+                        <i class="ph ph-money" style="font-size: 1rem"></i>
+                      </div>
+                      <div class="metric-data">
+                        <div class="metric-value" id="todayRevenue">
+                          682.000đ
+                        </div>
+                        <div
+                          class="metric-label"
+                          style="font-size: 0.68rem; margin-top: 0"
+                        >
+                          <span class="lang-vi">Doanh thu hôm nay</span>
+                          <span class="lang-en">Today's Revenue</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-6">
+                    <div
+                      class="metric-card-new metric-card-danger p-2"
+                      style="gap: 0.5rem"
+                    >
+                      <div
+                        class="metric-icon"
+                        style="width: 35px; height: 35px; border-radius: 8px"
+                      >
+                        <i
+                          class="ph ph-warning-circle"
+                          style="font-size: 1rem"
+                        ></i>
+                      </div>
+                      <div class="metric-data">
+                        <div class="metric-value text-danger" id="lowStock">
+                          4
+                        </div>
+                        <div
+                          class="metric-label"
+                          style="font-size: 0.68rem; margin-top: 0"
+                        >
+                          <span class="lang-vi">Sản phẩm sắp hết</span>
+                          <span class="lang-en">Low Stock Items</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Product lists row (Bán chạy & Sắp hết hàng) -->
+                <div class="row g-3 mb-3 flex-shrink-0">
+                  <div class="col-md-6">
+                    <div class="dashboard-list p-2" style="border-radius: 10px">
+                      <h6 class="fw-bold mb-2" style="font-size: 0.8rem">
+                        <i class="ph-fill ph-trophy text-warning me-1"></i>
+                        <span class="lang-vi">Bán chạy</span>
+                        <span class="lang-en">Best Sellers</span>
+                      </h6>
+                      <ol class="list-styled mb-0" style="font-size: 0.72rem">
+                        <li style="padding: 0.3rem 0">
+                          <span class="lang-vi">Thịt ba chỉ heo</span>
+                          <span class="lang-en">Pork belly</span>
+                        </li>
+                        <li style="padding: 0.3rem 0">
+                          <span class="lang-vi">Sườn non heo</span>
+                          <span class="lang-en">Pork ribs</span>
+                        </li>
+                        <li style="padding: 0.3rem 0">
+                          <span class="lang-vi">Thịt heo xay</span>
+                          <span class="lang-en">Ground pork</span>
+                        </li>
+                        <li style="padding: 0.3rem 0; border-bottom: 0">
+                          <span class="lang-vi">Thịt bò phi lê</span>
+                          <span class="lang-en">Beef fillet</span>
+                        </li>
+                      </ol>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="dashboard-list p-2" style="border-radius: 10px">
+                      <h6 class="fw-bold mb-2" style="font-size: 0.8rem">
+                        <i
+                          class="ph ph-warning-circle text-danger me-1"
+                        ></i>
+                        <span class="lang-vi">Sắp hết hàng</span>
+                        <span class="lang-en">Low Stock</span>
+                      </h6>
+                      <ul class="list-styled mb-0" style="font-size: 0.72rem">
+                        <li style="padding: 0.3rem 0">
+                          <span
+                            class="badge bg-danger badge-sm"
+                            style="font-size: 0.6rem; padding: 0.15rem 0.3rem"
+                            >1.5kg</span
+                          >
+                          <span class="lang-vi">Sườn sụn heo</span>
+                          <span class="lang-en">Pork soft-bone</span>
+                        </li>
+                        <li style="padding: 0.3rem 0">
+                          <span
+                            class="badge bg-danger badge-sm"
+                            style="font-size: 0.6rem; padding: 0.15rem 0.3rem"
+                            >2kg</span
+                          >
+                          <span class="lang-vi">Thịt nạc vai</span>
+                          <span class="lang-en">Pork shoulder</span>
+                        </li>
+                        <li style="padding: 0.3rem 0">
+                          <span
+                            class="badge bg-warning badge-sm"
+                            style="font-size: 0.6rem; padding: 0.15rem 0.3rem"
+                            ><span class="lang-vi">3 vỉ</span><span class="lang-en">3 packs</span></span
+                          >
+                          <span class="lang-vi">Thịt ba chỉ bò</span>
+                          <span class="lang-en">Beef short plate</span>
+                        </li>
+                        <li style="padding: 0.3rem 0; border-bottom: 0">
+                          <span
+                            class="badge bg-warning badge-sm"
+                            style="font-size: 0.6rem; padding: 0.15rem 0.3rem"
+                            >2.5kg</span
+                          >
+                          <span class="lang-vi">Thịt đùi heo</span>
+                          <span class="lang-en">Pork leg</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Simulated feed and AI report side-by-side (Balanced height and stretched to bottom) -->
+                <div class="row g-3 mb-0 flex-grow-1 align-items-stretch">
+                  <!-- Hoạt động Đơn Hàng Gần Đây -->
+                  <div class="col-md-6 d-flex">
+                    <div
+                      class="card w-100 border-0"
+                      style="
+                        background: var(--section-bg);
+                        border-top-left-radius: 12px;
+                        border-top-right-radius: 12px;
+                        border-bottom-left-radius: 0;
+                        border-bottom-right-radius: 0;
+                        border: 1px solid rgba(0, 0, 0, 0.05) !important;
+                        border-bottom: 0 !important;
+                        display: flex;
+                        flex-direction: column;
+                      "
+                    >
+                      <div
+                        class="card-header bg-success bg-opacity-75 text-white py-2 px-3"
+                        style="
+                          border-top-left-radius: 12px;
+                          border-top-right-radius: 12px;
+                          border-bottom: 0;
+                        "
+                      >
+                        <h6 class="mb-0 fw-bold" style="font-size: 0.8rem">
+                          <span class="lang-vi">Hoạt động Đơn Hàng Gần Đây</span>
+                          <span class="lang-en">Recent Orders Activity</span>
+                        </h6>
+                      </div>
+                      <div
+                        class="card-body p-3 flex-grow-1"
+                        style="max-height: 290px; overflow-y: auto"
+                      >
+                        <div
+                          class="recent-orders-list"
+                          id="recent-orders-container"
+                        >
+                          <!-- Initial simulated orders -->
+                          <div
+                            class="order-item-simulation py-2 border-bottom d-flex align-items-center justify-content-between"
+                          >
+                            <div class="order-details-left min-w-0">
+                              <div
+                                class="fw-bold text-truncate text-dark"
+                                style="font-size: 0.8rem"
+                              >
+                                <span class="lang-vi">Nguyễn Thị Hòa</span>
+                                <span class="lang-en">Nguyen Thi Hoa</span>
+                              </div>
+                              <div
+                                class="text-muted text-truncate"
+                                style="font-size: 0.72rem"
+                              >
+                                <span class="lang-vi">0.5kg đùi gà tỏi tươi</span>
+                                <span class="lang-en">0.5kg fresh chicken drumsticks</span>
+                              </div>
+                            </div>
+                            <div
+                              class="order-details-right text-end flex-shrink-0 ps-2"
+                            >
+                              <div
+                                class="fw-bold text-success"
+                                style="font-size: 0.8rem"
+                              >
+                                <span class="lang-vi">45.000đ</span><span class="lang-en">45,000đ</span>
+                              </div>
+                              <div
+                                class="text-muted small"
+                                style="font-size: 0.68rem"
+                              >
+                                <span class="lang-vi">Vừa xong</span>
+                                <span class="lang-en">Just now</span>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="order-item-simulation py-2 border-bottom d-flex align-items-center justify-content-between"
+                          >
+                            <div class="order-details-left min-w-0">
+                              <div
+                                class="fw-bold text-truncate text-dark"
+                                style="font-size: 0.8rem"
+                              >
+                                <span class="lang-vi">Vũ Thị Linh</span>
+                                <span class="lang-en">Vu Thi Linh</span>
+                              </div>
+                              <div
+                                class="text-muted text-truncate"
+                                style="font-size: 0.72rem"
+                              >
+                                <span class="lang-vi">Combo ba chỉ lợn nướng, 1 bó xà lách</span>
+                                <span class="lang-en">Combo pork belly for grilling, 1 bunch of lettuce</span>
+                              </div>
+                            </div>
+                            <div
+                              class="order-details-right text-end flex-shrink-0 ps-2"
+                            >
+                              <div
+                                class="fw-bold text-success"
+                                style="font-size: 0.8rem"
+                              >
+                                <span class="lang-vi">87.000đ</span><span class="lang-en">87,000đ</span>
+                              </div>
+                              <div
+                                class="text-muted small"
+                                style="font-size: 0.68rem"
+                              >
+                                <span class="lang-vi">2 phút trước</span>
+                                <span class="lang-en">2 mins ago</span>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="order-item-simulation py-2 border-bottom d-flex align-items-center justify-content-between"
+                          >
+                            <div class="order-details-left min-w-0">
+                              <div
+                                class="fw-bold text-truncate text-dark"
+                                style="font-size: 0.8rem"
+                              >
+                                <span class="lang-vi">Hoàng Anh Tuấn</span>
+                                <span class="lang-en">Hoang Anh Tuan</span>
+                              </div>
+                              <div
+                                class="text-muted text-truncate"
+                                style="font-size: 0.72rem"
+                              >
+                                <span class="lang-vi">1.2kg sườn heo non sạch</span>
+                                <span class="lang-en">1.2kg clean baby pork ribs</span>
+                              </div>
+                            </div>
+                            <div
+                              class="order-details-right text-end flex-shrink-0 ps-2"
+                            >
+                              <div
+                                class="fw-bold text-success"
+                                style="font-size: 0.8rem"
+                              >
+                                <span class="lang-vi">168.000đ</span><span class="lang-en">168,000đ</span>
+                              </div>
+                              <div
+                                class="text-muted small"
+                                style="font-size: 0.68rem"
+                              >
+                                <span class="lang-vi">4 phút trước</span>
+                                <span class="lang-en">4 mins ago</span>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="order-item-simulation py-2 d-flex align-items-center justify-content-between"
+                          >
+                            <div class="order-details-left min-w-0">
+                              <div
+                                class="fw-bold text-truncate text-dark"
+                                style="font-size: 0.8rem"
+                              >
+                                <span class="lang-vi">Lê Văn Bình</span>
+                                <span class="lang-en">Le Van Binh</span>
+                              </div>
+                              <div
+                                class="text-muted text-truncate"
+                                style="font-size: 0.72rem"
+                              >
+                                <span class="lang-vi">Combo ba chỉ heo và sườn sụn nướng</span>
+                                <span class="lang-en">Combo pork belly and soft-bone for grilling</span>
+                              </div>
+                            </div>
+                            <div
+                              class="order-details-right text-end flex-shrink-0 ps-2"
+                            >
+                              <div
+                                class="fw-bold text-success"
+                                style="font-size: 0.8rem"
+                              >
+                                <span class="lang-vi">108.000đ</span><span class="lang-en">108,000đ</span>
+                              </div>
+                              <div
+                                class="text-muted small"
+                                style="font-size: 0.68rem"
+                              >
+                                <span class="lang-vi">6 phút trước</span>
+                                <span class="lang-en">6 mins ago</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Gợi Ý Chiến Lược Kinh Doanh (SellerAIInsights) -->
+                  <div class="col-md-6 d-flex">
+                    <div
+                      class="card w-100 border-0"
+                      style="
+                        background: var(--section-bg);
+                        border-top-left-radius: 12px;
+                        border-top-right-radius: 12px;
+                        border-bottom-left-radius: 0;
+                        border-bottom-right-radius: 0;
+                        border: 1px solid rgba(0, 0, 0, 0.05) !important;
+                        border-bottom: 0 !important;
+                        display: flex;
+                        flex-direction: column;
+                      "
+                    >
+                      <div
+                        class="card-header d-flex justify-content-between align-items-center bg-success bg-opacity-75 text-white py-2 px-3"
+                        style="
+                          border-top-left-radius: 12px;
+                          border-top-right-radius: 12px;
+                          border-bottom: 0;
+                        "
+                      >
+                        <h6 class="mb-0 fw-bold" style="font-size: 0.8rem">
+                          <i class="ph-fill ph-lightbulb text-warning me-1"></i>
+                          <span class="lang-vi">Gợi Ý Chiến Lược</span>
+                          <span class="lang-en">Strategic Insights</span>
+                        </h6>
+                        <span
+                          class="badge bg-white text-success fw-bold small"
+                          style="
+                            font-size: 0.58rem;
+                            border: 1px solid rgba(25, 135, 84, 0.3);
+                            padding: 0.15rem 0.3rem;
+                          "
+                          >AI REPORT</span
+                        >
+                      </div>
+                      <div
+                        class="card-body p-3 flex-grow-1"
+                        style="max-height: 290px; overflow-y: auto"
+                      >
+                        <div class="insights-list">
+                          <!-- Card 1 -->
+                          <div
+                            class="insight-item-card p-2 mb-2"
+                            style="
+                              border: 1px solid #e2e8f0;
+                              border-left: 4px solid #198754;
+                              border-radius: 8px;
+                              background: #fff;
+                              box-shadow: 0 1px 4px rgba(0, 0, 0, 0.02);
+                            "
+                          >
+                            <h6
+                              class="fw-bold mb-1"
+                              style="
+                                font-size: 0.75rem;
+                                color: #1e3a1e;
+                                display: flex;
+                                align-items: center;
+                                gap: 0.2rem;
+                              "
+                            >
+                              <i class="ph-fill ph-package text-success me-1"></i>
+                              <span class="lang-vi">Đề Xuất Gói Combo CLHUN</span>
+                              <span class="lang-en">Suggest CLHUN Combo Pack</span>
+                            </h6>
+                            <p
+                              class="mb-0 text-muted"
+                              style="font-size: 0.68rem; line-height: 1.35"
+                            >
+                              <span class="lang-vi">Thuật toán phân tích thấy có <b>70% khách hàng mua Thịt ba chỉ heo sẽ chọn mua thêm Sườn sụn heo</b> để làm món nướng/kho gia đình. Hãy đóng gói sẵn <b>"Combo Ba Chỉ & Sườn Sụn"</b> với giá ưu đãi.</span>
+                              <span class="lang-en">Analytics show that <b>70% of customers buying pork belly will also purchase pork soft-bone</b> for family grilling/braising. Consider pre-packaging a <b>"Pork Belly & Soft-Bone Combo"</b> with a promotional price.</span>
+                            </p>
+                          </div>
+                          <!-- Card 2 -->
+                          <div
+                            class="insight-item-card p-2 mb-2"
+                            style="
+                              border: 1px solid #e2e8f0;
+                              border-left: 4px solid #198754;
+                              border-radius: 8px;
+                              background: #fff;
+                              box-shadow: 0 1px 4px rgba(0, 0, 0, 0.02);
+                            "
+                          >
+                            <h6
+                              class="fw-bold mb-1"
+                              style="
+                                font-size: 0.75rem;
+                                color: #1e3a1e;
+                                display: flex;
+                                align-items: center;
+                                gap: 0.2rem;
+                              "
+                            >
+                              <i class="ph-fill ph-storefront text-success me-1"></i>
+                              <span class="lang-vi">Giải Phóng Hàng Tồn Kho</span>
+                              <span class="lang-en">Clear Excess Inventory</span>
+                            </h6>
+                            <p
+                              class="mb-0 text-muted"
+                              style="font-size: 0.68rem; line-height: 1.35"
+                            >
+                              <span class="lang-vi">Mặt hàng <b>"Sườn non heo"</b> hiện tại còn tồn kho 8kg có xu hướng giảm sức mua vào cuối ngày. Hệ thống đã <b>tự động đẩy mạnh sườn non vào các thực đơn gợi ý bữa tối gia đình dưới 150k</b>.</span>
+                              <span class="lang-en">The item <b>"Pork ribs"</b> currently has 8kg in stock with a tendency of declining demand late in the day. The system has <b>automatically promoted pork ribs in suggested dinner menus under 150k</b>.</span>
+                            </p>
+                          </div>
+                          <!-- Card 3 -->
+                          <div
+                            class="insight-item-card p-2"
+                            style="
+                              border: 1px solid #e2e8f0;
+                              border-left: 4px solid #198754;
+                              border-radius: 8px;
+                              background: #fff;
+                              box-shadow: 0 1px 4px rgba(0, 0, 0, 0.02);
+                            "
+                          >
+                            <h6
+                              class="fw-bold mb-1"
+                              style="
+                                font-size: 0.75rem;
+                                color: #1e3a1e;
+                                display: flex;
+                                align-items: center;
+                                gap: 0.2rem;
+                              "
+                            >
+                              <i class="ph-fill ph-trend-up text-success me-1"></i>
+                              <span class="lang-vi">Tối Ưu Hóa Nhập Hàng</span>
+                              <span class="lang-en">Optimize Sourcing</span>
+                            </h6>
+                            <p
+                              class="mb-0 text-muted"
+                              style="font-size: 0.68rem; line-height: 1.35"
+                            >
+                              <span class="lang-vi">Phân tích Utility Score ghi nhận tổ hợp chất đạm <b>{Ba chỉ heo, Sườn sụn}</b> mang lại tỷ lệ sinh lời cao nhất tuần qua. Khuyến nghị tăng lượng nhập sạp thêm <b>15%</b> cho ngày mai.</span>
+                              <span class="lang-en">Utility Score analysis recorded protein combination <b>{Pork belly, Pork soft-bone}</b> bringing highest profit margins last week. Recommended increasing sourcing by <b>15%</b> for tomorrow.</span>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Business Section -->
+    <section id="business" class="section-padding">
+      <div class="container">
+        <div class="text-center mb-5 reveal">
+          <h2 class="display-5 fw-bold mb-3">
+            <span class="lang-vi">Biến nhu cầu bữa ăn thành đơn hàng cho tiểu thương</span>
+            <span class="lang-en">Turn meal needs into orders for local vendors</span>
+          </h2>
+        </div>
+
+        <!-- User vs Customer -->
+        <div class="row g-4 mb-5">
+          <div class="col-lg-6 reveal">
+            <div class="user-segment-card">
+              <h5 class="fw-bold mb-4">
+                <i class="ph ph-users"></i>
+                <span class="lang-vi">Người dùng sử dụng</span>
+                <span class="lang-en">Free Users</span>
+              </h5>
+              <div class="segment-list">
+                <div class="segment-item">
+                  <i class="ph ph-student"></i>
+                  <span><span class="lang-vi">Sinh viên</span><span class="lang-en">Students</span></span>
+                </div>
+                <div class="segment-item">
+                  <i class="ph ph-briefcase"></i>
+                  <span><span class="lang-vi">Người đi làm</span><span class="lang-en">Office Workers</span></span>
+                </div>
+                <div class="segment-item">
+                  <i class="ph ph-house"></i>
+                  <span><span class="lang-vi">Hộ gia đình trẻ</span><span class="lang-en">Young Families</span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 reveal">
+            <div class="user-segment-card user-segment-primary">
+              <h5 class="fw-bold mb-4">
+                <i class="ph ph-money-coin"></i>
+                <span class="lang-vi">Khách hàng trả tiền</span>
+                <span class="lang-en">Paying Customers</span>
+              </h5>
+              <div class="segment-list">
+                <div class="segment-item">
+                  <i class="ph ph-storefront"></i>
+                  <span><span class="lang-vi">Tiểu thương</span><span class="lang-en">Market Vendors</span></span>
+                </div>
+                <div class="segment-item">
+                  <i class="ph ph-buildings"></i>
+                  <span><span class="lang-vi">Hộ kinh doanh nhỏ</span><span class="lang-en">Small Businesses</span></span>
+                </div>
+                <div class="segment-item">
+                  <i class="ph ph-basket"></i>
+                  <span><span class="lang-vi">Cửa hàng thực phẩm địa phương</span><span class="lang-en">Local Food Stores</span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mb-4">
+          <h3 class="fw-bold">
+            <span class="lang-vi">Các gói dành cho người bán</span>
+            <span class="lang-en">Service Plans for Sellers</span>
+          </h3>
+          <p class="text-muted mb-0">
+            <span class="lang-vi">Giai đoạn đầu ưu tiên để tiểu thương dùng thử dễ dàng, sau đó thu phí khi giá trị đã rõ ràng.</span>
+            <span class="lang-en">Initially free for trial adoption, transitioning to paid plans once value is established.</span>
+          </p>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+          <!-- Free Plan -->
+          <div class="col-lg-4 col-md-6">
+            <div class="pricing-card h-100">
+              <div class="pricing-header">
+                <span class="plan-tag"><span class="lang-vi">Khởi đầu</span><span class="lang-en">Starter</span></span>
+                <h4>FREE</h4>
+                <div class="price"><span class="lang-vi">Miễn phí</span><span class="lang-en">Free</span></div>
+                <p>
+                  <span class="lang-vi">Dành cho người bán mới bắt đầu số hóa gian hàng.</span>
+                  <span class="lang-en">For merchants starting to digitize their stalls.</span>
+                </p>
+              </div>
+
+              <ul class="pricing-features">
+                <li>
+                  <i class="ph-fill ph-check-circle"></i>
+                  <span class="lang-vi">Đăng sản phẩm cơ bản</span>
+                  <span class="lang-en">Post basic products</span>
+                </li>
+                <li>
+                  <i class="ph-fill ph-check-circle"></i>
+                  <span class="lang-vi">Nhận đơn đặt trước</span>
+                  <span class="lang-en">Receive pre-orders</span>
+                </li>
+                <li>
+                  <i class="ph-fill ph-check-circle"></i>
+                  <span class="lang-vi">Cảnh báo hết hàng</span>
+                  <span class="lang-en">Low stock alerts</span>
+                </li>
+                <li>
+                  <i class="ph-fill ph-check-circle"></i>
+                  <span class="lang-vi">Dashboard tổng quan</span>
+                  <span class="lang-en">Overview dashboard</span>
+                </li>
+              </ul>
+
+              <button class="btn btn-outline-primary btn-rounded w-100" disabled>
+                <span class="lang-vi">Bản hiện tại</span>
+                <span class="lang-en">Current Version</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Pro Plan -->
+          <div class="col-lg-4 col-md-6">
+            <div class="pricing-card featured h-100">
+              <div class="popular-badge">
+                <span class="lang-vi">Khuyên dùng</span>
+                <span class="lang-en">Popular</span>
+              </div>
+
+              <div class="pricing-header">
+                <span class="plan-tag"><span class="lang-vi">Tăng trưởng</span><span class="lang-en">Growth</span></span>
+                <h4>PRO</h4>
+                <div class="price">
+                  <span class="lang-vi">99.000đ<span>/tháng</span></span>
+                  <span class="lang-en">99,000đ<span>/month</span></span>
+                </div>
+                <p>
+                  <span class="lang-vi">Dành cho gian hàng muốn tăng đơn và hiểu dữ liệu bán hàng.</span>
+                  <span class="lang-en">For stalls wanting to increase orders and analyze sales data.</span>
+                </p>
+              </div>
+
+              <ul class="pricing-features">
+                <li>
+                  <i class="ph-fill ph-check-circle"></i>
+                  <span class="lang-vi">Toàn bộ tính năng gói FREE</span>
+                  <span class="lang-en">All FREE package features</span>
+                </li>
+                <li>
+                  <i class="ph-fill ph-check-circle"></i>
+                  <span class="lang-vi">Xem sản phẩm bán chạy</span>
+                  <span class="lang-en">View top-selling products</span>
+                </li>
+                <li>
+                  <i class="ph-fill ph-check-circle"></i>
+                  <span class="lang-vi">Gợi ý nhóm sản phẩm bán kèm</span>
+                  <span class="lang-en">Suggest cross-selling items</span>
+                </li>
+                <li>
+                  <i class="ph-fill ph-check-circle"></i>
+                  <span class="lang-vi">Insight AI nâng cao</span>
+                  <span class="lang-en">Advanced AI Insights</span>
+                </li>
+                <li>
+                  <i class="ph-fill ph-check-circle"></i>
+                  <span class="lang-vi">Báo cáo doanh thu theo ngày/tuần</span>
+                  <span class="lang-en">Daily/weekly revenue reports</span>
+                </li>
+              </ul>
+
+              <button class="btn btn-primary btn-rounded w-100">
+                <span class="lang-vi">Nâng cấp gói PRO</span>
+                <span class="lang-en">Upgrade to PRO</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Premium Plan -->
+          <div class="col-lg-4 col-md-6">
+            <div class="pricing-card h-100">
+              <div class="pricing-header">
+                <span class="plan-tag"><span class="lang-vi">Mở rộng</span><span class="lang-en">Expansion</span></span>
+                <h4>PREMIUM</h4>
+                <div class="price">
+                  <span class="lang-vi">199.000đ<span>/tháng</span></span>
+                  <span class="lang-en">199,000đ<span>/month</span></span>
+                </div>
+                <p>
+                  <span class="lang-vi">Dành cho gian hàng muốn được ưu tiên hiển thị và mở rộng khách hàng.</span>
+                  <span class="lang-en">For stalls wanting priority listing and customer expansion.</span>
+                </p>
+              </div>
+
+              <ul class="pricing-features">
+                <li>
+                  <i class="ph-fill ph-check-circle"></i>
+                  <span class="lang-vi">Toàn bộ tính năng gói PRO</span>
+                  <span class="lang-en">All PRO package features</span>
+                </li>
+                <li>
+                  <i class="ph-fill ph-check-circle"></i>
+                  <span class="lang-vi">Ưu tiên hiển thị gian hàng</span>
+                  <span class="lang-en">Priority stall placement</span>
+                </li>
+                <li>
+                  <i class="ph-fill ph-check-circle"></i>
+                  <span class="lang-vi">Gợi ý khuyến mãi theo tồn kho</span>
+                  <span class="lang-en">Inventory-based promo suggestions</span>
+                </li>
+                <li>
+                  <i class="ph-fill ph-check-circle"></i>
+                  <span class="lang-vi">Báo cáo nhóm khách hàng tiềm năng</span>
+                  <span class="lang-en">Target customer reporting</span>
+                </li>
+              </ul>
+
+              <button class="btn btn-primary btn-rounded w-100">
+                <span class="lang-vi">Nâng cấp gói PREMIUM</span>
+                <span class="lang-en">Upgrade to PREMIUM</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Revenue streams -->
+        <div class="revenue-box mt-5">
+          <div class="row align-items-center g-4">
+            <div class="col-lg-4">
+              <h4 class="fw-bold mb-2">
+                <span class="lang-vi">Dòng tiền bổ sung</span>
+                <span class="lang-en">Additional Revenue Streams</span>
+              </h4>
+              <p class="text-muted mb-0">
+                <span class="lang-vi">Ngoài gói tháng, nền tảng có thể tạo doanh thu từ giao dịch và dịch vụ mở rộng.</span>
+                <span class="lang-en">In addition to monthly plans, the platform can generate revenue from transactions and value-added services.</span>
+              </p>
+            </div>
+
+            <div class="col-lg-8">
+              <div class="row g-3">
+                <div class="col-md-4">
+                  <div class="revenue-item">
+                    <i class="ph ph-receipt"></i>
+                    <h6>
+                      <span class="lang-vi">Phí giao dịch</span>
+                      <span class="lang-en">Transaction Fee</span>
+                    </h6>
+                    <p>
+                      <span class="lang-vi">Thu khoản nhỏ trên đơn đặt trước thành công.</span>
+                      <span class="lang-en">Charge a small fee on successful pre-orders.</span>
+                    </p>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="revenue-item">
+                    <i class="ph ph-megaphone"></i>
+                    <h6>
+                      <span class="lang-vi">Quảng bá gian hàng</span>
+                      <span class="lang-en">Stall Promotion</span>
+                    </h6>
+                    <p>
+                      <span class="lang-vi">Ưu tiên hiển thị sản phẩm hoặc gian hàng nổi bật.</span>
+                      <span class="lang-en">Priority listings for featured items or stalls.</span>
+                    </p>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="revenue-item">
+                    <i class="ph ph-truck"></i>
+                    <h6>
+                      <span class="lang-vi">Đối tác mở rộng</span>
+                      <span class="lang-en">Expansion Partners</span>
+                    </h6>
+                    <p>
+                      <span class="lang-vi">Hợp tác thanh toán và giao hàng.</span>
+                      <span class="lang-en">Integrations with payment and delivery partners.</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <!-- Roadmap Section -->
+    <section id="roadmap" class="section-padding bg-section">
+      <div class="container">
+        <div class="text-center mb-5 reveal">
+          <h2 class="display-5 fw-bold mb-3">
+            <span class="lang-vi">Lộ trình phát triển & Gọi vốn</span>
+            <span class="lang-en">Development & Fundraising Roadmap</span>
+          </h2>
+        </div>
+        <div class="roadmap-timeline">
+          <div class="row g-4">
+            <div class="col-lg-4 reveal">
+              <div class="roadmap-card-new roadmap-now">
+                <div class="roadmap-status">
+                  <i class="ph-fill ph-play-circle"></i>
+                  <span>Now / MVP</span>
+                </div>
+                <div class="roadmap-period">
+                  <span class="lang-vi">0–6 tháng</span>
+                  <span class="lang-en">0–6 months</span>
+                </div>
+                <h5 class="fw-bold mb-3">
+                  <span class="lang-vi">Giai đoạn 1: MVP</span>
+                  <span class="lang-en">Phase 1: MVP</span>
+                </h5>
+                <ul class="roadmap-list">
+                  <li><i class="ph ph-check"></i> <span class="lang-vi">Hoàn thiện MVP</span><span class="lang-en">Complete MVP</span></li>
+                  <li><i class="ph ph-check"></i> <span class="lang-vi">Mô phỏng quanh HUIT</span><span class="lang-en">Simulate around HUIT</span></li>
+                  <li>
+                    <i class="ph ph-check"></i> <span class="lang-vi">Kiểm chứng nhu cầu người mua</span><span class="lang-en">Validate buyer demand</span>
+                  </li>
+                  <li>
+                    <i class="ph ph-check"></i> <span class="lang-vi">Đo khả năng cập nhật tồn kho của người bán</span><span class="lang-en">Measure seller inventory updates</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-4 reveal">
+              <div class="roadmap-card-new roadmap-next">
+                <div class="roadmap-status">
+                  <i class="ph ph-arrow-circle-right"></i>
+                  <span>Next / Pilot</span>
+                </div>
+                <div class="roadmap-period">
+                  <span class="lang-vi">6–12 tháng</span>
+                  <span class="lang-en">6–12 months</span>
+                </div>
+                <h5 class="fw-bold mb-3">
+                  <span class="lang-vi">Giai đoạn 2: Mở rộng</span>
+                  <span class="lang-en">Phase 2: Expansion</span>
+                </h5>
+                <ul class="roadmap-list">
+                  <li><i class="ph ph-circle"></i> <span class="lang-vi">Kết nối gian hàng thật</span><span class="lang-en">Connect real stalls</span></li>
+                  <li><i class="ph ph-circle"></i> <span class="lang-vi">Đo hành vi người dùng</span><span class="lang-en">Measure user behavior</span></li>
+                  <li><i class="ph ph-circle"></i> <span class="lang-vi">Cải thiện dashboard</span><span class="lang-en">Improve dashboard</span></li>
+                  <li><i class="ph ph-circle"></i> <span class="lang-vi">Tối ưu cơ chế gợi ý</span><span class="lang-en">Optimize suggestion engine</span></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-4 reveal">
+              <div class="roadmap-card-new roadmap-later">
+                <div class="roadmap-status">
+                  <i class="ph ph-rocket"></i>
+                  <span>Later / Scale</span>
+                </div>
+                <div class="roadmap-period">
+                  <span class="lang-vi">12–24 tháng</span>
+                  <span class="lang-en">12–24 months</span>
+                </div>
+                <h5 class="fw-bold mb-3">
+                  <span class="lang-vi">Giai đoạn 3: Toàn diện</span>
+                  <span class="lang-en">Phase 3: Integration</span>
+                </h5>
+                <ul class="roadmap-list">
+                  <li><i class="ph ph-circle"></i> <span class="lang-vi">Phát triển mobile app</span><span class="lang-en">Develop mobile app</span></li>
+                  <li>
+                    <i class="ph ph-circle"></i> <span class="lang-vi">Bản đồ gian hàng gần nhất</span><span class="lang-en">Map nearest stalls</span>
+                  </li>
+                  <li><i class="ph ph-circle"></i> <span class="lang-vi">Thanh toán điện tử</span><span class="lang-en">E-payment integration</span></li>
+                  <li>
+                    <i class="ph ph-circle"></i> <span class="lang-vi">Kết nối giao hàng bên thứ ba</span><span class="lang-en">Third-party delivery connection</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="section-padding">
+      <div class="container">
+        <div class="text-center mb-5 reveal">
+          <div class="badge badge-team mb-3">
+            <i class="ph ph-student"></i> HUIT EMART LOCAL
+          </div>
+          <h2 class="display-5 fw-bold mb-3">
+            <span class="lang-vi">Đội ngũ phát triển HUIT EMART</span>
+            <span class="lang-en">HUIT EMART Development Team</span>
+          </h2>
+        </div>
+        <div class="row g-4 justify-content-center">
+          <div class="col-md-6 col-lg-4 reveal">
+            <div class="team-card-new">
+              <div class="team-avatar-new">
+                <img
+                  src="https://avatars.githubusercontent.com/u/208788489?v=4"
+                  alt="Tran Gia Bao"
+                />
+              </div>
+              <h5 class="fw-bold mb-1">
+                <span class="lang-vi">Trần Gia Bảo</span>
+                <span class="lang-en">Tran Gia Bao</span>
+              </h5>
+              <div class="team-badge-role">
+                <span class="lang-vi">Trưởng nhóm & AI Engineer</span>
+                <span class="lang-en">Team Lead & AI Engineer</span>
+              </div>
+              <p class="team-role-sub mb-3">
+                <span class="lang-vi">Sinh viên K15 HUIT</span>
+                <span class="lang-en">K15 HUIT Student</span>
+              </p>
+              <p class="team-description small text-muted mb-3">
+                <span class="lang-vi">Kiến trúc sư hệ thống, chịu trách nhiệm tích hợp mô hình ngôn ngữ lớn (LLM), xử lý ngôn ngữ tự nhiên tiếng Việt và phân tích cấu trúc nhu cầu.</span>
+                <span class="lang-en">System Architect, responsible for Large Language Model (LLM) integration, Vietnamese natural language processing, and parsing demand structures.</span>
+              </p>
+              <div class="team-socials">
+                <a
+                  href="https://www.linkedin.com/in/gibor06/"
+                  class="social-icon"
+                  title="LinkedIn"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  ><i class="ph ph-linkedin-logo"></i
+                ></a>
+                <a
+                  href="https://github.com/gibor06"
+                  class="social-icon"
+                  title="GitHub"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  ><i class="ph ph-github-logo"></i
+                ></a>
+                <a
+                  href="mailto:gibor06.dev@gmail.com"
+                  class="social-icon"
+                  title="Email"
+                  ><i class="ph ph-envelope"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4 reveal">
+            <div class="team-card-new">
+              <div class="team-avatar-new">
+                <img
+                  src="https://avatars.githubusercontent.com/u/216468303?v=4"
+                  alt="Nguyen Thi Phuong Nhung"
+                />
+              </div>
+              <h5 class="fw-bold mb-1">
+                <span class="lang-vi">Nguyễn Thị Phương Nhung</span>
+                <span class="lang-en">Nguyen Thi Phuong Nhung</span>
+              </h5>
+              <div class="team-badge-role">
+                <span class="lang-vi">Project Leader & BA</span>
+                <span class="lang-en">Project Leader & BA</span>
+              </div>
+              <p class="team-role-sub mb-3">
+                <span class="lang-vi">Sinh viên K15 HUIT</span>
+                <span class="lang-en">K15 HUIT Student</span>
+              </p>
+              <p class="team-description small text-muted mb-3">
+                <span class="lang-vi">Lập kế hoạch phát triển, phân tích nghiệp vụ thực tế tại các chợ địa phương và kết nối giải pháp với nhu cầu thực của tiểu thương.</span>
+                <span class="lang-en">Development planner, analysing local market operations and connecting the solution with the actual needs of small merchants.</span>
+              </p>
+              <div class="team-socials">
+                <a
+                  href="https://www.linkedin.com/in/ph%C6%B0%C6%A1ng-nhung-03024b404"
+                  class="social-icon"
+                  title="LinkedIn"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  ><i class="ph ph-linkedin-logo"></i
+                ></a>
+                <a
+                  href="https://github.com/pon0212"
+                  class="social-icon"
+                  title="GitHub"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  ><i class="ph ph-github-logo"></i
+                ></a>
+                <a
+                  href="mailto:pnhung0212@gmail.com"
+                  class="social-icon"
+                  title="Email"
+                  ><i class="ph ph-envelope"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4 reveal">
+            <div class="team-card-new">
+              <div class="team-avatar-new">
+                <img
+                  src="https://avatars.githubusercontent.com/u/202115483?v=4"
+                  alt="Pham Trieu Tan Phuc"
+                />
+              </div>
+              <h5 class="fw-bold mb-1">
+                <span class="lang-vi">Phạm Triệu Tấn Phúc</span>
+                <span class="lang-en">Pham Trieu Tan Phuc</span>
+              </h5>
+              <div class="team-badge-role">
+                <span class="lang-vi">Backend Developer</span>
+                <span class="lang-en">Backend Developer</span>
+              </div>
+              <p class="team-role-sub mb-3">
+                <span class="lang-vi">Sinh viên K16 HUIT</span>
+                <span class="lang-en">K16 HUIT Student</span>
+              </p>
+              <p class="team-description small text-muted mb-3">
+                <span class="lang-vi">Lập trình ứng dụng phía máy chủ, thiết kế cơ sở dữ liệu sản phẩm, quản trị kho hàng và phát triển bộ lọc ràng buộc giá thật (Rule Layer).</span>
+                <span class="lang-en">Server-side developer, designing product databases, managing inventory, and developing actual price constraint filters (Rule Layer).</span>
+              </p>
+              <div class="team-socials">
+                <a
+                  href="https://github.com/phucpham161027"
+                  class="social-icon"
+                  title="GitHub"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  ><i class="ph ph-github-logo"></i
+                ></a>
+                <a
+                  href="mailto:phamtrieutanphuc@gmail.com"
+                  class="social-icon"
+                  title="Email"
+                  ><i class="ph ph-envelope"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4 reveal">
+            <div class="team-card-new">
+              <div class="team-avatar-new">
+                <img
+                  src="https://avatars.githubusercontent.com/u/236633452?v=4"
+                  alt="Vo Hong Bich Phuong"
+                />
+              </div>
+              <h5 class="fw-bold mb-1">
+                <span class="lang-vi">Võ Hồng Bích Phượng</span>
+                <span class="lang-en">Vo Hong Bich Phuong</span>
+              </h5>
+              <div class="team-badge-role">
+                <span class="lang-vi">Frontend & UI/UX Designer</span>
+                <span class="lang-en">Frontend & UI/UX Designer</span>
+              </div>
+              <p class="team-role-sub mb-3">
+                <span class="lang-vi">Sinh viên K16 HUIT</span>
+                <span class="lang-en">K16 HUIT Student</span>
+              </p>
+              <p class="team-description small text-muted mb-3">
+                <span class="lang-vi">Thiết kế trải nghiệm người dùng trực quan, xây dựng giao diện tương tác Responsive trên thiết bị di động, tối ưu hóa tốc độ tải trang.</span>
+                <span class="lang-en">Designing intuitive user experiences, building responsive interactive mobile interfaces, and optimizing page load speeds.</span>
+              </p>
+              <div class="team-socials">
+                <a
+                  href="https://github.com/pizzacutie"
+                  class="social-icon"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="GitHub"
+                  ><i class="ph ph-github-logo"></i
+                ></a>
+                <a
+                  href="mailto:pizzakuteyt@gmail.com"
+                  class="social-icon"
+                  title="Email"
+                  ><i class="ph ph-envelope"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 reveal">
+            <div class="team-card-new">
+              <div class="team-avatar-new">
+                <img
+                  src="https://avatars.githubusercontent.com/u/291101981?v=4"
+                  alt="Huynh Thi Kim Phung"
+                />
+              </div>
+              <h5 class="fw-bold mb-1">
+                <span class="lang-vi">Huỳnh Thị Kim Phụng</span>
+                <span class="lang-en">Huynh Thi Kim Phung</span>
+              </h5>
+              <div class="team-badge-role">
+                <span class="lang-vi">UX/UI Designer & Business</span>
+                <span class="lang-en">UX/UI Designer & Business</span>
+              </div>
+              <p class="team-role-sub mb-3">
+                <span class="lang-vi">Sinh viên K16 HUIT</span>
+                <span class="lang-en">K16 HUIT Student</span>
+              </p>
+              <p class="team-description small text-muted mb-3">
+                <span class="lang-vi">Khảo sát thị trường, thu thập dữ liệu giá bán từ tiểu thương tại các chợ đầu mối và xây dựng phương án mở rộng dịch vụ thương mại địa phương.</span>
+                <span class="lang-en">Market research, gathering price data from merchants at wholesale markets, and developing local commercial expansion plans.</span>
+              </p>
+              <div class="team-socials">
+                <a href="" class="social-icon" title="GitHub"
+                  ><i class="ph ph-github-logo"></i
+                ></a>
+                <a
+                  href="mailto:huynhthikimphung130427@gmail.com"
+                  class="social-icon"
+                  title="Email"
+                  ><i class="ph ph-envelope"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row justify-content-center mb-5">
+        <div class="col-lg-10">
+          <div class="team-photo-card reveal">
+            <img src="assets/team/team-photo.jpg" alt="Cho AI Local Team" />
+            <div class="team-photo-caption">
+              <span>HUIT EMART LOCAL</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section id="contact" class="section-padding cta-section">
+      <div class="container text-center reveal">
+        <h2 class="display-4 fw-bold text-white mb-4">
+          <span class="lang-vi">Chợ AI Local</span>
+          <span class="lang-en">AI Local Market</span>
+        </h2>
+        <p class="lead text-white mb-5">
+          <span class="lang-vi">Chợ AI Local giúp người mua tìm thực đơn tự nấu theo ngân sách từ sản phẩm thật của gian hàng địa phương, đồng thời hỗ trợ tiểu thương quản lý sản phẩm, tồn kho và đơn đặt trước bằng dữ liệu.</span>
+          <span class="lang-en">AI Local Market helps buyers search home-cooking menus within budget using real items from local stalls, while supporting merchants to manage products, inventory, and pre-orders with data.</span>
+        </p>
+        <div class="d-flex justify-content-center gap-3 flex-wrap">
+          <a href="#demo" class="btn btn-light btn-lg btn-rounded">
+            <i class="ph ph-arrows-counter-clockwise"></i>
+            <span class="lang-vi">Xem lại demo</span>
+            <span class="lang-en">Replay Demo</span>
+          </a>
+          <a
+            href="mailto:gibor06.dev@gmail.com"
+            class="btn btn-outline-light btn-lg btn-rounded"
+          >
+            <i class="ph ph-envelope"></i>
+            <span class="lang-vi">Liên hệ đội thi</span>
+            <span class="lang-en">Contact Team</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+      <div class="container text-center">
+        <p class="mb-0">
+          <span class="lang-vi">© 2026 Chợ AI Local — Đi chợ thông minh, ăn ngon đúng ngân sách.</span>
+          <span class="lang-en">© 2026 AI Local Market — Shop smart, eat well, stay within budget.</span>
+        </p>
+      </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button
+      id="backToTop"
+      class="btn btn-primary btn-floating"
+      title="Lên đầu trang / Back to top"
+    >
+      <i class="ph ph-arrow-up"></i>
+    </button>
+
+    <!-- Order Modal -->
+    <div class="modal fade" id="orderModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header border-0 pb-0">
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body text-center p-5">
+            <div class="success-icon mb-4">
+              <i class="ph-fill ph-check-circle"></i>
+            </div>
+            <h4 class="fw-bold mb-3">
+              <span class="lang-vi">Đặt trước thành công!</span>
+              <span class="lang-en">Pre-order Successful!</span>
+            </h4>
+            <div class="order-details">
+              <div class="detail-row">
+                <span class="detail-label">
+                  <span class="lang-vi">Mã đơn:</span>
+                  <span class="lang-en">Order ID:</span>
+                </span>
+                <span class="detail-value" id="modal-order-id"
+                  >ORD-DEMO-0001</span
+                >
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">
+                  <span class="lang-vi">Thực đơn:</span>
+                  <span class="lang-en">Menu:</span>
+                </span>
+                <span class="detail-value" id="modal-order-title">
+                  <span class="lang-vi">Thực đơn bữa tối 3 người: Thịt bằm sốt cà</span>
+                  <span class="lang-en">Dinner for 3 people: Minced pork with tomato sauce</span>
+                </span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">
+                  <span class="lang-vi">Tổng tiền:</span>
+                  <span class="lang-en">Total cost:</span>
+                </span>
+                <span
+                  class="detail-value fw-bold text-success"
+                  id="modal-order-price"
+                >
+                  <span class="lang-vi">93.500đ</span>
+                  <span class="lang-en">93,500 VND</span>
+                </span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">
+                  <span class="lang-vi">Nhận tại:</span>
+                  <span class="lang-en">Pickup at:</span>
+                </span>
+                <span class="detail-value">
+                  <span class="lang-vi">Chợ Nguyễn Đỗ Cung</span>
+                  <span class="lang-en">Nguyen Do Cung Market</span>
+                </span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">
+                  <span class="lang-vi">Thời gian nhận:</span>
+                  <span class="lang-en">Pickup time:</span>
+                </span>
+                <span class="detail-value" id="modal-order-time">
+                  <span class="lang-vi">17:30 hôm nay</span>
+                  <span class="lang-en">17:30 today</span>
+                </span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">
+                  <span class="lang-vi">Trạng thái:</span>
+                  <span class="lang-en">Status:</span>
+                </span>
+                <span class="badge bg-warning">
+                  <span class="lang-vi">Chờ người bán xác nhận</span>
+                  <span class="lang-en">Awaiting merchant approval</span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+  </body>
 </html>
