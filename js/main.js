@@ -1039,7 +1039,7 @@ document.addEventListener("DOMContentLoaded", function () {
     "Sử dụng": "Used",
     "ngân sách": "budget",
     "Thêm món khác:": "Add item:",
-    "Chọn nguyên liệu muốn thêm": "Select item to add",
+    "Chọn nguyên liệu": "Select ingredient",
     "Thêm": "Add",
     "Cảnh báo: Chi phí đã vượt ngân sách đề ra là": "Warning: Cost exceeds the specified budget of",
     "miếng": "pcs",
@@ -1162,37 +1162,41 @@ document.addEventListener("DOMContentLoaded", function () {
     "Cung cấp chất béo tốt Omega-3 cho tim mạch từ cá hồi tươi sạch và măng tây giàu xơ, kali.": "Provides heart-healthy Omega-3 from fresh salmon and fiber-rich asparagus."
   };
 
-  // Helper to map ingredient names to matching Phosphor Icons
+  // Helper to map ingredient names to matching Icons (Phosphor Icons & Flaticon Uicons)
   function getIngredientIcon(name) {
     const lowerName = name.toLowerCase();
-    if (lowerName.includes("thịt") || lowerName.includes("sườn") || lowerName.includes("giò") || lowerName.includes("ba chỉ") || lowerName.includes("mọc") || lowerName.includes("heo") || lowerName.includes("lợn") || lowerName.includes("nạc")) {
-      return "ph-meat";
-    }
     if (lowerName.includes("cá") || lowerName.includes("hồi") || lowerName.includes("hú")) {
-      return "ph-fish";
+      return "ph-fill ph-fish";
     }
     if (lowerName.includes("tôm") || lowerName.includes("sú") || lowerName.includes("hải sản")) {
-      return "ph-shrimp";
+      return "ph-fill ph-shrimp";
     }
     if (lowerName.includes("gà") || lowerName.includes("đùi") || lowerName.includes("cánh")) {
-      return "ph-bird";
+      return "ph-fill ph-bird";
+    }
+    if (lowerName.includes("bò")) {
+      return "ph-fill ph-cow";
+    }
+    // Using Flaticon Uicon bold meat icon for pork (thịt heo/lợn/sườn/ba chỉ/nạc...)
+    if (lowerName.includes("thịt") || lowerName.includes("sườn") || lowerName.includes("giò") || lowerName.includes("ba chỉ") || lowerName.includes("mọc") || lowerName.includes("heo") || lowerName.includes("lợn") || lowerName.includes("nạc")) {
+      return "fi fi-br-meat";
     }
     if (lowerName.includes("rau") || lowerName.includes("cải") || lowerName.includes("xà lách") || lowerName.includes("muống") || lowerName.includes("bí đỏ") || lowerName.includes("cà chua") || lowerName.includes("măng tây") || lowerName.includes("hành") || lowerName.includes("tỏi") || lowerName.includes("sả") || lowerName.includes("ớt") || lowerName.includes("thì là") || lowerName.includes("ngò")) {
-      return "ph-leaf";
+      return "ph-fill ph-leaf";
     }
     if (lowerName.includes("trứng")) {
-      return "ph-egg";
+      return "ph-fill ph-egg";
     }
     if (lowerName.includes("bún") || lowerName.includes("cơm") || lowerName.includes("cháo") || lowerName.includes("quẩy")) {
-      return "ph-bowl";
+      return "ph-fill ph-bowl";
     }
     if (lowerName.includes("đậu hũ") || lowerName.includes("trắng")) {
-      return "ph-cube";
+      return "ph-fill ph-cube";
     }
     if (lowerName.includes("dầu") || lowerName.includes("sốt") || lowerName.includes("kewpie") || lowerName.includes("nước") || lowerName.includes("cam")) {
-      return "ph-drop";
+      return "ph-fill ph-drop";
     }
-    return "ph-package";
+    return "ph-fill ph-package";
   }
 
   // Helper translation function
@@ -1284,7 +1288,7 @@ document.addEventListener("DOMContentLoaded", function () {
           <td>
             <div class="cart-product-cell">
               <div class="ingredient-icon-wrapper rounded-circle d-flex align-items-center justify-content-center me-2 bg-soft-green flex-shrink-0" style="width: 28px; height: 28px;">
-                <i class="ph-fill ${iconClass} text-primary" style="font-size: 0.9rem;"></i>
+                <i class="${iconClass} text-primary" style="font-size: 0.9rem;"></i>
               </div>
               <span class="fw-semibold text-dark" style="font-size: 0.85rem;">${t(item.name)}</span>
             </div>
@@ -1293,7 +1297,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <!-- Interactive Quantity Controls -->
             <div class="cart-qty-controls">
               <button type="button" class="cart-btn-qty cart-btn-qty-minus" data-idx="${idx}">${minusBtnContent}</button>
-              <span class="cart-qty-val">${qtyStr} ${t(item.unit)}</span>
+              <span class="cart-qty-val" data-idx="${idx}" style="cursor: pointer;" title="${lang === 'en' ? 'Double click to edit quantity' : 'Kích đúp để tự nhập số lượng'}">${qtyStr} ${t(item.unit)}</span>
               <button type="button" class="cart-btn-qty cart-btn-qty-plus" data-idx="${idx}">+</button>
             </div>
           </td>
@@ -1356,19 +1360,21 @@ document.addEventListener("DOMContentLoaded", function () {
     // Sort alphabetically
     availableToAdd.sort((a, b) => a.name.localeCompare(b.name, "vi"));
 
-    let selectOptionsHtml = `<option value="">-- ${t("Chọn nguyên liệu muốn thêm")} --</option>`;
+    let selectOptionsHtml = `<option value="">-- ${t("Chọn nguyên liệu")} --</option>`;
     availableToAdd.forEach(item => {
       const priceStr = item.pricePerUnit.toLocaleString(lang === "en" ? "en-US" : "vi-VN") + "đ/" + t(item.unit);
       selectOptionsHtml += `<option value="${item.name}">${t(item.name)} (${priceStr})</option>`;
     });
 
     const addBoxHtml = `
-      <div class="add-item-box d-flex align-items-center mt-3">
-        <label class="text-muted small fw-bold flex-shrink-0 me-2" style="font-size: 0.75rem;"><i class="ph ph-plus"></i> ${t("Thêm món khác:")}</label>
-        <select class="form-select form-select-sm add-item-select" id="add-item-select" style="min-width: 150px;">
-          ${selectOptionsHtml}
-        </select>
-        <button type="button" class="btn btn-success btn-sm btn-add-item flex-shrink-0" id="btn-add-item">
+      <div class="add-item-box d-flex flex-column flex-sm-row align-items-stretch align-items-sm-center gap-2 mt-3">
+        <div class="d-flex flex-column flex-sm-row align-items-stretch align-items-sm-center flex-grow-1 gap-2">
+          <label class="text-muted small fw-bold flex-shrink-0" style="font-size: 0.75rem;"><i class="ph ph-plus"></i> ${t("Thêm món khác:")}</label>
+          <select class="form-select form-select-sm add-item-select" id="add-item-select" style="min-width: 120px; flex: 1 1 auto;">
+            ${selectOptionsHtml}
+          </select>
+        </div>
+        <button type="button" class="btn btn-success btn-sm btn-add-item align-self-center align-self-sm-auto flex-shrink-0" id="btn-add-item">
           <i class="ph ph-plus-circle"></i> ${t("Thêm")}
         </button>
       </div>
@@ -1405,6 +1411,67 @@ document.addEventListener("DOMContentLoaded", function () {
         btn.addEventListener("click", function() {
           const idx = parseInt(this.getAttribute("data-idx"));
           adjustItemQuantity(idx, 1);
+        });
+      });
+
+      // Attach double-click event to directly edit quantities
+      const qtyVals = receiptContainer.querySelectorAll(".cart-qty-val");
+      qtyVals.forEach(val => {
+        val.addEventListener("dblclick", function() {
+          const idx = parseInt(this.getAttribute("data-idx"));
+          const item = currentSimulation.activeItems[idx];
+          if (!item) return;
+
+          // Create inline input element
+          const input = document.createElement("input");
+          input.type = "number";
+          input.value = item.qty;
+          
+          // Set step based on unit (integers for units like pcs, decimals for kg)
+          const isIntegerUnit = ["quả", "miếng", "cuộn", "ổ", "gói", "túi", "cây", "chén", "bó", "phần", "bát"].includes(item.unit.toLowerCase());
+          input.step = isIntegerUnit ? "1" : "0.01";
+          input.min = isIntegerUnit ? "1" : "0.05";
+          
+          input.style.width = "65px";
+          input.style.fontSize = "0.8rem";
+          input.style.padding = "2px";
+          input.style.textAlign = "center";
+          input.style.borderRadius = "4px";
+          input.style.border = "1px solid var(--primary)";
+          input.style.backgroundColor = "var(--white)";
+          input.style.color = "var(--text-dark)";
+
+          let isSaved = false;
+          const saveValue = () => {
+            if (isSaved) return;
+            isSaved = true;
+            
+            const newQty = parseFloat(input.value);
+            if (!isNaN(newQty) && newQty > 0) {
+              item.qty = Math.round(newQty * 100) / 100;
+              renderActiveSuggestion();
+              // Re-render overview tabs as they display total prices
+              renderOptionTabs();
+            } else {
+              renderActiveSuggestion();
+            }
+          };
+
+          input.addEventListener("keydown", function(e) {
+            if (e.key === "Enter") {
+              saveValue();
+            } else if (e.key === "Escape") {
+              renderActiveSuggestion();
+            }
+          });
+
+          input.addEventListener("blur", saveValue);
+
+          // Replace text content with input and focus it
+          this.innerHTML = "";
+          this.appendChild(input);
+          input.focus();
+          input.select();
         });
       });
 
@@ -1496,7 +1563,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (verificationBadgesContainer) {
       if (totalCost > budgetLimit) {
         verificationBadgesContainer.innerHTML = `
-                    <div class="verify-badge exceeded"><i class="ph-fill ph-warning"></i> ${t("Vượt hạn mức")}</div>
+                    <div class="verify-badge exceeded"><i class="ph-fill ph-warning-circle"></i> ${t("Vượt hạn mức")}</div>
                     <div class="verify-badge"><i class="ph-fill ph-users"></i> ${t("Đủ khẩu phần")}</div>
                 `;
       } else {
@@ -1517,19 +1584,42 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let tabsHtml = "";
     currentSimulation.options.forEach((opt, idx) => {
-      const activeClass =
-        idx === currentSimulation.activeOptionIdx ? "active" : "";
+      // Calculate total cost for this option to display in the card preview
+      let optionCost = 0;
+      if (idx === currentSimulation.activeOptionIdx && currentSimulation.activeItems) {
+        currentSimulation.activeItems.forEach(item => {
+          optionCost += item.qty * item.pricePerUnit;
+        });
+      } else {
+        opt.items.forEach(item => {
+          const qty = calculateQuantity(item, currentSimulation.peopleCount);
+          optionCost += qty * item.pricePerUnit;
+        });
+      }
+
+      const isActive = idx === currentSimulation.activeOptionIdx;
+      const activeClass = isActive ? "active-suggestion-card" : "";
       const labelText = lang === "en" ? `Option ${idx + 1}` : `Gợi ý ${idx + 1}`;
-      tabsHtml += `<button class="btn btn-outline-success btn-sm option-tab ${activeClass}" data-option-idx="${idx}">${labelText}</button>`;
+      
+      tabsHtml += `
+        <div class="suggestion-overview-card p-3 flex-fill ${activeClass}" data-option-idx="${idx}" style="cursor: pointer;">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <span class="badge badge-overview-num">${labelText}</span>
+            <span class="overview-price fw-extrabold text-success" style="font-size: 0.95rem; font-weight: 800;">${optionCost.toLocaleString(lang === "en" ? "en-US" : "vi-VN")}đ</span>
+          </div>
+          <h6 class="overview-title mb-2 fw-bold text-dark" style="font-size: 0.9rem; margin-top: 0.25rem;">${t(opt.name)}</h6>
+          <p class="overview-desc mb-0 text-muted small" style="font-size: 0.75rem; line-height: 1.35;">${t(opt.suggestion)}</p>
+        </div>
+      `;
     });
     container.innerHTML = tabsHtml;
 
     // Add event listeners to tabs
-    const tabs = container.querySelectorAll(".option-tab");
+    const tabs = container.querySelectorAll(".suggestion-overview-card");
     tabs.forEach((tab) => {
       tab.addEventListener("click", function () {
-        tabs.forEach((t) => t.classList.remove("active"));
-        this.classList.add("active");
+        tabs.forEach((t) => t.classList.remove("active-suggestion-card"));
+        this.classList.add("active-suggestion-card");
 
         const idx = parseInt(this.getAttribute("data-option-idx"));
         currentSimulation.activeOptionIdx = idx;
@@ -1547,6 +1637,8 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
         renderActiveSuggestion();
+        // Re-render tabs to update costs and active states
+        renderOptionTabs();
       });
     });
   }
@@ -2100,8 +2192,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const STATIC_TRANSLATIONS = {
     // Navbar Logo
     "nav.navbar .navbar-brand": {
-      vi: `<img src="assets/team/logo.png" alt="Chợ AI Local" width="28" height="28" class="me-2 align-middle" />Chợ AI Local`,
-      en: `<img src="assets/team/logo.png" alt="Chợ AI Local" width="28" height="28" class="me-2 align-middle" />AI Local Market`
+      vi: `<img src="assets/team/logo.png" alt="Chợ AI Local" width="28" height="28" class="me-2 align-middle navbar-brand-logo" />Chợ AI Local`,
+      en: `<img src="assets/team/logo.png" alt="Chợ AI Local" width="28" height="28" class="me-2 align-middle navbar-brand-logo" />AI Local Market`
     },
     
     
@@ -2362,8 +2454,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const customInputText = document.getElementById("custom-input-text");
     if (customInputText) {
       customInputText.placeholder = lang === "en" 
-        ? "Example: dinner for 3 people around 100k with rice" 
-        : "Ví dụ: bữa tối 3 người khoảng 100k ăn cơm";
+        ? "Example: 100k for dinner for 3 people" 
+        : "Ví dụ: 100k cho bữa tối 3 người";
     }
 
     // Apply translations

@@ -76,6 +76,22 @@ h6 {
   font-weight: 700;
 }
 
+.navbar-brand-logo {
+  background-color: #ffffff !important;
+  border-radius: 50% !important;
+  padding: 3px !important;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
+  border: 1px solid rgba(0, 0, 0, 0.05) !important;
+  display: inline-block !important;
+  vertical-align: middle !important;
+  transition: all 0.3s ease !important;
+}
+
+body.dark-mode .navbar-brand-logo {
+  background-color: #ffffff !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4) !important;
+}
+
 .nav-link {
   color: var(--text-dark) !important;
   font-weight: 500;
@@ -2695,7 +2711,7 @@ footer {
   background: var(--white);
   border-radius: 12px;
   border: 1px solid #e2e8f0;
-  overflow: hidden;
+  overflow-x: auto;
   margin-bottom: 1rem;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
@@ -2777,6 +2793,7 @@ footer {
 
 .add-item-box {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.5rem;
   align-items: center;
   background: #f8fafc;
@@ -3011,6 +3028,19 @@ body.dark-mode .form-select {
   background-color: #1e293b !important;
   color: #e2e8f0 !important;
   border-color: #334155 !important;
+}
+
+body.dark-mode .form-control::placeholder {
+  color: #94a3b8 !important;
+  opacity: 0.8 !important;
+}
+
+body.dark-mode input[type="date"] {
+  color-scheme: dark !important;
+}
+
+body.dark-mode input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1) !important;
 }
 
 body.dark-mode .form-control:focus,
@@ -3268,6 +3298,106 @@ html[lang="en"] .lang-en {
 
 html[lang="en"] .lang-vi {
   display: none !important;
+}
+
+/* ===== Responsive Mobile Adjustments for Cart Table ===== */
+@media (max-width: 576px) {
+  .cart-table th, 
+  .cart-table td {
+    padding: 0.6rem 0.5rem !important;
+    font-size: 0.8rem !important;
+  }
+  .cart-qty-val {
+    min-width: 42px !important;
+    margin: 0 2px !important;
+    font-size: 0.75rem !important;
+  }
+  .cart-qty-controls {
+    padding: 2px !important;
+  }
+  .cart-btn-qty {
+    width: 22px !important;
+    height: 22px !important;
+  }
+}
+
+/* ===== Suggestion Overview Cards (Gợi ý so sánh) ===== */
+#option-tabs-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  #option-tabs-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.suggestion-overview-card {
+  background: var(--white);
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.suggestion-overview-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--card-shadow-hover);
+  border-color: var(--primary);
+}
+
+.suggestion-overview-card.active-suggestion-card {
+  border: 2px solid var(--primary) !important;
+  box-shadow: 0 4px 15px rgba(25, 135, 84, 0.15);
+  background: var(--soft-green) !important;
+}
+
+body.dark-mode .suggestion-overview-card {
+  background: #1e293b !important;
+  border-color: #334155 !important;
+}
+
+body.dark-mode .suggestion-overview-card.active-suggestion-card {
+  border-color: #22c55e !important;
+  background: rgba(34, 197, 94, 0.1) !important;
+}
+
+.badge-overview-num {
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  display: inline-block;
+}
+
+body.dark-mode .badge-overview-num {
+  background: rgba(34, 197, 94, 0.2) !important;
+  color: #22c55e !important;
+}
+
+.overview-price {
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+
+.overview-title {
+  font-size: 0.9rem;
+  margin-top: 0.25rem;
+}
+
+.overview-desc {
+  font-size: 0.75rem;
+  color: var(--muted);
+  line-height: 1.35;
 }
 
 
