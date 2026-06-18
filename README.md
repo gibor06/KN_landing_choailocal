@@ -191,7 +191,7 @@ Dự án được thực hiện bởi đội ngũ sinh viên **HUIT EMART LOCAL*
 * **Nguyễn Thị Phương Nhung:** Project Leader & Business Analyst (Lập kế hoạch phát triển, phân tích nghiệp vụ thực tế tại các chợ và kết nối giải pháp với tiểu thương).
 * **Trần Gia Bảo:** Team Lead & AI Engineer (Kiến trúc sư hệ thống, chịu trách nhiệm tích hợp mô hình ngôn ngữ lớn LLM, xử lý ngôn ngữ tự nhiên tiếng Việt và phân tích cấu trúc nhu cầu).
 * **Phạm Triệu Tấn Phúc:** Backend Developer (Lập trình server-side, thiết kế cơ sở dữ liệu sản phẩm, quản trị kho hàng và phát triển bộ lọc ràng buộc giá thật).
-* **Võ Hồng Bích Phượng:** Frontend & UI/UX Designer (Thiết kế trải nghiệm người dùng trực quan, xây dựng giao diện tương tác Responsive trên thiết bị di động).
+* **Võ Hồng Bích Phượng:** Frontend & UI/UX Designer (Thiết kế trải nghiệm người dùng trực quan, xây dựng giao diện tương tác trực tiếp trên thiết bị di động).
 * **Huỳnh Thị Kim Phụng:** Data Analyst & Marketing (Khai thác dữ liệu, phân tích hành vi mua sắm và lập kế hoạch tiếp cận tiểu thương địa phương).
 
 ---
