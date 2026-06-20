@@ -188,11 +188,11 @@ Hệ thống vừa được nâng cấp các tính năng và sửa lỗi hiển 
 
 Dự án được thực hiện bởi đội ngũ sinh viên **HUIT EMART LOCAL** đến từ Trường Đại học Công Thương TP.HCM:
 
-* **Nguyễn Thị Phương Nhung:** Project Leader & Business Analyst (Lập kế hoạch phát triển, phân tích nghiệp vụ thực tế tại các chợ và kết nối giải pháp với tiểu thương).
-* **Trần Gia Bảo:** Team Lead & AI Engineer (Kiến trúc sư hệ thống, chịu trách nhiệm tích hợp mô hình ngôn ngữ lớn LLM, xử lý ngôn ngữ tự nhiên tiếng Việt và phân tích cấu trúc nhu cầu).
-* **Phạm Triệu Tấn Phúc:** Backend Developer (Lập trình server-side, thiết kế cơ sở dữ liệu sản phẩm, quản trị kho hàng và phát triển bộ lọc ràng buộc giá thật).
-* **Võ Hồng Bích Phượng:** Frontend & UI/UX Designer (Thiết kế trải nghiệm người dùng trực quan, xây dựng giao diện tương tác trực tiếp trên thiết bị di động).
-* **Huỳnh Thị Kim Phụng:** Data Analyst & Marketing (Khai thác dữ liệu, phân tích hành vi mua sắm và lập kế hoạch tiếp cận tiểu thương địa phương).
+* **Trần Gia Bảo:** CEO (Chief Executive Officer) - Chịu trách nhiệm định hướng chiến lược, quản lý tổng thể dự án, xây dựng mô hình kinh doanh, phát triển đối tác và điều phối hoạt động của đội ngũ.
+* **Nguyễn Thị Phương Nhung:** CTO (Chief Technology Officer) - Phụ trách chiến lược công nghệ, thiết kế kiến trúc hệ thống, quản lý phát triển phần mềm, đảm bảo nền tảng hoạt động ổn định, an toàn và có khả năng mở rộng.
+* **Phạm Triệu Tấn Phúc:** CAIO (Chief AI Officer) - Phụ trách nghiên cứu và phát triển các giải pháp trí tuệ nhân tạo (AI), xây dựng hệ thống gợi ý thông minh, tối ưu mô hình AI và khai thác dữ liệu phục vụ sản phẩm.
+* **Võ Hồng Bích Phượng:** CPO (Chief Product Officer) - Phụ trách chiến lược sản phẩm, nghiên cứu nhu cầu người dùng, thiết kế trải nghiệm (UI/UX), xây dựng lộ trình phát triển và đảm bảo sản phẩm đáp ứng yêu cầu của thị trường.
+* **Huỳnh Thị Kim Phụng:** COO (Chief Operating Officer) - Phụ trách quản lý vận hành, nghiên cứu thị trường, xây dựng quy trình hoạt động, quản lý nguồn lực và triển khai các kế hoạch phát triển kinh doanh.
 
 ---
 
