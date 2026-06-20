@@ -202,12 +202,12 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // ===== Order Button Loading State & Modal Details Populating =====
-  
+
   // Initialize pickup date and time with default values
   function initializePickupDateTime() {
     const pickupDateInput = document.getElementById("pickup-date");
     const pickupTimeSelect = document.getElementById("pickup-time");
-    
+
     if (pickupDateInput) {
       // Set default date to today
       const today = new Date();
@@ -215,10 +215,10 @@ document.addEventListener("DOMContentLoaded", function () {
       const month = String(today.getMonth() + 1).padStart(2, '0');
       const day = String(today.getDate()).padStart(2, '0');
       pickupDateInput.value = `${year}-${month}-${day}`;
-      
+
       // Set minimum date to today
       pickupDateInput.min = `${year}-${month}-${day}`;
-      
+
       // Set maximum date to 7 days from now
       const maxDate = new Date(today);
       maxDate.setDate(maxDate.getDate() + 7);
@@ -227,17 +227,17 @@ document.addEventListener("DOMContentLoaded", function () {
       const maxDay = String(maxDate.getDate()).padStart(2, '0');
       pickupDateInput.max = `${maxYear}-${maxMonth}-${maxDay}`;
     }
-    
+
     if (pickupTimeSelect) {
       // Set default time to 15 minutes from now (remove 2 hours constraint for placement time suggestion)
       const now = new Date();
       const futureTime = new Date(now.getTime() + 15 * 60 * 1000);
       const hours = futureTime.getHours();
-      
+
       // Find closest available time slot
       const timeOptions = pickupTimeSelect.querySelectorAll('option');
       let closestTime = '17:00'; // default
-      
+
       timeOptions.forEach(option => {
         if (option.value) {
           const optionHour = parseInt(option.value.split(':')[0]);
@@ -246,18 +246,18 @@ document.addEventListener("DOMContentLoaded", function () {
           }
         }
       });
-      
+
       pickupTimeSelect.value = closestTime;
     }
   }
-  
+
   // Function to format pickup datetime for display
   function formatPickupDateTime(dateStr, timeStr) {
     const date = new Date(dateStr);
     const today = new Date();
     const tomorrow = new Date(today);
     tomorrow.setDate(tomorrow.getDate() + 1);
-    
+
     // Format date
     let dateDisplay = '';
     if (date.toDateString() === today.toDateString()) {
@@ -269,27 +269,27 @@ document.addEventListener("DOMContentLoaded", function () {
       const month = String(date.getMonth() + 1).padStart(2, '0');
       dateDisplay = `${day}/${month}`;
     }
-    
+
     return `${timeStr} ${dateDisplay}`;
   }
-  
+
   // Function to validate pickup time (must be in the future)
   function validatePickupTime(dateStr, timeStr) {
     const pickupDateTime = new Date(`${dateStr}T${timeStr}`);
     const now = new Date();
-    
+
     return pickupDateTime >= now;
   }
-  
+
   // Initialize pickup datetime on page load
   initializePickupDateTime();
-  
+
   // Add event listeners for pickup time selection to provide visual feedback
   const pickupDateInput = document.getElementById("pickup-date");
   const pickupTimeSelect = document.getElementById("pickup-time");
-  
+
   if (pickupDateInput) {
-    pickupDateInput.addEventListener("change", function() {
+    pickupDateInput.addEventListener("change", function () {
       // Add a subtle animation to show the selection was registered
       this.style.transform = "scale(1.02)";
       setTimeout(() => {
@@ -297,9 +297,9 @@ document.addEventListener("DOMContentLoaded", function () {
       }, 200);
     });
   }
-  
+
   if (pickupTimeSelect) {
-    pickupTimeSelect.addEventListener("change", function() {
+    pickupTimeSelect.addEventListener("change", function () {
       // Add a subtle animation to show the selection was registered
       this.style.transform = "scale(1.02)";
       setTimeout(() => {
@@ -307,23 +307,23 @@ document.addEventListener("DOMContentLoaded", function () {
       }, 200);
     });
   }
-  
+
   const btnPreorderTrigger = document.getElementById("btn-preorder-trigger");
   if (btnPreorderTrigger) {
     btnPreorderTrigger.addEventListener("click", function (e) {
       // Validate pickup time before proceeding
       const pickupDate = document.getElementById("pickup-date").value;
       const pickupTime = document.getElementById("pickup-time").value;
-      
+
       if (!pickupDate || !pickupTime) {
         e.preventDefault();
         e.stopPropagation();
-        
+
         // Highlight the empty fields
         const pickupDateInput = document.getElementById("pickup-date");
         const pickupTimeInput = document.getElementById("pickup-time");
         const pickupSection = document.querySelector(".pickup-time-section");
-        
+
         if (!pickupDate && pickupDateInput) {
           pickupDateInput.style.borderColor = "#dc3545";
           pickupDateInput.style.boxShadow = "0 0 0 0.2rem rgba(220, 53, 69, 0.25)";
@@ -332,7 +332,7 @@ document.addEventListener("DOMContentLoaded", function () {
             pickupDateInput.style.boxShadow = "";
           }, 2000);
         }
-        
+
         if (!pickupTime && pickupTimeInput) {
           pickupTimeInput.style.borderColor = "#dc3545";
           pickupTimeInput.style.boxShadow = "0 0 0 0.2rem rgba(220, 53, 69, 0.25)";
@@ -341,7 +341,7 @@ document.addEventListener("DOMContentLoaded", function () {
             pickupTimeInput.style.boxShadow = "";
           }, 2000);
         }
-        
+
         // Scroll to pickup section
         if (pickupSection) {
           pickupSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -350,24 +350,24 @@ document.addEventListener("DOMContentLoaded", function () {
             pickupSection.style.animation = "";
           }, 500);
         }
-        
+
         alert(t("⏰ Vui lòng chọn ngày và giờ nhận hàng!"));
         return false;
       }
-      
+
       if (!validatePickupTime(pickupDate, pickupTime)) {
         e.preventDefault();
         e.stopPropagation();
-        
+
         const pickupSection = document.querySelector(".pickup-time-section");
         if (pickupSection) {
           pickupSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
-        
+
         alert(t("⚠️ Thời gian nhận hàng phải ở tương lai.") + "\n\n" + t("Vui lòng chọn thời gian khác!"));
         return false;
       }
-      
+
       const originalText = this.innerHTML;
       this.innerHTML = '<i class="ph ph-hourglass-simple"></i> ' + t('Đang tạo đơn...');
       this.disabled = true;
@@ -934,7 +934,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Function to render the active dynamic suggestion
-    // ===== Dynamic Localization Dictionary for Simulator Output =====
+  // ===== Dynamic Localization Dictionary for Simulator Output =====
   const DICTIONARY = {
     "Bữa sáng": "Breakfast",
     "Bữa trưa": "Lunch",
@@ -1049,7 +1049,7 @@ document.addEventListener("DOMContentLoaded", function () {
     "bát": "bowl",
     "túi": "bag",
     "kg": "kg",
-    
+
     // Alerts and static interactive strings
     "⏰ Vui lòng chọn ngày và giờ nhận hàng!": "⏰ Please select pickup date and time!",
     "⚠️ Thời gian nhận hàng phải ít nhất 2 giờ kể từ bây giờ.": "⚠️ Pickup time must be at least 2 hours from now.",
@@ -1203,11 +1203,11 @@ document.addEventListener("DOMContentLoaded", function () {
   function t(text) {
     const lang = localStorage.getItem("lang") || "vi";
     if (lang === "vi") return text;
-    return DICTIONARY[text] || 
-           TRANSLATED_MENU_NAMES[text] || 
-           TRANSLATED_SUGGESTIONS[text] || 
-           TRANSLATED_REASONS[text] || 
-           text;
+    return DICTIONARY[text] ||
+      TRANSLATED_MENU_NAMES[text] ||
+      TRANSLATED_SUGGESTIONS[text] ||
+      TRANSLATED_REASONS[text] ||
+      text;
   }
 
   // Function to adjust item quantity in cart or delete if at minimum and clicking minus
@@ -1279,7 +1279,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (["quả", "miếng", "cuộn", "ổ", "gói", "túi", "cây", "chén", "bó", "phần", "bát"].includes(item.unit.toLowerCase())) {
         step = 1;
       }
-      
+
       const isMinQty = item.qty <= step;
       const minusBtnContent = isMinQty ? '<i class="ph ph-trash text-danger" style="font-size: 0.85rem;"></i>' : '-';
 
@@ -1310,7 +1310,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const diff = budgetLimit - totalCost;
     const ratio = ((totalCost / budgetLimit) * 100).toFixed(1);
     const diffClass = diff >= 0 ? "text-success" : "text-danger";
-    
+
     // Translation tags
     const tDiffLabel = diff >= 0 ? t("Còn dư (Tiết kiệm):") : t("Vượt hạn mức:");
     const diffValStr = Math.abs(diff).toLocaleString(lang === "en" ? "en-US" : "vi-VN") + "đ";
@@ -1356,7 +1356,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const availableToAdd = allDbItems.filter(dbItem => {
       return !activeItems.some(active => active.name.toLowerCase() === dbItem.name.toLowerCase());
     });
-    
+
     // Sort alphabetically
     availableToAdd.sort((a, b) => a.name.localeCompare(b.name, "vi"));
 
@@ -1391,24 +1391,24 @@ document.addEventListener("DOMContentLoaded", function () {
       totalCost.toLocaleString(lang === "en" ? "en-US" : "vi-VN") + "đ";
     document.getElementById("result-budget-limit").innerText =
       budgetLimit.toLocaleString(lang === "en" ? "en-US" : "vi-VN") + "đ";
-    
+
     const receiptContainer = document.getElementById("receipt-invoice-container");
     if (receiptContainer) {
       receiptContainer.innerHTML = tableHtml;
-      
+
       // Attach click events to dynamic quantity buttons in the table
       const minusBtns = receiptContainer.querySelectorAll(".cart-btn-qty-minus");
       const plusBtns = receiptContainer.querySelectorAll(".cart-btn-qty-plus");
 
       minusBtns.forEach(btn => {
-        btn.addEventListener("click", function() {
+        btn.addEventListener("click", function () {
           const idx = parseInt(this.getAttribute("data-idx"));
           adjustItemQuantity(idx, -1);
         });
       });
 
       plusBtns.forEach(btn => {
-        btn.addEventListener("click", function() {
+        btn.addEventListener("click", function () {
           const idx = parseInt(this.getAttribute("data-idx"));
           adjustItemQuantity(idx, 1);
         });
@@ -1417,7 +1417,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // Attach double-click event to directly edit quantities
       const qtyVals = receiptContainer.querySelectorAll(".cart-qty-val");
       qtyVals.forEach(val => {
-        val.addEventListener("dblclick", function() {
+        val.addEventListener("dblclick", function () {
           const idx = parseInt(this.getAttribute("data-idx"));
           const item = currentSimulation.activeItems[idx];
           if (!item) return;
@@ -1426,12 +1426,12 @@ document.addEventListener("DOMContentLoaded", function () {
           const input = document.createElement("input");
           input.type = "number";
           input.value = item.qty;
-          
+
           // Set step based on unit (integers for units like pcs, decimals for kg)
           const isIntegerUnit = ["quả", "miếng", "cuộn", "ổ", "gói", "túi", "cây", "chén", "bó", "phần", "bát"].includes(item.unit.toLowerCase());
           input.step = isIntegerUnit ? "1" : "0.01";
           input.min = isIntegerUnit ? "1" : "0.05";
-          
+
           input.style.width = "65px";
           input.style.fontSize = "0.8rem";
           input.style.padding = "2px";
@@ -1445,7 +1445,7 @@ document.addEventListener("DOMContentLoaded", function () {
           const saveValue = () => {
             if (isSaved) return;
             isSaved = true;
-            
+
             const newQty = parseFloat(input.value);
             if (!isNaN(newQty) && newQty > 0) {
               item.qty = Math.round(newQty * 100) / 100;
@@ -1457,7 +1457,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
           };
 
-          input.addEventListener("keydown", function(e) {
+          input.addEventListener("keydown", function (e) {
             if (e.key === "Enter") {
               saveValue();
             } else if (e.key === "Escape") {
@@ -1478,7 +1478,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // Attach add item event handler
       const btnAddItem = receiptContainer.querySelector("#btn-add-item");
       if (btnAddItem) {
-        btnAddItem.addEventListener("click", function() {
+        btnAddItem.addEventListener("click", function () {
           const selectEl = receiptContainer.querySelector("#add-item-select");
           if (!selectEl) return;
           const selectedName = selectEl.value;
@@ -1486,7 +1486,7 @@ document.addEventListener("DOMContentLoaded", function () {
             alert(lang === "en" ? "Please select an ingredient to add!" : "Vui lòng chọn nguyên liệu muốn thêm!");
             return;
           }
-          
+
           // Find item in allDbItems
           const found = allDbItems.find(item => item.name === selectedName);
           if (found) {
@@ -1495,7 +1495,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (found.unit.toLowerCase() === "kg") {
               defaultQty = 0.5; // default 0.5kg for weight items
             }
-            
+
             currentSimulation.activeItems.push({
               name: found.name,
               qty: defaultQty,
@@ -1503,14 +1503,14 @@ document.addEventListener("DOMContentLoaded", function () {
               pricePerUnit: found.pricePerUnit,
               fixed: found.fixed
             });
-            
+
             // Re-render
             renderActiveSuggestion();
           }
         });
       }
     }
-    
+
     document.getElementById("result-seller-name").innerText = t(option.seller);
 
     // Dynamic recommendation reason
@@ -1600,7 +1600,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const isActive = idx === currentSimulation.activeOptionIdx;
       const activeClass = isActive ? "active-suggestion-card" : "";
       const labelText = lang === "en" ? `Option ${idx + 1}` : `Gợi ý ${idx + 1}`;
-      
+
       tabsHtml += `
         <div class="suggestion-overview-card p-3 flex-fill ${activeClass}" data-option-idx="${idx}" style="cursor: pointer;">
           <div class="d-flex justify-content-between align-items-center mb-2">
@@ -1720,10 +1720,10 @@ document.addEventListener("DOMContentLoaded", function () {
       btn.classList.remove("active");
       const presetKey = btn.getAttribute("data-preset");
       const isMatch = (presetKey === "55k" && mealType === "Bữa sáng" && budgetLimit === 55000) ||
-                      (presetKey === "90k" && mealType === "Bữa trưa" && budgetLimit === 90000) ||
-                      (presetKey === "130k" && mealType === "Bữa tối" && budgetLimit === 130000) ||
-                      (presetKey === "45k" && mealType === "Bữa sinh viên/tiết kiệm" && budgetLimit === 45000) ||
-                      (presetKey === "120k" && mealType === "Bữa healthy" && budgetLimit === 120000);
+        (presetKey === "90k" && mealType === "Bữa trưa" && budgetLimit === 90000) ||
+        (presetKey === "130k" && mealType === "Bữa tối" && budgetLimit === 130000) ||
+        (presetKey === "45k" && mealType === "Bữa sinh viên/tiết kiệm" && budgetLimit === 45000) ||
+        (presetKey === "120k" && mealType === "Bữa healthy" && budgetLimit === 120000);
       if (isMatch) {
         btn.classList.add("active");
       }
@@ -1733,11 +1733,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const btnCustomSubmit = document.getElementById("btn-custom-submit");
     const customInputText = document.getElementById("custom-input-text");
     const lang = localStorage.getItem("lang") || "vi";
-    
+
     presetBtns.forEach(btn => btn.disabled = true);
     if (btnCustomSubmit) {
       btnCustomSubmit.disabled = true;
-      btnCustomSubmit.innerHTML = lang === "en" ? '<i class="ph ph-circle-notch spinner-btn me-1"></i> Searching...' : '<i class="ph ph-circle-notch spinner-btn me-1"></i> Đang tìm...';
+      btnCustomSubmit.innerHTML = '<i class="ph ph-circle-notch spinner-btn me-1"></i><span class="lang-vi">Đang tìm...</span><span class="lang-en">Searching...</span>';
     }
     if (customInputText) {
       customInputText.disabled = true;
@@ -1845,7 +1845,7 @@ document.addEventListener("DOMContentLoaded", function () {
               presetBtns.forEach(btn => btn.disabled = false);
               if (btnCustomSubmit) {
                 btnCustomSubmit.disabled = false;
-                btnCustomSubmit.innerHTML = lang === "en" ? '<i class="ph ph-magnifying-glass"></i> Find Menu' : '<i class="ph ph-magnifying-glass"></i> Tìm thực đơn';
+                btnCustomSubmit.innerHTML = '<i class="ph ph-magnifying-glass"></i> <span class="lang-vi">Tìm thực đơn</span><span class="lang-en">Find Menu</span>';
               }
               if (customInputText) {
                 customInputText.disabled = false;
@@ -1905,7 +1905,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function parseCustomInput(inputText) {
     // Parse user input to extract budget, people count, and meal type
     const text = inputText.toLowerCase().trim();
-    
+
     // Extract budget (look for numbers followed by k, đ, or standalone numbers)
     let budget = 100000; // default
     const budgetMatch = text.match(/(\d+)(k|đ)?/);
@@ -1918,14 +1918,14 @@ document.addEventListener("DOMContentLoaded", function () {
         budget = num;
       }
     }
-    
+
     // Extract number of people
     let people = 2; // default
     const peopleMatch = text.match(/(\d+)\s*(người|người ăn|ng)/);
     if (peopleMatch) {
       people = parseInt(peopleMatch[1]);
     }
-    
+
     // Determine meal type
     let mealType = "Bữa tối"; // default
     if (text.includes("sáng")) {
@@ -1939,32 +1939,32 @@ document.addEventListener("DOMContentLoaded", function () {
     } else if (text.includes("healthy") || text.includes("khỏe") || text.includes("lành mạnh")) {
       mealType = "Bữa healthy";
     }
-    
+
     return { budget, people, mealType };
   }
 
   // Custom input submit button handler
   const btnCustomSubmit = document.getElementById("btn-custom-submit");
   const customInputText = document.getElementById("custom-input-text");
-  
+
   if (btnCustomSubmit && customInputText) {
     btnCustomSubmit.addEventListener("click", function () {
       const inputValue = customInputText.value.trim();
-      
+
       if (!inputValue) {
         alert(t("Vui lòng nhập nhu cầu của bạn!"));
         return;
       }
-      
+
       // Parse the input
       const { budget, people, mealType } = parseCustomInput(inputValue);
-      
+
       // Remove active class from preset buttons
       presetBtns.forEach((b) => b.classList.remove("active"));
-      
+
       // Trigger simulation
       startMenuSimulation(mealType, people, budget);
-      
+
       // Show feedback to user
       customInputText.value = "";
       if (getLang() === "en") {
@@ -1973,7 +1973,7 @@ document.addEventListener("DOMContentLoaded", function () {
         customInputText.placeholder = `Đã tìm: ${budget.toLocaleString('vi-VN')}đ cho ${people} người - ${mealType}`;
       }
     });
-    
+
     // Allow Enter key to submit
     customInputText.addEventListener("keypress", function (e) {
       if (e.key === "Enter") {
@@ -2188,18 +2188,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Start the order simulation loop (every 15 seconds)
   setInterval(simulateNewOrder, 3000);
-    // ===== STATIC TRANSLATIONS FOR LANDING PAGE (Bilingual VI/EN Support) =====
+  // ===== STATIC TRANSLATIONS FOR LANDING PAGE (Bilingual VI/EN Support) =====
   const STATIC_TRANSLATIONS = {
     // Navbar Logo
     "nav.navbar .navbar-brand": {
       vi: `<img src="assets/team/logo.png" alt="Chợ AI Local" width="28" height="28" class="me-2 align-middle navbar-brand-logo" />Chợ AI Local`,
       en: `<img src="assets/team/logo.png" alt="Chợ AI Local" width="28" height="28" class="me-2 align-middle navbar-brand-logo" />AI Local Market`
     },
-    
-    
+
+
     // Obsolete selectors migrated to HTML-based lang-vi/lang-en spans
 
-    
+
     // Business Section
     "#business h2": {
       vi: "Mô hình kinh doanh thực tế",
@@ -2233,7 +2233,7 @@ document.addEventListener("DOMContentLoaded", function () {
       vi: "Giai đoạn đầu ưu tiên để tiểu thương dùng thử dễ dàng, sau đó thu phí khi giá trị đã rõ ràng.",
       en: "Trial phase is prioritised for easy merchant adoption, transitioning to paid plans once value is established."
     },
-    
+
 
 
     // Revenue block
@@ -2273,68 +2273,8 @@ document.addEventListener("DOMContentLoaded", function () {
       vi: "Người mua tạo nhu cầu thật. Người bán nhận đơn hàng thật. Nền tảng tạo doanh thu từ giá trị thật.",
       en: "Buyers create real demand. Sellers receive real orders. The platform generates revenue from real value."
     },
-    
-    // Roadmap Section
-    "#roadmap h2": {
-      vi: "Lộ trình phát triển & Gọi vốn",
-      en: "Development & Fundraising Roadmap"
-    },
-    "#roadmap p.lead": {
-      vi: "Các bước đi chiến lược từ MVP đến nhân rộng toàn quốc",
-      en: "Strategic steps from MVP to national scaling"
-    },
-    ".roadmap-card-new:nth-child(1) .roadmap-step": {
-      vi: "Giai đoạn 1",
-      en: "Phase 1"
-    },
-    ".roadmap-card-new:nth-child(1) h5": {
-      vi: "Quý 3/2026: Ra mắt MVP",
-      en: "Q3/2026: MVP Launch"
-    },
-    ".roadmap-card-new:nth-child(1) p": {
-      vi: "Thử nghiệm tại 3 chợ truyền thống TP.HCM, số hóa 50 sạp hàng.",
-      en: "Trial at 3 traditional markets in HCMC, digitizing 50 stalls."
-    },
-    
-    ".roadmap-card-new:nth-child(2) .roadmap-step": {
-      vi: "Giai đoạn 2",
-      en: "Phase 2"
-    },
-    ".roadmap-card-new:nth-child(2) h5": {
-      vi: "Quý 4/2026: Gọi vốn Vòng hạt giống",
-      en: "Q4/2026: Seed Round"
-    },
-    ".roadmap-card-new:nth-child(2) p": {
-      vi: "Mục tiêu 100.000 USD để hoàn thiện AI Parser và App di động.",
-      en: "Targeting $100k to perfect AI Parser and launch mobile app."
-    },
-    
-    ".roadmap-card-new:nth-child(3) .roadmap-step": {
-      vi: "Giai đoạn 3",
-      en: "Phase 3"
-    },
-    ".roadmap-card-new:nth-child(3) h5": {
-      vi: "Quý 1/2027: Tích hợp ví điện tử",
-      en: "Q1/2027: E-Wallet Integration"
-    },
-    ".roadmap-card-new:nth-child(3) p": {
-      vi: "Thanh toán không tiền mặt trực tiếp khi đặt đơn qua QR.",
-      en: "Cashless payment directly when placing orders via QR."
-    },
-    
-    ".roadmap-card-new:nth-child(4) .roadmap-step": {
-      vi: "Giai đoạn 4",
-      en: "Phase 4"
-    },
-    ".roadmap-card-new:nth-child(4) h5": {
-      vi: "Quý 2/2027: Nhân rộng mô hình",
-      en: "Q2/2027: Model Scaling"
-    },
-    ".roadmap-card-new:nth-child(4) p": {
-      vi: "Mở rộng ra 20 chợ tại Hà Nội và Đà Nẵng, số hóa 1.000 sạp hàng.",
-      en: "Expand to 20 markets in Hanoi and Danang, digitizing 1,000 stalls."
-    },
-    
+
+
     // Team Section
     "#team h2": {
       vi: "Đội ngũ phát triển HUIT EMART",
@@ -2362,19 +2302,19 @@ document.addEventListener("DOMContentLoaded", function () {
       vi: `<i class="ph ph-envelope"></i> Liên hệ đội thi`,
       en: `<i class="ph ph-envelope"></i> Contact Team`
     },
-    
+
     // Footer
     "footer p": {
       vi: "© 2026 Chợ AI Local — Đi chợ thông minh, ăn ngon đúng ngân sách.",
       en: "© 2026 AI Local Market — Shop smart, eat well, stay within budget."
     },
-    
+
     // Back to top
     "#backToTop": {
       vi: `<i class="ph ph-arrow-up"></i>`,
       en: `<i class="ph ph-arrow-up"></i>`
     },
-    
+
     // Order Modal
     "#orderModal h4": {
       vi: "Đặt trước thành công!",
@@ -2413,7 +2353,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Static translation applier function
   function applyLanguage(lang) {
     document.documentElement.setAttribute("lang", lang);
-    
+
     // Translate Pickup Time options
     const pickupTimeSelect = document.getElementById("pickup-time");
     if (pickupTimeSelect) {
@@ -2446,15 +2386,15 @@ document.addEventListener("DOMContentLoaded", function () {
     if (langBtnText) {
       langBtnText.textContent = lang === "en" ? "VI" : "EN";
     }
-    
+
     // Translate Title
     document.title = lang === "en" ? "AI Local Market - Smart Local Market" : "Chợ AI Local - Chợ địa phương thông minh";
-    
+
     // Custom input text placeholder translation
     const customInputText = document.getElementById("custom-input-text");
     if (customInputText) {
-      customInputText.placeholder = lang === "en" 
-        ? "Example: 100k for dinner for 3 people" 
+      customInputText.placeholder = lang === "en"
+        ? "Example: 100k for dinner for 3 people"
         : "Ví dụ: 100k cho bữa tối 3 người";
     }
 
@@ -2468,7 +2408,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       });
     });
-    
+
     // Re-render active simulator suggestions
     if (typeof currentSimulation !== 'undefined' && currentSimulation.options && currentSimulation.options.length > 0) {
       renderOptionTabs();
@@ -2477,16 +2417,16 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // ===== Theme and Language Event Listeners and Initialization =====
-  
+
   // Theme Toggle Logic
   const themeToggleBtn = document.getElementById("theme-toggle");
   const themeIcon = document.getElementById("theme-icon");
-  
+
   if (themeToggleBtn && themeIcon) {
     themeToggleBtn.addEventListener("click", function () {
       const isDark = document.body.classList.toggle("dark-mode");
       localStorage.setItem("theme", isDark ? "dark" : "light");
-      
+
       // Update icon
       if (isDark) {
         themeIcon.className = "ph ph-sun";
@@ -2495,7 +2435,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
-  
+
   // Language Toggle Logic
   const langToggleBtn = document.getElementById("lang-toggle");
   if (langToggleBtn) {
@@ -2506,7 +2446,7 @@ document.addEventListener("DOMContentLoaded", function () {
       applyLanguage(newLang);
     });
   }
-  
+
   // INITIAL RUN: Retrieve saved settings on page load
   const savedTheme = localStorage.getItem("theme") || "light";
   if (savedTheme === "dark") {
@@ -2516,7 +2456,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.body.classList.remove("dark-mode");
     if (themeIcon) themeIcon.className = "ph ph-moon";
   }
-  
+
   const savedLang = localStorage.getItem("lang") || "vi";
   applyLanguage(savedLang);
 
