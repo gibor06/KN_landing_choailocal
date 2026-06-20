@@ -796,6 +796,14 @@
                     aria-label="Nhập nhu cầu"
                   />
                   <button
+                    class="btn btn-outline-secondary"
+                    type="button"
+                    id="btn-voice-input"
+                    title="Nhập bằng giọng nói"
+                  >
+                    <i class="ph ph-microphone"></i>
+                  </button>
+                  <button
                     class="btn btn-primary"
                     type="button"
                     id="btn-custom-submit"
@@ -1421,7 +1429,7 @@
                       </div>
                       <div class="metric-data">
                         <div class="metric-value text-danger" id="lowStock">
-                          4
+                          5
                         </div>
                         <div
                           class="metric-label"
@@ -1474,43 +1482,86 @@
                         <span class="lang-en">Low Stock</span>
                       </h6>
                       <ul class="list-styled mb-0" style="font-size: 0.72rem">
-                        <li style="padding: 0.3rem 0">
+                        <li style="padding: 0.3rem 0" id="item-suon-sun">
                           <span
-                            class="badge bg-danger badge-sm"
+                            class="badge bg-danger badge-sm stock-badge"
+                            id="stock-suon-sun"
                             style="font-size: 0.6rem; padding: 0.15rem 0.3rem"
                             >1.5kg</span
                           >
                           <span class="lang-vi">Sườn sụn heo</span>
                           <span class="lang-en">Pork soft-bone</span>
                         </li>
-                        <li style="padding: 0.3rem 0">
+                        <li style="padding: 0.3rem 0" id="item-nac-vai">
                           <span
-                            class="badge bg-danger badge-sm"
+                            class="badge bg-danger badge-sm stock-badge"
+                            id="stock-nac-vai"
                             style="font-size: 0.6rem; padding: 0.15rem 0.3rem"
                             >2kg</span
                           >
                           <span class="lang-vi">Thịt nạc vai</span>
                           <span class="lang-en">Pork shoulder</span>
                         </li>
-                        <li style="padding: 0.3rem 0">
+                        <li style="padding: 0.3rem 0" id="item-ba-chi-bo">
                           <span
-                            class="badge bg-warning badge-sm"
+                            class="badge bg-warning badge-sm stock-badge"
+                            id="stock-ba-chi-bo"
                             style="font-size: 0.6rem; padding: 0.15rem 0.3rem"
                             ><span class="lang-vi">3 vỉ</span><span class="lang-en">3 packs</span></span
                           >
                           <span class="lang-vi">Thịt ba chỉ bò</span>
                           <span class="lang-en">Beef short plate</span>
                         </li>
-                        <li style="padding: 0.3rem 0; border-bottom: 0">
+                        <li style="padding: 0.3rem 0" id="item-dui-heo">
                           <span
-                            class="badge bg-warning badge-sm"
+                            class="badge bg-warning badge-sm stock-badge"
+                            id="stock-dui-heo"
                             style="font-size: 0.6rem; padding: 0.15rem 0.3rem"
                             >2.5kg</span
                           >
                           <span class="lang-vi">Thịt đùi heo</span>
                           <span class="lang-en">Pork leg</span>
                         </li>
+                        <li style="padding: 0.3rem 0; border-bottom: 0" id="item-ca-chua">
+                          <span
+                            class="badge bg-secondary badge-sm stock-badge"
+                            id="stock-ca-chua"
+                            style="font-size: 0.6rem; padding: 0.15rem 0.3rem"
+                            >0kg</span
+                          >
+                          <span class="lang-vi">Cà chua chín</span>
+                          <span class="lang-en">Fresh tomatoes</span>
+                        </li>
                       </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Cập nhật giá bằng giọng nói -->
+                <div class="row g-3 mb-3">
+                  <div class="col-12">
+                    <div class="card seller-voice-card border-0 p-3" style="background: var(--section-bg); border-radius: 12px; border: 1px solid rgba(0, 0, 0, 0.05) !important;">
+                      <h6 class="fw-bold mb-2 text-success" style="font-size: 0.8rem">
+                        <i class="ph ph-microphone me-1"></i>
+                        <span class="lang-vi">Cập nhật giá bằng giọng nói</span>
+                        <span class="lang-en">Voice Price Update</span>
+                      </h6>
+                      <div class="input-group">
+                        <input
+                          type="text"
+                          class="form-control form-control-sm"
+                          id="seller-voice-text"
+                          placeholder="Nói hoặc nhập tại đây..."
+                        />
+                        <button class="btn btn-outline-success btn-sm" type="button" id="btn-seller-voice" title="Nói">
+                          <i class="ph ph-microphone"></i>
+                        </button>
+                        <button class="btn btn-success btn-sm" type="button" id="btn-seller-update">
+                          <span class="lang-vi">Cập nhật</span>
+                          <span class="lang-en">Update</span>
+                        </button>
+                      </div>
+                      <div id="seller-voice-result" class="mt-2"></div>
                     </div>
                   </div>
                 </div>
