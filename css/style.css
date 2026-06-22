@@ -74,37 +74,105 @@ h6 {
 
 /* ===== Navbar ===== */
 .navbar {
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
+  transition:
+    padding 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    background 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    backdrop-filter 0.4s ease;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  background: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid transparent;
 }
 
+/* Scrolled state - glass effect + shrink */
+.navbar.scrolled {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  background: rgba(255, 255, 255, 0.92) !important;
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  box-shadow: 0 4px 24px rgba(25, 135, 84, 0.08), 0 1px 0 rgba(0,0,0,0.06);
+  border-bottom: 1px solid rgba(25, 135, 84, 0.12);
+}
+
+body.dark-mode .navbar {
+  background: rgba(15, 23, 18, 0.85) !important;
+  border-bottom-color: rgba(32, 201, 151, 0.1);
+}
+
+body.dark-mode .navbar.scrolled {
+  background: rgba(15, 23, 18, 0.95) !important;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(32, 201, 151, 0.1);
+}
+
+/* ===== Brand / Logo ===== */
 .navbar-brand {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   color: var(--primary) !important;
   font-weight: 700;
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: opacity 0.2s ease;
+}
+
+.navbar-brand:hover {
+  opacity: 0.85;
 }
 
 .navbar-brand-logo {
   background-color: #ffffff !important;
   border-radius: 50% !important;
   padding: 3px !important;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
-  border: 1px solid rgba(0, 0, 0, 0.05) !important;
+  box-shadow: 0 2px 8px rgba(25, 135, 84, 0.18) !important;
+  border: 1.5px solid rgba(25, 135, 84, 0.15) !important;
   display: inline-block !important;
   vertical-align: middle !important;
-  transition: all 0.3s ease !important;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease !important;
+}
+
+.navbar-brand:hover .navbar-brand-logo {
+  transform: rotate(-8deg) scale(1.12) !important;
+  box-shadow: 0 4px 16px rgba(25, 135, 84, 0.32) !important;
 }
 
 body.dark-mode .navbar-brand-logo {
   background-color: #ffffff !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4) !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4) !important;
 }
 
+/* ===== Nav Links ===== */
 .nav-link {
   color: var(--text-dark) !important;
   font-weight: 500;
-  padding: 0.5rem 1rem !important;
-  transition: color 0.3s ease;
+  padding: 0.5rem 0.9rem !important;
+  position: relative;
+  transition: color 0.25s ease;
+  letter-spacing: 0.01em;
+}
+
+/* Animated underline */
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 60%;
+  height: 2.5px;
+  background: var(--green-gradient);
+  border-radius: 99px;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform-origin: center;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  transform: translateX(-50%) scaleX(1);
 }
 
 .nav-link:hover {
@@ -113,6 +181,126 @@ body.dark-mode .navbar-brand-logo {
 
 .nav-link.active {
   color: var(--primary) !important;
+  font-weight: 600;
+}
+
+/* Nav link hover glow pill background */
+.nav-link::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(25, 135, 84, 0.07);
+  border-radius: 8px;
+  opacity: 0;
+  transform: scale(0.85);
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.nav-link:hover::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.nav-link.active::before {
+  opacity: 0.6;
+  transform: scale(1);
+  background: rgba(25, 135, 84, 0.1);
+}
+
+/* ===== Navbar Toggler (Mobile) ===== */
+.navbar-toggler {
+  border: 1.5px solid rgba(25, 135, 84, 0.3);
+  border-radius: 10px;
+  padding: 0.45rem 0.65rem;
+  transition: all 0.25s ease;
+  background: transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.navbar-toggler:focus {
+  box-shadow: 0 0 0 3px rgba(25, 135, 84, 0.2);
+}
+
+.navbar-toggler:hover {
+  background: rgba(25, 135, 84, 0.08);
+  border-color: var(--primary);
+  transform: scale(1.05);
+}
+
+/* Animated hamburger icon */
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23198754' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+  transition: transform 0.3s ease;
+  width: 1.3em;
+  height: 1.3em;
+}
+
+/* Mobile collapse animation */
+.navbar-collapse {
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (max-width: 991.98px) {
+  .navbar-collapse.collapsing {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  .navbar-collapse.show {
+    opacity: 1;
+    transform: translateY(0);
+    background: rgba(255, 255, 255, 0.98);
+    border-radius: 0 0 16px 16px;
+    padding: 0.5rem 1rem 1rem;
+    margin-top: 0.5rem;
+    box-shadow: 0 8px 24px rgba(25, 135, 84, 0.12);
+    border: 1px solid rgba(25, 135, 84, 0.1);
+  }
+
+  body.dark-mode .navbar-collapse.show {
+    background: rgba(15, 23, 18, 0.98);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Stagger nav items on mobile open */
+  .navbar-collapse.show .nav-item {
+    animation: navItemSlide 0.3s ease both;
+  }
+
+  .navbar-collapse.show .nav-item:nth-child(1) { animation-delay: 0.04s; }
+  .navbar-collapse.show .nav-item:nth-child(2) { animation-delay: 0.08s; }
+  .navbar-collapse.show .nav-item:nth-child(3) { animation-delay: 0.12s; }
+  .navbar-collapse.show .nav-item:nth-child(4) { animation-delay: 0.16s; }
+  .navbar-collapse.show .nav-item:nth-child(5) { animation-delay: 0.20s; }
+  .navbar-collapse.show .nav-item:nth-child(6) { animation-delay: 0.24s; }
+  .navbar-collapse.show .nav-item:nth-child(7) { animation-delay: 0.28s; }
+
+  @keyframes navItemSlide {
+    from {
+      opacity: 0;
+      transform: translateX(-12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .nav-link::after {
+    bottom: 4px;
+    width: 30px;
+    left: 1rem;
+    transform: translateX(0) scaleX(0);
+    transform-origin: left;
+  }
+
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    transform: translateX(0) scaleX(1);
+  }
 }
 
 /* ===== Buttons ===== */
