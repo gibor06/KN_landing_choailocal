@@ -166,82 +166,151 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-6 reveal">
-            <div class="ai-workflow-card">
-              <div class="workflow-layer layer-1">
-                <div class="layer-label">
-                  <span class="lang-vi">Người mua nhập</span>
-                  <span class="lang-en">Buyer inputs</span>
-                </div>
-                <div class="layer-content">
-                  <i class="ph ph-chat-text"></i>
-                  <span class="lang-vi">"100k cho bữa tối 3 người"</span>
-                  <span class="lang-en">"100k for dinner for 3 people"</span>
-                </div>
-              </div>
-              <div class="workflow-arrow">
-                <i class="ph ph-arrow-down"></i>
-              </div>
-              <div class="workflow-layer layer-2">
-                <div class="layer-label">
-                  <i class="ph ph-cpu"></i>
-                  <span class="lang-vi">AI hiểu nhu cầu</span>
-                  <span class="lang-en">AI parses intent</span>
-                </div>
-                <div class="layer-content parsed-data">
-                  <div class="parsed-item">
-                    <span class="label">
-                      <span class="lang-vi">Ngân sách:</span>
-                      <span class="lang-en">Budget:</span>
-                    </span>
-                    <span class="value">
-                      <span class="lang-vi">100.000đ</span>
-                      <span class="lang-en">100,000 VND</span>
-                    </span>
-                  </div>
-                  <div class="parsed-item">
-                    <span class="label">
-                      <span class="lang-vi">Số người:</span>
-                      <span class="lang-en">People:</span>
-                    </span>
-                    <span class="value">3</span>
-                  </div>
-                  <div class="parsed-item">
-                    <span class="label">
-                      <span class="lang-vi">Loại bữa:</span>
-                      <span class="lang-en">Meal type:</span>
-                    </span>
-                    <span class="value">
-                      <span class="lang-vi">Bữa tối</span>
-                      <span class="lang-en">Dinner</span>
-                    </span>
+          <div class="col-lg-6 reveal d-flex justify-content-center">
+            <!-- Phone Mockup -->
+            <div class="phone-mockup-wrapper">
+              <!-- Ambient glow -->
+              <div class="phone-ambient-glow"></div>
+
+              <div class="phone-frame">
+                <!-- Notch / Dynamic Island -->
+                <div class="phone-notch">
+                  <div class="phone-notch-inner">
+                    <div class="phone-camera"></div>
                   </div>
                 </div>
-              </div>
-              <div class="workflow-arrow">
-                <i class="ph ph-arrow-down"></i>
-              </div>
-              <div class="workflow-layer layer-3">
-                <div class="layer-label">
-                  <span class="lang-vi">Kết quả</span>
-                  <span class="lang-en">Output</span>
+
+                <!-- Status Bar -->
+                <div class="phone-status-bar">
+                  <span class="phone-time">9:41</span>
+                  <div class="phone-status-icons">
+                    <i class="ph ph-cell-signal-full"></i>
+                    <i class="ph ph-wifi-high"></i>
+                    <i class="ph ph-battery-full"></i>
+                  </div>
                 </div>
-                <div class="layer-content result-content">
-                  <div class="result-title">
-                    <i class="ph-fill ph-check-circle text-success"></i>
-                    <span class="lang-vi">"Thực đơn bữa tối 3 người: Thịt bằm sốt cà"</span>
-                    <span class="lang-en">"Dinner for 3 people: Minced pork with tomato sauce"</span>
+
+                <!-- App Header -->
+                <div class="phone-app-header">
+                  <div class="phone-app-icon">
+                    <i class="ph ph-storefront"></i>
                   </div>
-                  <div class="result-price">
-                    <span class="price-value">
-                      <span class="lang-vi">93.500đ</span>
-                      <span class="lang-en">93,500 VND</span>
-                    </span>
-                    <span class="price-total">
-                      <span class="lang-vi">/ 100.000đ</span>
-                      <span class="lang-en">/ 100,000 VND</span>
-                    </span>
+                  <div class="phone-app-title">
+                    <span class="lang-vi">Chợ AI Local</span>
+                    <span class="lang-en">AI Local Market</span>
+                    <div class="phone-app-subtitle">
+                      <span class="online-dot"></span>
+                      <span class="lang-vi">AI đang hoạt động</span>
+                      <span class="lang-en">AI is active</span>
+                    </div>
                   </div>
+                </div>
+
+                <!-- Chat Screen -->
+                <div class="phone-screen">
+                  <!-- Step 1: User message bubble -->
+                  <div class="chat-step chat-step-1">
+                    <div class="chat-date-divider">
+                      <span class="lang-vi">Hôm nay</span>
+                      <span class="lang-en">Today</span>
+                    </div>
+                    <div class="chat-row user-row">
+                      <div class="chat-bubble user-bubble">
+                        <i class="ph ph-chat-text bubble-icon"></i>
+                        <p class="lang-vi">"100k cho bữa tối 3 người"</p>
+                        <p class="lang-en">"100k for dinner for 3 people"</p>
+                        <span class="bubble-time">21:30</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Step 2: AI parsing card -->
+                  <div class="chat-step chat-step-2">
+                    <div class="chat-row ai-row">
+                      <div class="ai-avatar"><i class="ph ph-cpu"></i></div>
+                      <div class="chat-bubble ai-bubble">
+                        <div class="ai-bubble-label">
+                          <span class="lang-vi">AI phân tích</span>
+                          <span class="lang-en">AI parsed</span>
+                        </div>
+                        <div class="ai-parsed-chips">
+                          <div class="ai-chip chip-budget">
+                            <i class="ph ph-wallet"></i>
+                            <div>
+                              <div class="chip-label lang-vi">Ngân sách</div>
+                              <div class="chip-label lang-en">Budget</div>
+                              <div class="chip-value lang-vi">100.000đ</div>
+                              <div class="chip-value lang-en">100,000đ</div>
+                            </div>
+                          </div>
+                          <div class="ai-chip chip-people">
+                            <i class="ph ph-users"></i>
+                            <div>
+                              <div class="chip-label lang-vi">Số người</div>
+                              <div class="chip-label lang-en">People</div>
+                              <div class="chip-value">3</div>
+                            </div>
+                          </div>
+                          <div class="ai-chip chip-meal">
+                            <i class="ph ph-moon-stars"></i>
+                            <div>
+                              <div class="chip-label lang-vi">Loại bữa</div>
+                              <div class="chip-label lang-en">Meal</div>
+                              <div class="chip-value lang-vi">Bữa tối</div>
+                              <div class="chip-value lang-en">Dinner</div>
+                            </div>
+                          </div>
+                        </div>
+                        <span class="bubble-time">21:30</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Step 3: Result card -->
+                  <div class="chat-step chat-step-3">
+                    <div class="chat-row ai-row">
+                      <div class="ai-avatar"><i class="ph ph-cpu"></i></div>
+                      <div class="phone-result-card">
+                        <div class="result-card-header">
+                          <i class="ph-fill ph-check-circle"></i>
+                          <span class="lang-vi">Thực đơn gợi ý</span>
+                          <span class="lang-en">Suggested Menu</span>
+                        </div>
+                        <div class="result-card-body">
+                          <div class="result-dish-name">
+                            <i class="ph ph-bowl-food"></i>
+                            <span class="lang-vi">Thịt bằm sốt cà & Đậu hũ chiên</span>
+                            <span class="lang-en">Minced Pork & Fried Tofu</span>
+                          </div>
+                          <div class="result-budget-bar">
+                            <div class="budget-bar-labels">
+                              <span class="lang-vi">Chi phí</span>
+                              <span class="lang-en">Cost</span>
+                              <strong class="lang-vi">93.500đ / 100.000đ</strong>
+                              <strong class="lang-en">93,500đ / 100,000đ</strong>
+                            </div>
+                            <div class="budget-bar-track">
+                              <div class="budget-bar-fill" style="width: 93.5%"></div>
+                            </div>
+                          </div>
+                          <div class="result-save-tag">
+                            <i class="ph-fill ph-piggy-bank"></i>
+                            <span class="lang-vi">Tiết kiệm 6.500đ</span>
+                            <span class="lang-en">Save 6,500đ</span>
+                          </div>
+                        </div>
+                        <div class="result-card-footer">
+                          <button class="btn-order-now lang-vi">Đặt trước ngay</button>
+                          <button class="btn-order-now lang-en">Pre-order now</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Bottom Bar -->
+                <div class="phone-bottom-bar">
+                  <div class="phone-home-indicator"></div>
                 </div>
               </div>
             </div>

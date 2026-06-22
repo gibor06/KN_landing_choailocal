@@ -206,6 +206,25 @@ document.addEventListener("DOMContentLoaded", function () {
     revealObserver.observe(element);
   });
 
+  // ===== Phone Mockup - Budget Bar Animation =====
+  const budgetBarFill = document.querySelector(".budget-bar-fill");
+  if (budgetBarFill) {
+    const barObserver = new IntersectionObserver(
+      function (entries) {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              budgetBarFill.classList.add("animated");
+            }, 900); // delay to sync with chat-step-3 animation
+            barObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.4 }
+    );
+    barObserver.observe(budgetBarFill.closest(".phone-mockup-wrapper") || budgetBarFill);
+  }
+
   // ===== Counter Animation for Metrics =====
   function animateCounter(element, target, duration = 1000, suffix = "") {
     let start = 0;
