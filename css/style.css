@@ -403,9 +403,7 @@ body.dark-mode .navbar-brand-logo {
   perspective: 1000px;
 }
 
-.phone-mockup-wrapper:hover .phone-frame {
-  transform: rotateY(-4deg) rotateX(2deg) scale(1.02);
-}
+
 
 /* Multi-layer ambient glow */
 .phone-ambient-glow {
@@ -481,14 +479,7 @@ body.dark-mode .navbar-brand-logo {
   transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
 }
 
-.phone-frame:hover {
-  box-shadow:
-    0 0 0 4px #1c1c1e,
-    0 0 0 5px rgba(255, 255, 255, 0.15),
-    0 35px 70px -10px rgba(0, 0, 0, 0.8),
-    0 0 60px rgba(25, 135, 84, 0.25),
-    inset 0 0 0 3px #000;
-}
+
 
 /* Glass edge highlight */
 .phone-frame::before {
