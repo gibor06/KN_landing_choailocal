@@ -461,19 +461,19 @@ body.dark-mode .navbar-brand-logo {
   border-radius: 0 2px 2px 0;
 }
 
-/* Main Phone Frame */
+/* Main Phone Frame (iPhone 17 concept with ultra-slim bezels & polished titanium edges) */
 .phone-frame {
-  width: 340px;
-  background: linear-gradient(160deg, #0f172a 0%, #0d1117 60%, #111827 100%);
-  border-radius: 52px;
-  border: 2px solid rgba(255, 255, 255, 0.1);
+  width: 350px;
+  background: #000;
+  border-radius: 54px;
+  /* Multi-layered titanium edge simulation */
+  border: 1px solid rgba(255, 255, 255, 0.25);
   box-shadow:
-    0 0 0 1px rgba(0, 0, 0, 0.8),
-    0 40px 100px rgba(0, 0, 0, 0.6),
-    0 0 60px rgba(25, 135, 84, 0.12),
-    0 0 120px rgba(25, 135, 84, 0.06),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.03);
+    0 0 0 4px #1c1c1e, /* Titanium frame outer border */
+    0 0 0 5px rgba(255, 255, 255, 0.1), /* Metallic highlight edge */
+    0 25px 50px -12px rgba(0, 0, 0, 0.7),
+    0 0 40px rgba(25, 135, 84, 0.15),
+    inset 0 0 0 3px #000; /* Screen bezel */
   overflow: hidden;
   position: relative;
   flex-shrink: 0;
@@ -483,10 +483,11 @@ body.dark-mode .navbar-brand-logo {
 
 .phone-frame:hover {
   box-shadow:
-    0 0 0 1px rgba(0, 0, 0, 0.8),
-    0 50px 120px rgba(0, 0, 0, 0.7),
-    0 0 80px rgba(25, 135, 84, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    0 0 0 4px #1c1c1e,
+    0 0 0 5px rgba(255, 255, 255, 0.15),
+    0 35px 70px -10px rgba(0, 0, 0, 0.8),
+    0 0 60px rgba(25, 135, 84, 0.25),
+    inset 0 0 0 3px #000;
 }
 
 /* Glass edge highlight */
@@ -494,43 +495,46 @@ body.dark-mode .navbar-brand-logo {
   content: "";
   position: absolute;
   inset: 0;
-  border-radius: 52px;
+  border-radius: 54px;
   background: linear-gradient(135deg,
-    rgba(255,255,255,0.06) 0%,
-    transparent 40%,
-    transparent 60%,
-    rgba(255,255,255,0.03) 100%);
+    rgba(255,255,255,0.08) 0%,
+    transparent 30%,
+    transparent 70%,
+    rgba(255,255,255,0.04) 100%);
   pointer-events: none;
   z-index: 10;
 }
 
-/* Dynamic Island / Notch */
+/* iPhone 17 micro Dynamic Island */
 .phone-notch {
   display: flex;
   justify-content: center;
-  padding-top: 14px;
+  padding-top: 16px;
+  z-index: 11;
+  position: relative;
 }
 
 .phone-notch-inner {
   background: #000;
-  border-radius: 24px;
-  padding: 7px 18px;
+  border-radius: 20px;
+  padding: 3px 12px;
   display: flex;
   align-items: center;
-  gap: 8px;
-  border: 1.5px solid rgba(255,255,255,0.05);
-  box-shadow: 0 2px 12px rgba(0,0,0,0.8);
+  justify-content: center;
+  gap: 6px;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.9);
+  height: 20px;
+  min-width: 60px;
 }
 
 .phone-camera {
-  width: 11px;
-  height: 11px;
-  background: #0a0a0a;
+  width: 8px;
+  height: 8px;
+  background: radial-gradient(circle at 30% 30%, #0d47a1 0%, #000000 70%);
   border-radius: 50%;
-  border: 1.5px solid rgba(255,255,255,0.08);
-  box-shadow:
-    0 0 0 2px rgba(25,135,84,0.4),
-    inset 0 0 4px rgba(25,135,84,0.3);
+  border: 1px solid rgba(255,255,255,0.15);
+  box-shadow: 0 0 3px rgba(33, 150, 243, 0.5);
 }
 
 /* Status Bar */
