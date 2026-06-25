@@ -83,6 +83,60 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
+  // ===== Navbar Scroll Effects =====
+  const navbar = document.querySelector(".navbar");
+
+  function handleNavbarScroll() {
+    if (window.scrollY > 50) {
+      navbar.classList.add("scrolled");
+    } else {
+      navbar.classList.remove("scrolled");
+    }
+  }
+
+  if (navbar) {
+    window.addEventListener("scroll", handleNavbarScroll, { passive: true });
+    handleNavbarScroll(); // run on load
+  }
+
+  // ===== Nav Link Ripple Effect =====
+  document.querySelectorAll(".nav-link").forEach((link) => {
+    link.addEventListener("click", function (e) {
+      const ripple = document.createElement("span");
+      const rect = this.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height);
+      ripple.style.cssText = `
+        position: absolute;
+        width: ${size}px;
+        height: ${size}px;
+        left: ${e.clientX - rect.left - size / 2}px;
+        top: ${e.clientY - rect.top - size / 2}px;
+        background: rgba(25, 135, 84, 0.18);
+        border-radius: 50%;
+        transform: scale(0);
+        animation: navRipple 0.5s ease-out forwards;
+        pointer-events: none;
+        z-index: 0;
+      `;
+      this.style.position = "relative";
+      this.style.overflow = "hidden";
+      this.appendChild(ripple);
+      setTimeout(() => ripple.remove(), 500);
+    });
+  });
+
+  // Inject ripple keyframe if not present
+  if (!document.getElementById("nav-ripple-style")) {
+    const style = document.createElement("style");
+    style.id = "nav-ripple-style";
+    style.textContent = `
+      @keyframes navRipple {
+        to { transform: scale(2.5); opacity: 0; }
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
   // ===== Active Menu on Scroll =====
   const sections = document.querySelectorAll("section[id]");
 
@@ -151,6 +205,25 @@ document.addEventListener("DOMContentLoaded", function () {
   revealElements.forEach((element) => {
     revealObserver.observe(element);
   });
+
+  // ===== Phone Mockup - Budget Bar Animation =====
+  const budgetBarFill = document.querySelector(".budget-bar-fill");
+  if (budgetBarFill) {
+    const barObserver = new IntersectionObserver(
+      function (entries) {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              budgetBarFill.classList.add("animated");
+            }, 900); // delay to sync with chat-step-3 animation
+            barObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.4 }
+    );
+    barObserver.observe(budgetBarFill.closest(".phone-mockup-wrapper") || budgetBarFill);
+  }
 
   // ===== Counter Animation for Metrics =====
   function animateCounter(element, target, duration = 1000, suffix = "") {
