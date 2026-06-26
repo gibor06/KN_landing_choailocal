@@ -34,6 +34,9 @@ body {
   color: var(--text-dark);
   line-height: 1.6;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 html {
@@ -94,7 +97,7 @@ h6 {
   background: rgba(255, 255, 255, 0.92) !important;
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
-  box-shadow: 0 4px 24px rgba(25, 135, 84, 0.08), 0 1px 0 rgba(0,0,0,0.06);
+  box-shadow: 0 4px 24px rgba(25, 135, 84, 0.08), 0 1px 0 rgba(0, 0, 0, 0.06);
   border-bottom: 1px solid rgba(25, 135, 84, 0.12);
 }
 
@@ -270,19 +273,40 @@ body.dark-mode .navbar-brand-logo {
     animation: navItemSlide 0.3s ease both;
   }
 
-  .navbar-collapse.show .nav-item:nth-child(1) { animation-delay: 0.04s; }
-  .navbar-collapse.show .nav-item:nth-child(2) { animation-delay: 0.08s; }
-  .navbar-collapse.show .nav-item:nth-child(3) { animation-delay: 0.12s; }
-  .navbar-collapse.show .nav-item:nth-child(4) { animation-delay: 0.16s; }
-  .navbar-collapse.show .nav-item:nth-child(5) { animation-delay: 0.20s; }
-  .navbar-collapse.show .nav-item:nth-child(6) { animation-delay: 0.24s; }
-  .navbar-collapse.show .nav-item:nth-child(7) { animation-delay: 0.28s; }
+  .navbar-collapse.show .nav-item:nth-child(1) {
+    animation-delay: 0.04s;
+  }
+
+  .navbar-collapse.show .nav-item:nth-child(2) {
+    animation-delay: 0.08s;
+  }
+
+  .navbar-collapse.show .nav-item:nth-child(3) {
+    animation-delay: 0.12s;
+  }
+
+  .navbar-collapse.show .nav-item:nth-child(4) {
+    animation-delay: 0.16s;
+  }
+
+  .navbar-collapse.show .nav-item:nth-child(5) {
+    animation-delay: 0.20s;
+  }
+
+  .navbar-collapse.show .nav-item:nth-child(6) {
+    animation-delay: 0.24s;
+  }
+
+  .navbar-collapse.show .nav-item:nth-child(7) {
+    animation-delay: 0.28s;
+  }
 
   @keyframes navItemSlide {
     from {
       opacity: 0;
       transform: translateX(-12px);
     }
+
     to {
       opacity: 1;
       transform: translateX(0);
@@ -399,8 +423,6 @@ body.dark-mode .navbar-brand-logo {
   align-items: center;
   justify-content: center;
   padding: 24px 32px;
-  /* 3D tilt on hover */
-  perspective: 1000px;
 }
 
 
@@ -431,32 +453,56 @@ body.dark-mode .navbar-brand-logo {
 }
 
 @keyframes phoneGlowPulse {
-  0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(0.95); }
-  50%       { opacity: 1;   transform: translate(-50%, -50%) scale(1.05); }
+
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: translate(-50%, -50%) scale(0.95);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.05);
+  }
 }
 
-/* Side volume buttons */
-.phone-mockup-wrapper::before {
-  content: "";
+/* Side buttons physically on phone-frame to tilt together in 3D */
+.phone-btn-volume {
   position: absolute;
-  left: 8px;
-  top: 38%;
+  left: -4px;
+  top: 35%;
   width: 4px;
   height: 48px;
   background: linear-gradient(180deg, #1e293b, #334155);
   border-radius: 2px 0 0 2px;
-  box-shadow: 0 20px 0 #1e293b, 0 36px 0 #1e293b;
+  box-shadow:
+    0 20px 0 #1e293b,
+    0 36px 0 #1e293b;
+  z-index: -1;
 }
 
-.phone-mockup-wrapper::after {
-  content: "";
+.phone-btn-power {
   position: absolute;
-  right: 8px;
-  top: 42%;
+  right: -4px;
+  top: 40%;
   width: 4px;
   height: 60px;
   background: linear-gradient(180deg, #1e293b, #334155);
   border-radius: 0 2px 2px 0;
+  z-index: -1;
+}
+
+/* Inner screen container with automatic bezel and Concentric clipping */
+.phone-inner-container {
+  width: 100%;
+  height: 100%;
+  background: #0d1117;
+  border: 8px solid #000;
+  border-radius: 54px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
 
 /* Main Phone Frame (iPhone 17 concept with ultra-slim bezels & polished titanium edges) */
@@ -467,19 +513,27 @@ body.dark-mode .navbar-brand-logo {
   /* Multi-layered titanium edge simulation */
   border: 1px solid rgba(255, 255, 255, 0.25);
   box-shadow:
-    0 0 0 4px #1c1c1e, /* Titanium frame outer border */
-    0 0 0 5px rgba(255, 255, 255, 0.1), /* Metallic highlight edge */
+    0 0 0 4px #1c1c1e,
+    /* Titanium frame outer border */
+    0 0 0 5px rgba(255, 255, 255, 0.1),
+    /* Metallic highlight edge */
     0 25px 50px -12px rgba(0, 0, 0, 0.7),
-    0 0 40px rgba(25, 135, 84, 0.15),
-    inset 0 0 0 3px #000; /* Screen bezel */
-  overflow: hidden;
+    0 0 40px rgba(25, 135, 84, 0.15);
+  /* no overflow: hidden to allow side buttons to render outside */
   position: relative;
   flex-shrink: 0;
-  transform-style: preserve-3d;
   transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
 }
 
-
+/* Premium 3D Tilt Hover effect */
+.phone-mockup-wrapper:hover .phone-frame {
+  transform: translateY(-8px);
+  box-shadow:
+    0 0 0 4px #1c1c1e,
+    0 0 0 5px rgba(255, 255, 255, 0.15),
+    0 35px 60px -10px rgba(0, 0, 0, 0.85),
+    0 0 50px rgba(25, 135, 84, 0.25);
+}
 
 /* Glass edge highlight */
 .phone-frame::before {
@@ -488,21 +542,21 @@ body.dark-mode .navbar-brand-logo {
   inset: 0;
   border-radius: 54px;
   background: linear-gradient(135deg,
-    rgba(255,255,255,0.08) 0%,
-    transparent 30%,
-    transparent 70%,
-    rgba(255,255,255,0.04) 100%);
+      rgba(255, 255, 255, 0.08) 0%,
+      transparent 30%,
+      transparent 70%,
+      rgba(255, 255, 255, 0.04) 100%);
   pointer-events: none;
   z-index: 10;
 }
 
 /* iPhone 17 micro Dynamic Island */
 .phone-notch {
-  display: flex;
-  justify-content: center;
-  padding-top: 16px;
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 11;
-  position: relative;
 }
 
 .phone-notch-inner {
@@ -513,8 +567,8 @@ body.dark-mode .navbar-brand-logo {
   align-items: center;
   justify-content: center;
   gap: 6px;
-  border: 1px solid rgba(255,255,255,0.08);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.9);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.9);
   height: 20px;
   min-width: 60px;
 }
@@ -524,7 +578,7 @@ body.dark-mode .navbar-brand-logo {
   height: 8px;
   background: radial-gradient(circle at 30% 30%, #0d47a1 0%, #000000 70%);
   border-radius: 50%;
-  border: 1px solid rgba(255,255,255,0.15);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   box-shadow: 0 0 3px rgba(33, 150, 243, 0.5);
 }
 
@@ -533,8 +587,11 @@ body.dark-mode .navbar-brand-logo {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 5px 24px 7px;
+  padding: 0 24px;
   color: #cbd5e1;
+  height: 40px;
+  position: relative;
+  z-index: 10;
 }
 
 .phone-time {
@@ -558,8 +615,8 @@ body.dark-mode .navbar-brand-logo {
   align-items: center;
   gap: 12px;
   padding: 10px 20px 12px;
-  background: linear-gradient(180deg, rgba(25,135,84,0.18) 0%, rgba(25,135,84,0.04) 100%);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  background: linear-gradient(180deg, rgba(25, 135, 84, 0.18) 0%, rgba(25, 135, 84, 0.04) 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   position: relative;
 }
 
@@ -570,7 +627,7 @@ body.dark-mode .navbar-brand-logo {
   left: 20px;
   right: 20px;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(25,135,84,0.4), transparent);
+  background: linear-gradient(90deg, transparent, rgba(25, 135, 84, 0.4), transparent);
 }
 
 .phone-app-icon {
@@ -586,7 +643,7 @@ body.dark-mode .navbar-brand-logo {
   flex-shrink: 0;
   box-shadow:
     0 6px 16px rgba(25, 135, 84, 0.45),
-    0 0 0 1px rgba(255,255,255,0.1) inset;
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
 }
 
 .phone-app-title {
@@ -616,12 +673,19 @@ body.dark-mode .navbar-brand-logo {
   border-radius: 50%;
   flex-shrink: 0;
   animation: onlinePulse 2s ease infinite;
-  box-shadow: 0 0 6px rgba(34,197,94,0.6);
+  box-shadow: 0 0 6px rgba(34, 197, 94, 0.6);
 }
 
 @keyframes onlinePulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6); }
-  50%       { box-shadow: 0 0 0 5px rgba(34, 197, 94, 0); }
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6);
+  }
+
+  50% {
+    box-shadow: 0 0 0 5px rgba(34, 197, 94, 0);
+  }
 }
 
 /* Chat Screen */
@@ -642,8 +706,8 @@ body.dark-mode .navbar-brand-logo {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(25,135,84,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(25,135,84,0.03) 1px, transparent 1px);
+    linear-gradient(rgba(25, 135, 84, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(25, 135, 84, 0.03) 1px, transparent 1px);
   background-size: 24px 24px;
   pointer-events: none;
 }
@@ -666,10 +730,16 @@ body.dark-mode .navbar-brand-logo {
   top: 50%;
   width: 28%;
   height: 1px;
-  background: rgba(255,255,255,0.05);
+  background: rgba(255, 255, 255, 0.05);
 }
-.chat-date-divider::before { left: 0; }
-.chat-date-divider::after  { right: 0; }
+
+.chat-date-divider::before {
+  left: 0;
+}
+
+.chat-date-divider::after {
+  right: 0;
+}
 
 .chat-row {
   display: flex;
@@ -699,8 +769,8 @@ body.dark-mode .navbar-brand-logo {
   color: #fff;
   flex-shrink: 0;
   margin-top: 2px;
-  box-shadow: 0 4px 12px rgba(25,135,84,0.4);
-  border: 1.5px solid rgba(255,255,255,0.1);
+  box-shadow: 0 4px 12px rgba(25, 135, 84, 0.4);
+  border: 1.5px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Chat Bubbles */
@@ -716,7 +786,7 @@ body.dark-mode .navbar-brand-logo {
   background: linear-gradient(135deg, #198754 0%, #20c997 100%);
   color: #fff;
   border-bottom-right-radius: 5px;
-  box-shadow: 0 4px 16px rgba(25,135,84,0.35);
+  box-shadow: 0 4px 16px rgba(25, 135, 84, 0.35);
 }
 
 .user-bubble p {
@@ -737,10 +807,10 @@ body.dark-mode .navbar-brand-logo {
 .ai-bubble {
   background: linear-gradient(135deg, #1e293b 0%, #172033 100%);
   color: #e2e8f0;
-  border: 1px solid rgba(255,255,255,0.07);
+  border: 1px solid rgba(255, 255, 255, 0.07);
   border-bottom-left-radius: 5px;
   flex: 1;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
 }
 
 .ai-bubble-label {
@@ -768,7 +838,7 @@ body.dark-mode .navbar-brand-logo {
 .bubble-time {
   display: block;
   font-size: 0.6rem;
-  color: rgba(255,255,255,0.25);
+  color: rgba(255, 255, 255, 0.25);
   text-align: right;
   margin-top: 5px;
 }
@@ -817,19 +887,28 @@ body.dark-mode .navbar-brand-logo {
   background: rgba(59, 130, 246, 0.15);
   border: 1px solid rgba(59, 130, 246, 0.25);
 }
-.chip-budget i { color: #60a5fa; }
+
+.chip-budget i {
+  color: #60a5fa;
+}
 
 .chip-people {
   background: rgba(168, 85, 247, 0.15);
   border: 1px solid rgba(168, 85, 247, 0.25);
 }
-.chip-people i { color: #c084fc; }
+
+.chip-people i {
+  color: #c084fc;
+}
 
 .chip-meal {
   background: rgba(251, 191, 36, 0.12);
   border: 1px solid rgba(251, 191, 36, 0.25);
 }
-.chip-meal i { color: #fbbf24; }
+
+.chip-meal i {
+  color: #fbbf24;
+}
 
 /* Phone Result Card */
 .phone-result-card {
@@ -840,7 +919,7 @@ body.dark-mode .navbar-brand-logo {
   flex: 1;
   box-shadow:
     0 8px 24px rgba(25, 135, 84, 0.18),
-    0 0 0 1px rgba(25,135,84,0.1) inset;
+    0 0 0 1px rgba(25, 135, 84, 0.1) inset;
   position: relative;
 }
 
@@ -852,14 +931,19 @@ body.dark-mode .navbar-brand-logo {
   left: -100%;
   width: 60%;
   height: 100%;
-  background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.04) 50%, transparent 60%);
+  background: linear-gradient(105deg, transparent 40%, rgba(255, 255, 255, 0.04) 50%, transparent 60%);
   animation: shimmer 3s ease infinite 1.2s;
   pointer-events: none;
 }
 
 @keyframes shimmer {
-  0%   { left: -100%; }
-  100% { left: 200%; }
+  0% {
+    left: -100%;
+  }
+
+  100% {
+    left: 200%;
+  }
 }
 
 .result-card-header {
@@ -925,7 +1009,7 @@ body.dark-mode .navbar-brand-logo {
 
 .budget-bar-track {
   height: 6px;
-  background: rgba(255,255,255,0.07);
+  background: rgba(255, 255, 255, 0.07);
   border-radius: 99px;
   overflow: hidden;
   position: relative;
@@ -983,7 +1067,7 @@ body.dark-mode .navbar-brand-logo {
 
 .result-card-footer {
   padding: 8px 14px 10px;
-  border-top: 1px solid rgba(255,255,255,0.06);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .btn-order-now {
@@ -1017,9 +1101,9 @@ body.dark-mode .navbar-brand-logo {
 .phone-home-indicator {
   width: 90px;
   height: 5px;
-  background: rgba(255,255,255,0.18);
+  background: rgba(255, 255, 255, 0.18);
   border-radius: 99px;
-  box-shadow: 0 0 8px rgba(255,255,255,0.05);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.05);
 }
 
 /* Chat Step Animations */
@@ -1027,15 +1111,24 @@ body.dark-mode .navbar-brand-logo {
   animation: chatStepIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-.chat-step-1 { animation-delay: 0.15s; }
-.chat-step-2 { animation-delay: 0.5s; }
-.chat-step-3 { animation-delay: 0.9s; }
+.chat-step-1 {
+  animation-delay: 0.15s;
+}
+
+.chat-step-2 {
+  animation-delay: 0.5s;
+}
+
+.chat-step-3 {
+  animation-delay: 0.9s;
+}
 
 @keyframes chatStepIn {
   from {
     opacity: 0;
     transform: translateY(16px) scale(0.97);
   }
+
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
@@ -1044,7 +1137,7 @@ body.dark-mode .navbar-brand-logo {
 
 /* Dark mode — no extra needed, phone is already dark */
 body.dark-mode .phone-frame {
-  border-color: rgba(255,255,255,0.14);
+  border-color: rgba(255, 255, 255, 0.14);
 }
 
 /* Responsive */
@@ -1052,368 +1145,218 @@ body.dark-mode .phone-frame {
   .phone-frame {
     width: 310px;
   }
+
   .phone-screen {
     min-height: 400px;
+  }
+
+  .phone-inner-container {
+    border: 7px solid #000;
+    border-radius: 50px;
   }
 }
 
 @media (max-width: 991.98px) {
+  .phone-mockup-wrapper {
+    padding: 16px 16px;
+  }
+
   .phone-frame {
     width: 300px;
   }
+
   .phone-screen {
     min-height: 380px;
+    padding: 10px 10px 4px;
+    gap: 8px;
   }
-  /* hide side button pseudo on mobile */
-  .phone-mockup-wrapper::before,
-  .phone-mockup-wrapper::after {
+
+  .phone-inner-container {
+    border: 6px solid #000;
+    border-radius: 46px;
+  }
+
+  .phone-btn-volume,
+  .phone-btn-power {
     display: none;
+  }
+
+  /* Scale down inner components on mobile layout for realistic rendering */
+  .phone-app-header {
+    padding: 8px 14px 10px;
+    gap: 8px;
+  }
+
+  .phone-app-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 1.1rem;
+  }
+
+  .phone-app-title {
+    font-size: 0.8rem;
+  }
+
+  .phone-status-bar {
+    padding: 0 16px;
+  }
+
+  .chat-bubble {
+    padding: 8px 10px 5px;
+    font-size: 0.72rem;
+  }
+
+  .user-bubble p {
+    font-size: 0.75rem;
+  }
+
+  .ai-chip {
+    padding: 4px 8px;
+    font-size: 0.68rem;
+  }
+
+  .phone-result-card {
+    border-radius: 12px;
+  }
+
+  .result-card-header {
+    padding: 8px 10px;
+    font-size: 0.7rem;
+  }
+
+  .result-card-body {
+    padding: 8px 10px;
+    gap: 6px;
+  }
+
+  .result-dish-name {
+    font-size: 0.7rem;
+  }
+
+  .result-budget-bar {
+    gap: 4px;
+  }
+
+  .budget-bar-labels {
+    font-size: 0.6rem;
+  }
+
+  .result-save-tag {
+    padding: 3px 8px;
+    font-size: 0.6rem;
+  }
+
+  .result-card-footer {
+    padding: 6px 10px 8px;
+  }
+
+  .btn-order-now {
+    padding: 7px;
+    font-size: 0.68rem;
   }
 }
 
 @media (max-width: 575.98px) {
+  .phone-mockup-wrapper {
+    padding: 16px 12px;
+  }
+
   .phone-frame {
     width: 270px;
   }
+
   .phone-screen {
     min-height: 340px;
+    padding: 8px 8px 4px;
+    gap: 6px;
   }
-}
 
-
-
-/* ===== Cards ===== */
-
-/* Chat Screen */
-.phone-screen {
-  padding: 12px 12px 4px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  background: #0d1117;
-  min-height: 380px;
-  overflow: hidden;
-}
-
-.chat-date-divider {
-  text-align: center;
-  font-size: 0.6rem;
-  color: #475569;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-  margin-bottom: 6px;
-}
-
-.chat-row {
-  display: flex;
-  gap: 6px;
-}
-
-.user-row {
-  justify-content: flex-end;
-}
-
-.ai-row {
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-
-/* Avatars */
-.ai-avatar {
-  width: 28px;
-  height: 28px;
-  background: linear-gradient(135deg, #198754, #20c997);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.75rem;
-  color: #fff;
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-
-/* Chat Bubbles */
-.chat-bubble {
-  max-width: 82%;
-  border-radius: 16px;
-  padding: 8px 10px 6px;
-  position: relative;
-  font-size: 0.72rem;
-}
-
-.user-bubble {
-  background: var(--green-gradient);
-  color: #fff;
-  border-bottom-right-radius: 4px;
-}
-
-.user-bubble p {
-  margin: 0;
-  font-weight: 600;
-  font-style: italic;
-  line-height: 1.4;
-}
-
-.user-bubble .bubble-icon {
-  font-size: 0.85rem;
-  opacity: 0.8;
-  margin-bottom: 2px;
-  display: block;
-}
-
-.ai-bubble {
-  background: #1e293b;
-  color: #e2e8f0;
-  border: 1px solid rgba(255,255,255,0.06);
-  border-bottom-left-radius: 4px;
-  flex: 1;
-}
-
-.ai-bubble-label {
-  font-size: 0.6rem;
-  font-weight: 700;
-  color: #20c997;
-  text-transform: uppercase;
-  letter-spacing: 0.6px;
-  margin-bottom: 6px;
-}
-
-.bubble-time {
-  display: block;
-  font-size: 0.55rem;
-  color: rgba(255,255,255,0.35);
-  text-align: right;
-  margin-top: 4px;
-}
-
-/* AI Parsed Chips */
-.ai-parsed-chips {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.ai-chip {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 5px 8px;
-  border-radius: 8px;
-  font-size: 0.65rem;
-}
-
-.ai-chip i {
-  font-size: 0.85rem;
-  flex-shrink: 0;
-}
-
-.chip-label {
-  font-size: 0.58rem;
-  color: #64748b;
-  font-weight: 500;
-  line-height: 1;
-}
-
-.chip-value {
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: #f1f5f9;
-  line-height: 1.2;
-}
-
-.chip-budget {
-  background: rgba(59, 130, 246, 0.15);
-  border: 1px solid rgba(59, 130, 246, 0.2);
-}
-.chip-budget i { color: #60a5fa; }
-
-.chip-people {
-  background: rgba(168, 85, 247, 0.15);
-  border: 1px solid rgba(168, 85, 247, 0.2);
-}
-.chip-people i { color: #c084fc; }
-
-.chip-meal {
-  background: rgba(251, 191, 36, 0.12);
-  border: 1px solid rgba(251, 191, 36, 0.2);
-}
-.chip-meal i { color: #fbbf24; }
-
-/* Phone Result Card */
-.phone-result-card {
-  background: #1e293b;
-  border-radius: 14px;
-  border: 1px solid rgba(25, 135, 84, 0.35);
-  overflow: hidden;
-  flex: 1;
-  box-shadow: 0 4px 20px rgba(25, 135, 84, 0.15);
-}
-
-.result-card-header {
-  background: var(--green-gradient);
-  color: #fff;
-  padding: 7px 10px;
-  font-size: 0.68rem;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.result-card-header i { font-size: 0.9rem; }
-
-.result-card-body {
-  padding: 8px 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-}
-
-.result-dish-name {
-  display: flex;
-  align-items: flex-start;
-  gap: 5px;
-  font-size: 0.68rem;
-  font-weight: 600;
-  color: #f1f5f9;
-  line-height: 1.4;
-}
-
-.result-dish-name i {
-  color: #fbbf24;
-  font-size: 0.85rem;
-  margin-top: 1px;
-  flex-shrink: 0;
-}
-
-/* Budget Progress Bar */
-.result-budget-bar {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.budget-bar-labels {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.58rem;
-  color: #64748b;
-}
-
-.budget-bar-labels strong {
-  color: #22c55e;
-  font-weight: 700;
-  font-size: 0.62rem;
-}
-
-.budget-bar-track {
-  height: 5px;
-  background: rgba(255,255,255,0.08);
-  border-radius: 99px;
-  overflow: hidden;
-}
-
-.budget-bar-fill {
-  height: 100%;
-  background: linear-gradient(90deg, #22c55e, #86efac);
-  border-radius: 99px;
-  width: 0;
-  transition: width 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.budget-bar-fill.animated {
-  width: 93.5% !important;
-}
-
-.result-save-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  background: rgba(34, 197, 94, 0.15);
-  border: 1px solid rgba(34, 197, 94, 0.3);
-  color: #4ade80;
-  font-size: 0.6rem;
-  font-weight: 700;
-  padding: 3px 7px;
-  border-radius: 99px;
-  width: fit-content;
-}
-
-.result-save-tag i { font-size: 0.75rem; }
-
-.result-card-footer {
-  padding: 7px 10px 8px;
-  border-top: 1px solid rgba(255,255,255,0.06);
-}
-
-.btn-order-now {
-  width: 100%;
-  background: var(--green-gradient);
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  padding: 7px;
-  font-size: 0.65rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  letter-spacing: 0.3px;
-}
-
-.btn-order-now:hover {
-  opacity: 0.9;
-  transform: translateY(-1px);
-}
-
-/* Phone Bottom Bar */
-.phone-bottom-bar {
-  display: flex;
-  justify-content: center;
-  padding: 8px 0 12px;
-  background: #0d1117;
-}
-
-.phone-home-indicator {
-  width: 80px;
-  height: 4px;
-  background: rgba(255,255,255,0.2);
-  border-radius: 99px;
-}
-
-/* Chat Step Animations */
-.chat-step {
-  animation: chatStepIn 0.5s ease both;
-}
-
-.chat-step-1 { animation-delay: 0.2s; }
-.chat-step-2 { animation-delay: 0.55s; }
-.chat-step-3 { animation-delay: 0.9s; }
-
-@keyframes chatStepIn {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
+  .phone-inner-container {
+    border: 5px solid #000;
+    border-radius: 42px;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 
-/* Dark mode adjustment */
-body.dark-mode .phone-frame {
-  border-color: rgba(255,255,255,0.15);
-}
-
-/* Responsive */
-@media (max-width: 991.98px) {
-  .phone-frame {
-    width: 250px;
+  /* Scale down inner components even more for small screen viewports */
+  .phone-app-header {
+    padding: 6px 10px 8px;
+    gap: 6px;
   }
-  .phone-screen {
-    min-height: 330px;
+
+  .phone-app-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+  }
+
+  .phone-app-title {
+    font-size: 0.75rem;
+  }
+
+  .phone-app-subtitle {
+    font-size: 0.65rem;
+  }
+
+  .phone-status-bar {
+    padding: 0 12px;
+  }
+
+  .chat-bubble {
+    padding: 6px 8px 4px;
+    font-size: 0.68rem;
+  }
+
+  .user-bubble p {
+    font-size: 0.7rem;
+  }
+
+  .ai-chip {
+    padding: 3px 6px;
+    font-size: 0.62rem;
+  }
+
+  .phone-result-card {
+    border-radius: 10px;
+  }
+
+  .result-card-header {
+    padding: 6px 8px;
+    font-size: 0.65rem;
+  }
+
+  .result-card-body {
+    padding: 6px 8px;
+    gap: 5px;
+  }
+
+  .result-dish-name {
+    font-size: 0.65rem;
+  }
+
+  .result-budget-bar {
+    gap: 3px;
+  }
+
+  .budget-bar-labels {
+    font-size: 0.55rem;
+  }
+
+  .result-save-tag {
+    padding: 2px 6px;
+    font-size: 0.55rem;
+  }
+
+  .result-card-footer {
+    padding: 5px 8px 6px;
+  }
+
+  .btn-order-now {
+    padding: 6px;
+    font-size: 0.62rem;
+  }
+
+  .phone-home-indicator {
+    width: 70px;
+    height: 3px;
   }
 }
 
@@ -4519,6 +4462,7 @@ html[lang="en"] .lang-vi {
     padding-left: 0.7rem !important;
     padding-right: 0.7rem !important;
   }
+
   .navbar .btn {
     white-space: nowrap !important;
   }
@@ -4526,13 +4470,14 @@ html[lang="en"] .lang-vi {
 
 /* ===== Responsive Mobile Adjustments for Cart Table ===== */
 @media (max-width: 576px) {
+
   /* Hide the table headers as card layout handles labeling */
   .cart-table thead {
     display: none !important;
   }
 
-  .cart-table, 
-  .cart-table tbody, 
+  .cart-table,
+  .cart-table tbody,
   .cart-table tr {
     display: block !important;
     width: 100% !important;
@@ -4548,7 +4493,7 @@ html[lang="en"] .lang-vi {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02) !important;
     transition: all 0.3s ease !important;
   }
-  
+
   body.dark-mode .cart-table tbody tr:not(.cart-total-row) {
     background: #1e293b !important;
     border-color: #334155 !important;
@@ -4571,6 +4516,7 @@ html[lang="en"] .lang-vi {
     padding-bottom: 0.75rem !important;
     margin-bottom: 0.5rem !important;
   }
+
   body.dark-mode .cart-table td:nth-child(1) {
     border-bottom-color: #334155 !important;
   }
@@ -4580,19 +4526,21 @@ html[lang="en"] .lang-vi {
     justify-content: center !important;
     padding: 0.75rem 0 !important;
   }
-  
+
   .cart-table td:nth-child(2) .cart-qty-controls {
     width: 100% !important;
     justify-content: space-between !important;
     padding: 4px !important;
     border-radius: 10px !important;
   }
+
   .cart-table td:nth-child(2) .cart-btn-qty {
     width: 36px !important;
     height: 36px !important;
     font-size: 1.1rem !important;
     border-radius: 6px !important;
   }
+
   .cart-table td:nth-child(2) .cart-qty-val {
     font-size: 0.95rem !important;
     min-width: 80px !important;
@@ -4605,14 +4553,14 @@ html[lang="en"] .lang-vi {
     color: var(--muted);
     font-size: 0.85rem;
   }
-  
+
   .cart-table td:nth-child(4)::before {
     content: "Thành tiền:";
     font-weight: 700;
     color: var(--muted);
     font-size: 0.85rem;
   }
-  
+
   .cart-table td:nth-child(4) {
     font-weight: 800 !important;
     color: var(--primary) !important;
@@ -4629,7 +4577,7 @@ html[lang="en"] .lang-vi {
     padding: 1.25rem 0 !important;
     margin-top: 1rem !important;
   }
-  
+
   .cart-table tr.cart-total-row td {
     display: block !important;
     width: auto !important;
